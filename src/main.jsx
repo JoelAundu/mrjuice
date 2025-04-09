@@ -6,9 +6,9 @@ import { Button } from "./index.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <div className="p-4">
-      <h1 className="text-2xl mb-4">Component Library Test</h1>
-      <Button variant="primary" size="lg">
+    <div className="p-4 space-x-2">
+      <h1 className="text-2xl mb-4 ">Component Library Test</h1>
+      <Button variant="primary" size="md">
         Primary Button
       </Button>
       <Button variant="secondary" size="md" className="ml-2">
@@ -16,6 +16,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </Button>
       <Button variant="danger" size="sm" className="ml-2">
         Danger Button
+      </Button>
+      <Button
+        variant="secondary"
+        className="bg-yellow-200 hover:bg-yellow-800"
+        onClick={() => alert("Clicked!")}
+      >
+        click Me
       </Button>
     </div>
   </React.StrictMode>
