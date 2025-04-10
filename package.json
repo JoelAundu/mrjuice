@@ -1,36 +1,37 @@
 {
-  "name": "mrjuice",
-  "private": true,
-  "version": "0.0.0",
+  "name": "mrjuice-ui",
+  "version": "1.0.1",
   "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "rollup -c",
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [
-    "react",
-    "components",
-    "tailwindcss"
-  ],
-  "author": "Joel Aundu",
-  "license": "MIT",
-  "dependencies": {
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "gsap": "^3.12.5",
+  "peerDependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0",
-    "rollup": "^4.30.0",
-    "web-vitals": "^4.2.4"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@rollup/plugin-commonjs": "^26.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
+    "rollup": "^4.30.0",
     "tailwindcss": "^3.4.14",
+    "tslib": "^2.8.0",
+    "typescript": "^5.6.3",
     "vite": "^5.4.9"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
