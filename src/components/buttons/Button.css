@@ -1,0 +1,67 @@
+/* Base styles for all buttons */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  /* Variant styles */
+  .button--primary {
+    background-color: #3b82f6; /* blue-500 equivalent */
+    color: white;
+  }
+  .button--primary:hover:not(.button--disabled) {
+    background-color: #2563eb; /* blue-600 */
+  }
+  .button--primary.button--disabled {
+    background-color: #93c5fd; /* blue-300 */
+    cursor: not-allowed;
+  }
+  
+  .button--secondary {
+    background-color: #e5e7eb; /* gray-200 */
+    color: #1f2937; /* gray-800 */
+  }
+  .button--secondary:hover:not(.button--disabled) {
+    background-color: #d1d5db; /* gray-300 */
+  }
+  .button--secondary.button--disabled {
+    background-color: #f3f4f6; /* gray-100 */
+    cursor: not-allowed;
+  }
+  
+  .button--danger {
+    background-color: #ef4444; /* red-500 */
+    color: white;
+  }
+  .button--danger:hover:not(.button--disabled) {
+    background-color: #dc2626; /* red-600 */
+  }
+  .button--danger.button--disabled {
+    background-color: #fca5a5; /* red-300 */
+    cursor: not-allowed;
+  }
+  
+  /* Size styles */
+  .button--sm {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+  .button--md {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+  .button--lg {
+    padding: 12px 24px;
+    font-size: 18px;
+  }
+  
+  /* Ensure focus styles are consistent */
+  .button:focus {
+    outline: none;
+  }
