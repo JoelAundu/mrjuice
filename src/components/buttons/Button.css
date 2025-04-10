@@ -1,67 +1,67 @@
 /* Base styles for all buttons */
 .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-weight: 600 !important;
+    border-radius: 4px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease, color 0.2s ease !important;
   }
   
   /* Variant styles */
   .button--primary {
-    background-color: #3b82f6; /* blue-500 equivalent */
-    color: white;
+    background-color: #3b82f6 !important; /* blue-500 equivalent */
+    color: white !important;
   }
   .button--primary:hover:not(.button--disabled) {
-    background-color: #2563eb; /* blue-600 */
+    background-color: #2563eb !important; /* blue-600 */
   }
   .button--primary.button--disabled {
-    background-color: #93c5fd; /* blue-300 */
-    cursor: not-allowed;
+    background-color: #93c5fd !important; /* blue-300 */
+    cursor: not-allowed !important;
   }
   
   .button--secondary {
-    background-color: #e5e7eb; /* gray-200 */
-    color: #1f2937; /* gray-800 */
+    background-color: #e5e7eb !important; /* gray-200 */
+    color: #1f2937 !important; /* gray-800 */
   }
   .button--secondary:hover:not(.button--disabled) {
-    background-color: #d1d5db; /* gray-300 */
+    background-color: #d1d5db !important; /* gray-300 */
   }
   .button--secondary.button--disabled {
-    background-color: #f3f4f6; /* gray-100 */
-    cursor: not-allowed;
+    background-color: #f3f4f6 !important; /* gray-100 */
+    cursor: not-allowed !important;
   }
   
   .button--danger {
-    background-color: #ef4444; /* red-500 */
-    color: white;
+    background-color: #ef4444 !important; /* red-500 */
+    color: white !important;
   }
   .button--danger:hover:not(.button--disabled) {
-    background-color: #dc2626; /* red-600 */
+    background-color: #dc2626 !important; /* red-600 */
   }
   .button--danger.button--disabled {
-    background-color: #fca5a5; /* red-300 */
-    cursor: not-allowed;
+    background-color: #fca5a5 !important; /* red-300 */
+    cursor: not-allowed !important;
   }
   
   /* Size styles */
   .button--sm {
-    padding: 4px 8px;
-    font-size: 14px;
+    padding: 4px 8px !important;
+    font-size: 14px !important;
   }
   .button--md {
-    padding: 8px 16px;
-    font-size: 16px;
+    padding: 8px 16px !important;
+    font-size: 16px !important;
   }
   .button--lg {
-    padding: 12px 24px;
-    font-size: 18px;
+    padding: 12px 24px !important;
+    font-size: 18px !important;
   }
   
   /* Ensure focus styles are consistent */
   .button:focus {
-    outline: none;
+    outline: none !important;
   }
