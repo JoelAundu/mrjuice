@@ -3,6 +3,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
+import tailwindcss from 'tailwindcss'; // Use import instead of require
+import autoprefixer from 'autoprefixer';
 
 export default {
   input: 'src/index.ts',
@@ -20,8 +22,12 @@ export default {
       sourceMap: true,
     }),
     postcss({
-      extract: 'index.css', // Outputs to dist/index.css
-      minimize: true, // Minifies CSS
+      extract: 'index.css',
+      minimize: true,
+      plugins: [
+        tailwindcss(), // Use the imported tailwindcss directly
+        autoprefixer(),
+      ],
     }),
     terser(),
   ],
