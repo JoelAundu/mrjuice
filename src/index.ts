@@ -1,2 +1,3 @@
 // src/index.js
-export { Button } from "./components/Button";
+import "./index.css"
+export { Button } from "./components/buttons/Button";
