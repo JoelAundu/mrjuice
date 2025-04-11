@@ -1,6 +1,6 @@
 {
   "name": "mrjuice-ui",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -13,7 +13,12 @@
     "build": "rollup -c",
     "dev": "vite",
     "preview": "vite preview",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release:patch": "npm run check:clean && npm version patch && npm run build && npm publish && npm run postversion",
+    "release:minor": "npm run check:clean && npm version minor && npm run build && npm publish && npm run postversion",
+    "release:major": "npm run check:clean && npm version major && npm run build && npm publish && npm run postversion",
+    "check:clean": "git diff --exit-code && git diff --cached --exit-code || (echo 'Error: Working directory is not clean. Please commit or stash your changes.' && exit 1)",
+    "postversion": "git push && git push --tags"
   },
   "peerDependencies": {
     "react": "^18.3.1",

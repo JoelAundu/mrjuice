@@ -245,6 +245,32 @@ npm run build
 
 This will generate the `dist` folder with the compiled library, ready for publishing to npm.
 
+### Releasing a New Version
+
+MR JUICE UI includes scripts to automate the release process for patch, minor, and major version updates. Before running these scripts, ensure you’re authenticated with npm (`npm login`) and your working directory is clean (no uncommitted changes).
+
+- **Patch Release** (e.g., `1.0.5` → `1.0.6`): For bug fixes and small changes.
+  ```bash
+  npm run release:patch
+  ```
+
+- **Minor Release** (e.g., `1.0.5` → `1.1.0`): For new features or enhancements.
+  ```bash
+  npm run release:minor
+  ```
+
+- **Major Release** (e.g., `1.0.5` → `2.0.0`): For breaking changes.
+  ```bash
+  npm run release:major
+  ```
+
+Each release script will:
+1. Check if the working directory is clean.
+2. Bump the version in `package.json`.
+3. Build the package.
+4. Publish the package to npm.
+5. Push the updated version and Git tag to the repository.
+
 ---
 
 ## 🔧 Expanding the ESLint Configuration
