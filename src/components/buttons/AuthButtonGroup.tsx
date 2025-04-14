@@ -47,7 +47,7 @@ const AuthButtonGroup = ({
         className={`pl-[25px] pr-1 py-1 ${containerBgClass} rounded-full flex items-center gap-6 w-56 ${className}`}
       >
         <div
-          className={`w-[41px] ${textColorClass} text-${textSize} font-medium cursor-pointer ${loginClassName}`}
+          className={`w-[41px] ${textColorClass} text-${textSize} font-medium flex cursor-pointer ${loginClassName}`}
           onClick={onLoginClick}
         >
           {loginLabel}
@@ -56,7 +56,7 @@ const AuthButtonGroup = ({
           className={`px-[25px] py-3 ${getStartedBgClass} rounded-full flex items-center gap-2.5 cursor-pointer ${getStartedClassName}`}
           onClick={onGetStartedClick}
         >
-          <div className={`text-center ${containerBackground === "white" ? "text-white" : "text-[#1b1c1f] hover:text-gray-400"} text-${textSize} font-medium`}>
+          <div className={`text-center ${containerBackground === "white" ? "text-white" : "text-[#1b1c1f] flex hover:text-gray-400"} text-${textSize} font-medium`}>
             {getStartedLabel}
           </div>
           {showArrow && (
