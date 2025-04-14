@@ -4,14 +4,14 @@ import "./index.css";
 import ButtonShowcase from "./components/ButtonShowcase";
 import MenuShowcase from "./components/MenuShowcase";
 import SideNavShowcase from "./components/SideNavShowcase";
-// import InputsShowcase from "./components/InputsShowcase";
+import InputsShowcase from "./components/InputShowcase";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ButtonShowcase />
     <MenuShowcase />
     <SideNavShowcase />
-    {/* <InputsShowcase /> */}
+    <InputsShowcase />
   </React.StrictMode>
 );
 
