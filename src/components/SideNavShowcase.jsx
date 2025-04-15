@@ -15,9 +15,7 @@ const SideNavShowcase = () => {
   const [searchValue, setSearchValue] = useState("");
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
 
-  const mainMenuItems = [
-    { label: "Home", icon: <HomeIcon /> },
-  ];
+  const mainMenuItems = [{ label: "Home", icon: <HomeIcon /> }];
 
   const projectMenuItems = [
     { label: "Maraisburg Road", icon: <ProjectIcon /> },
@@ -55,30 +53,34 @@ const SideNavShowcase = () => {
         />
 
         {/* Main Menu */}
-        {/* <MenuList
+        <MenuList
           items={mainMenuItems}
           activeIndex={getActiveIndexForSection(0, mainMenuItems?.length)}
           onItemClick={(index) => setActiveMenuIndex(index)}
-        /> */}
+        />
 
         {/* Projects Section */}
         <div className="mt-4">
-          <div className="text-xs font-semibold text-gray-500 mb-2">PROJECTS</div>
-          {/* <MenuList
+          <div className="text-xs font-semibold text-gray-500 mb-2">
+            PROJECTS
+          </div>
+          <MenuList
             items={projectMenuItems}
             activeIndex={getActiveIndexForSection(1, projectMenuItems?.length)}
             onItemClick={(index) => setActiveMenuIndex(index + 1)}
-          /> */}
+          />
         </div>
 
         {/* Settings Section */}
         <div className="mt-4">
-          <div className="text-xs font-semibold text-gray-500 mb-2">SETTINGS</div>
-          {/* <MenuList
+          <div className="text-xs font-semibold text-gray-500 mb-2">
+            SETTINGS
+          </div>
+          <MenuList
             items={settingsMenuItems}
             activeIndex={getActiveIndexForSection(3, settingsMenuItems?.length)}
             onItemClick={(index) => setActiveMenuIndex(index + 3)}
-          /> */}
+          />
         </div>
 
         {/* Bottom Menu */}
@@ -94,7 +96,9 @@ const SideNavShowcase = () => {
       {/* Main Content (for demo purposes) */}
       <div className="flex-1 p-8">
         <h1 className="text-3xl font-bold">SideNav Showcase</h1>
-        <p className="mt-4">Interact with the SideNav to see expand/collapse and active states.</p>
+        <p className="mt-4">
+          Interact with the SideNav to see expand/collapse and active states.
+        </p>
       </div>
     </div>
   );

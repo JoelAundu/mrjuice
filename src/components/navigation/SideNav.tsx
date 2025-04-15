@@ -73,7 +73,7 @@ const SideNav = ({
           className={toggleClassName}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
-          {isCollapsed ? "→" : "←"}
+          {/* {isCollapsed ? "→" : "←"} */}
         </button>
       </div>
 
