@@ -1,0 +1,81 @@
+{
+    "logo": {
+      "text": "SOLINK"
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search"
+    },
+    "topNavTabs": [
+      {
+        "label": "My Projects",
+        "isActive": true
+      },
+      {
+        "label": "My Organisation",
+        "isActive": false
+      },
+      {
+        "label": "Team Management",
+        "isActive": false
+      }
+    ],
+    "projectFilters": [
+      {
+        "label": "All Projects"
+      },
+      {
+        "label": "In Progress"
+      },
+      {
+        "label": "Completed"
+      },
+      {
+        "label": "Abandoned"
+      }
+    ],
+    "menuSections": [
+      {
+        "items": [
+          {
+            "label": "Home",
+            "icon": "🏠",
+            "isActive": true
+          }
+        ]
+      },
+      {
+        "title": "PROJECTS",
+        "items": [
+          {
+            "label": "Maraisburg Road",
+            "icon": "📁",
+            "isActive": false
+          },
+          {
+            "label": "Lismore Avenue",
+            "icon": "📁",
+            "isActive": false
+          }
+        ]
+      },
+      {
+        "title": "SETTINGS",
+        "items": [
+          {
+            "label": "System Settings",
+            "icon": "⚙️",
+            "isActive": false
+          }
+        ]
+      }
+    ],
+    "footerLinks": [
+      {
+        "label": "Invite Team Members"
+      },
+      {
+        "label": "Help Centre"
+      }
+    ]
+  }
