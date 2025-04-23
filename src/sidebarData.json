@@ -34,6 +34,90 @@
         "label": "Abandoned"
       }
     ],
+    "states": {
+      "In Progress": {
+        "color": "#2c6adf",
+        "bgColor": "rgba(44, 106, 223, 0.1)"
+      },
+      "Completed": {
+        "color": "#03c889",
+        "bgColor": "rgba(3, 200, 137, 0.1)"
+      },
+      "Abandoned": {
+        "color": "#ff4d4f",
+        "bgColor": "rgba(255, 77, 79, 0.1)"
+      },
+      "On Hold": {
+        "color": "#f39c12",
+        "bgColor": "rgba(243, 156, 18, 0.1)"
+      }
+    },
+    "projects": [
+      {
+        "title": "Create New Project",
+        "isCreateButton": true
+      },
+      {
+        "title": "Maraisburg Road",
+        "address": "50 Maraisburg Road, Johannesburg",
+        "state": "In Progress",
+        "image": "https://images.unsplash.com/photo-1486406146923-c6832a105b2d"
+      },
+      {
+        "title": "Lismore Avenue",
+        "address": "21 Lismore Avenue, Johannesburg",
+        "state": "Completed",
+        "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
+      },
+      {
+        "title": "Crosby Street",
+        "address": "15 Crosby Street, Johannesburg",
+        "state": "Abandoned",
+        "image": "https://images.unsplash.com/photo-1560448204-61dc36dc2a5b"
+      },
+      {
+        "title": "Industria West",
+        "address": "78 Industria West, Johannesburg",
+        "state": "On Hold",
+        "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0"
+      },
+      {
+        "title": "Langlaagte North",
+        "address": "42 Langlaagte North, Johannesburg",
+        "state": "In Progress",
+        "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
+      },
+      {
+        "title": "Pine Avenue",
+        "address": "33 Pine Avenue, Johannesburg",
+        "state": "Completed",
+        "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29"
+      },
+      {
+        "title": "Oak Street",
+        "address": "19 Oak Street, Johannesburg",
+        "state": "Abandoned",
+        "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688"
+      },
+      {
+        "title": "Cedar Road",
+        "address": "88 Cedar Road, Johannesburg",
+        "state": "On Hold",
+        "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0"
+      },
+      {
+        "title": "Maple Drive",
+        "address": "27 Maple Drive, Johannesburg",
+        "state": "In Progress",
+        "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
+      },
+      {
+        "title": "Willow Lane",
+        "address": "65 Willow Lane, Johannesburg",
+        "state": "Completed",
+        "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29"
+      }
+    ],
     "menuSections": [
       {
         "items": [
