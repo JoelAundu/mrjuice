@@ -3,11 +3,13 @@ import React from "react";
 interface MenuItem {
   label: string;
   icon?: React.ReactNode;
+  isActive?: boolean;
 }
 
 interface MenuListProps {
-  items?: MenuItem[]; // Made items optional
+  items: MenuItem[];
   activeIndex?: number;
+  onItemClick?: (index: number) => void;
   className?: string;
   itemClassName?: string;
   labelClassName?: string;
@@ -28,12 +30,12 @@ interface MenuListProps {
   inactiveLabelStyle?: React.CSSProperties;
   activeIconStyle?: React.CSSProperties;
   inactiveIconStyle?: React.CSSProperties;
-  onItemClick?: (index: number) => void;
 }
 
-const MenuList = ({
-  items = [], // Default to empty array
+const MenuList: React.FC<MenuListProps> = ({
+  items,
   activeIndex = -1,
+  onItemClick,
   className = "",
   itemClassName = "",
   labelClassName = "",
@@ -54,106 +56,88 @@ const MenuList = ({
   inactiveLabelStyle = {},
   activeIconStyle = {},
   inactiveIconStyle = {},
-  onItemClick,
-}: MenuListProps) => {
-  // Check if items is not an array or is empty
-  if (!Array.isArray(items) || items.length === 0) {
-    return (
-      <div
-        style={{
-          width: "100%",
-          paddingLeft: "20px",
-          paddingRight: "20px",
-          display: "inline-flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          color: "#64748b",
-          fontSize: "14px",
-          fontFamily: "'Inter', sans-serif",
-          ...style,
-        }}
-        className={`w-full ${className}`}
-      >
-        No items to display
-      </div>
-    );
-  }
-
+}) => {
   return (
     <div
+      className={`menu-list ${className}`}
       style={{
         width: "100%",
-        paddingLeft: "20px",
-        paddingRight: "20px",
-        display: "inline-flex",
+        display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
+        gap: "2px",
         ...style,
       }}
-      className={`w-full ${className}`}
     >
       {items.map((item, index) => {
-        const isActive = index === activeIndex;
+        const isActive =
+          item.isActive !== undefined ? item.isActive : index === activeIndex;
+        const hasIcon = !!item.icon;
+
         return (
-          <div
+          <button
             key={index}
+            onClick={() => onItemClick && onItemClick(index)}
+            className={`menu-item ${itemClassName} ${
+              isActive
+                ? `menu-item-active ${activeItemClassName}`
+                : `menu-item-inactive ${inactiveItemClassName}`
+            }`}
             style={{
               width: "100%",
               height: "39px",
-              paddingLeft: "8px",
-              paddingRight: "8px",
-              backgroundColor: isActive ? "#e1e7ef" : "#f8fafc",
+              padding: "0 8px",
               borderRadius: "6px",
               display: "inline-flex",
               justifyContent: "flex-start",
-              alignItems: "center",
+              alignItems: "center", // Ensure vertical centering
               gap: "6px",
-              marginBottom: index < items.length - 1 ? "8px" : "0",
-              cursor: "pointer",
+              backgroundColor: isActive ? "#e1e7ef" : "#f8fafc",
               ...itemStyle,
               ...(isActive ? activeItemStyle : inactiveItemStyle),
             }}
-            className={`w-full ${itemClassName} ${
-              isActive ? activeItemClassName : inactiveItemClassName
-            }`}
-            onClick={() => onItemClick && onItemClick(index)}
           >
-            {item.icon && (
-              <span
+            {hasIcon && (
+              <div
+                className={`menu-icon ${
+                  isActive ? activeIconClassName : inactiveIconClassName
+                }`}
                 style={{
+                  width: "15px",
+                  height: "15px",
+                  color: "#0f172a",
                   display: "flex",
                   alignItems: "center",
-                  width: "18px",
-                  height: "18px",
+                  justifyContent: "center",
                   ...iconStyle,
                   ...(isActive ? activeIconStyle : inactiveIconStyle),
                 }}
-                className={`${iconClassName} ${
-                  isActive ? activeIconClassName : inactiveIconClassName
-                }`}
               >
                 {item.icon}
-              </span>
+              </div>
             )}
             <div
+              className={`menu-label ${labelClassName} ${
+                isActive
+                  ? `menu-label-active ${activeLabelClassName}`
+                  : `menu-label-inactive ${inactiveLabelClassName}`
+              }`}
               style={{
-                opacity: isActive ? 1 : 0.75,
-                color: isActive ? "#0f172a" : "#64748b",
+                display: "flex",
+                alignItems: "center", // Ensure label is vertically centered
                 fontSize: "14px",
-                fontWeight: 500,
                 fontFamily: "'Inter', sans-serif",
+                fontWeight: 500,
+                color: isActive ? "#0f172a" : "#64748b",
+                opacity: isActive ? 1 : 0.75,
                 ...labelStyle,
                 ...(isActive ? activeLabelStyle : inactiveLabelStyle),
               }}
-              className={`${labelClassName} ${
-                isActive ? activeLabelClassName : inactiveLabelClassName
-              }`}
             >
               {item.label}
             </div>
-          </div>
+          </button>
         );
       })}
     </div>

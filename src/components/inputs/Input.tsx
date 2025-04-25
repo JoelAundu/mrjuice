@@ -1,11 +1,11 @@
 import React from "react";
+import "./Input.css";
 
 interface InputProps {
-  placeholder?: string;
   label?: string;
-  labelOutside?: boolean;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   className?: string;
@@ -18,11 +18,10 @@ interface InputProps {
   iconStyle?: React.CSSProperties;
 }
 
-const Input = ({
-  placeholder = "",
-  label = "",
-  labelOutside = false,
-  value = "",
+const Input: React.FC<InputProps> = ({
+  label,
+  placeholder,
+  value,
   onChange,
   leftIcon,
   rightIcon,
@@ -34,93 +33,33 @@ const Input = ({
   inputStyle = {},
   labelStyle = {},
   iconStyle = {},
-}: InputProps) => {
+}) => {
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: labelOutside ? "column" : "row",
-        alignItems: labelOutside ? "flex-start" : "center",
-        gap: labelOutside ? "8px" : "0",
-        ...style,
-      }}
-      className={`w-full ${className}`}
-    >
-      {labelOutside && label && (
-        <label
-          style={{
-            fontSize: "14px",
-            fontWeight: 500,
-            fontFamily: "'Inter', sans-serif",
-            color: "#64748b",
-            ...labelStyle,
-          }}
-          className={labelClassName}
-        >
-          {label}
-        </label>
-      )}
-      <div
-        style={{
-          width: "100%",
-          height: "39px",
-          paddingLeft: "8px",
-          paddingRight: "8px",
-          backgroundColor: "transparent",
-          borderRadius: "6px",
-          outline: "1px solid #cbd5e1",
-          outlineOffset: "-1px",
-          display: "inline-flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          gap: "6px",
-          ...inputStyle,
-        }}
-        className={`w-full ${inputClassName}`}
-      >
+    <div className={`input-container ${className}`} style={style}>
+      <div className="input-wrapper">
         {leftIcon && (
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              ...iconStyle,
-            }}
-            className={iconClassName}
+          <div
+            className={`input-icon input-icon-left ${iconClassName}`}
+            style={iconStyle}
           >
             {leftIcon}
-          </span>
+          </div>
         )}
         <input
           type="text"
-          placeholder={labelOutside ? placeholder : label || placeholder}
+          placeholder={placeholder || label}
           value={value}
           onChange={onChange}
-          style={{
-            flex: 1,
-            backgroundColor: "transparent",
-            border: "none",
-            outline: "none",
-            fontSize: "14px",
-            fontWeight: 500,
-            fontFamily: "'Inter', sans-serif",
-            color: "#64748b",
-            opacity: 0.5,
-            ...inputStyle,
-          }}
-          className={inputClassName}
+          className={`input-field ${inputClassName}`}
+          style={inputStyle}
         />
         {rightIcon && (
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              ...iconStyle,
-            }}
-            className={iconClassName}
+          <div
+            className={`input-icon input-icon-right ${iconClassName}`}
+            style={iconStyle}
           >
             {rightIcon}
-          </span>
+          </div>
         )}
       </div>
     </div>

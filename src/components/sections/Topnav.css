@@ -1,0 +1,10 @@
+.top-nav {
+    width: 100%;
+    height: px;
+    padding: 20px 20px;
+    background-color: white;
+    border-bottom: 1px solid #e2e8f0;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+  }

@@ -64,7 +64,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<HomePage />} />
         <Route
           path="/sidenav"
-          element={<ShowcasePage component={<SideNavShowcase />} title="SideNav Showcase" />}
+          element={<SideNavShowcase />}
         />
         <Route
           path="/button"
