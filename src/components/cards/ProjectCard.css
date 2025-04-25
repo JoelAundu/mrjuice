@@ -53,7 +53,7 @@
   
   .project-title {
     width: 100%;
-    text-align: center;
+    text-align: left;
     color: #0f172a; /* slate-900 */
     font-size: 14px;
     font-family: 'Inter', sans-serif;
@@ -62,7 +62,7 @@
   
   .project-address {
     width: 100%;
-    text-align: center;
+    text-align: left;
     color: #64748b; /* slate-500 */
     font-size: 14px;
     font-family: 'Inter', sans-serif;
