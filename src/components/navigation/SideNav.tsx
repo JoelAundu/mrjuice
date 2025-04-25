@@ -1,98 +1,58 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface SideNavProps {
+  logo: React.ReactNode;
   children: React.ReactNode;
-  logo?: React.ReactNode;
-  collapsedWidth?: string;
-  expandedWidth?: string;
   className?: string;
-  headerClassName?: string;
-  contentClassName?: string;
-  toggleClassName?: string;
   style?: React.CSSProperties;
-  headerStyle?: React.CSSProperties;
-  contentStyle?: React.CSSProperties;
-  toggleStyle?: React.CSSProperties;
 }
 
-const SideNav = ({
-  children,
+const SideNav: React.FC<SideNavProps> = ({
   logo,
-  collapsedWidth = "60px",
-  expandedWidth = "240px",
+  children,
   className = "",
-  headerClassName = "",
-  contentClassName = "",
-  toggleClassName = "",
   style = {},
-  headerStyle = {},
-  contentStyle = {},
-  toggleStyle = {},
-}: SideNavProps) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+}) => {
+  // Split children into main content and footer
+  const childrenArray = React.Children.toArray(children);
+  const mainContent = childrenArray.slice(0, -1); // Everything except the last child
+  const footer = childrenArray[childrenArray.length - 1]; // Last child (footer)
 
   return (
-    <div
+    <nav
+      className={`side-nav ${className}`}
       style={{
-        width: isCollapsed ? collapsedWidth : expandedWidth,
+        width: "280px",
         height: "100vh",
-        backgroundColor: "#ffffff",
-        boxShadow: "2px 0 5px rgba(0, 0, 0, 0.1)",
+        padding: "20px 0",
+        backgroundColor: "#f8fafc",
+        borderRight: "1px solid #e2e8f0",
         display: "flex",
         flexDirection: "column",
-        transition: "width 0.3s ease-in-out",
         ...style,
       }}
-      className={`h-screen ${className}`}
     >
-      {/* Header with Logo */}
-      <div
-        style={{
-          padding: "16px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: isCollapsed ? "center" : "space-between",
-          borderBottom: "1px solid #e5e7eb",
-          ...headerStyle,
-        }}
-        className={headerClassName}
-      >
-        {!isCollapsed && (logo || <div style={{ fontWeight: 700, fontSize: "18px" }}>SOLINK</div>)}
-        <button
-          style={{
-            width: "32px",
-            height: "32px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "transparent",
-            border: "none",
-            cursor: "pointer",
-            ...toggleStyle,
-          }}
-          className={toggleClassName}
-          onClick={() => setIsCollapsed(!isCollapsed)}
-        >
-          {/* {isCollapsed ? "→" : "←"} */}
-        </button>
+      {/* Main Content (Logo, Divider, Search, Menu Sections) */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div style={{ paddingLeft: "20px", paddingTop: "5px" }}>{logo}</div>
+          <div style={{ width: "100%", padding: "15px 0" }}>
+            <div
+              style={{
+                width: "100%",
+                height: "0",
+                border: "1px solid #e2e8f0",
+                outlineOffset: "-0.5px",
+              }}
+            ></div>
+          </div>
+        </div>
+        {mainContent}
       </div>
 
-      {/* Content */}
-      <div
-        style={{
-          flex: 1,
-          padding: "16px",
-          overflowY: "auto",
-          display: "flex",
-          flexDirection: "column",
-          gap: "16px",
-          ...contentStyle,
-        }}
-        className={contentClassName}
-      >
-        {children}
-      </div>
-    </div>
+      {/* Footer */}
+      <div style={{ marginTop: "auto" }}>{footer}</div>
+    </nav>
   );
 };
 
