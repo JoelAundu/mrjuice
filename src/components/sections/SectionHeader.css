@@ -1,0 +1,10 @@
+.section-header {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #64748b;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }

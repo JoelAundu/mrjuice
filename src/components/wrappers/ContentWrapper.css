@@ -1,0 +1,40 @@
+.content-wrapper {
+  background-color: white;
+  height: screen;
+  display: flex;
+  flex-direction: column;
+  padding: 58px;
+}
+
+.content-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 38px;
+  padding-left: 100px;
+}
+
+.content-title {
+  width: 100%;
+  justify-content: center;
+  color: #0f172a; /* slate-900 */
+  font-size: 26px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
+.content-description {
+  width: 100%;
+  justify-content: center;
+  color: #64748b; /* slate-500 */
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.content-body {
+  flex: 1;
+  /* overflow-y: auto; */
+  padding-top: 58px;
+  padding-left: 100px;
+}
