@@ -26,7 +26,9 @@ const SideNavShowcase: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null
-  ); // Track selected project
+  );
+  const [currentPage, setCurrentPage] = useState(0); // Track the current page of projects in SideNav
+  const projectsPerPage = 4; // Display 4 projects at a time in SideNav
 
   // Prevent body scrolling when modal is open
   useEffect(() => {
@@ -40,6 +42,56 @@ const SideNavShowcase: React.FC = () => {
     };
   }, [isModalOpen]);
 
+  // Get the "PROJECTS" section items (menuSections[1])
+  const projectSectionItems = typedSidebarData.menuSections[1].items;
+
+  // Apply search filter to "PROJECTS" section items if searchValue is not empty
+  const searchedProjectItems = searchValue
+    ? projectSectionItems.filter((item) =>
+        item.label.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    : projectSectionItems;
+
+  // Calculate total pages for "PROJECTS" section based on filtered items
+  const totalPages = Math.ceil(searchedProjectItems.length / projectsPerPage);
+
+  // Rotate projects in SideNav every 3 minutes (180,000 ms) if not searching
+  useEffect(() => {
+    if (searchValue || totalPages <= 1) return; // Don't rotate if searching or only 1 page
+
+    const interval = setInterval(() => {
+      setCurrentPage((prevPage) => (prevPage + 1) % totalPages);
+    }, 180000); // 3 minutes
+
+    return () => clearInterval(interval); // Cleanup on unmount or search change
+  }, [searchValue, totalPages]);
+
+  // Reset currentPage when search changes
+  useEffect(() => {
+    setCurrentPage(0); // Reset to first page when search changes
+  }, [searchValue]);
+
+  // Slice the "PROJECTS" section items to display only 4 at a time
+  const startIndex = currentPage * projectsPerPage;
+  const displayedProjectItems = searchedProjectItems.slice(
+    startIndex,
+    startIndex + projectsPerPage
+  );
+
+  // Create the updated menuSections with the sliced "PROJECTS" section
+  const updatedMenuSections = typedSidebarData.menuSections.map(
+    (section, index) => {
+      if (index === 1) {
+        // "PROJECTS" section
+        return {
+          ...section,
+          items: displayedProjectItems,
+        };
+      }
+      return section;
+    }
+  );
+
   // Helper function to calculate activeIndex for each section
   const getActiveIndexForSection = (
     sectionStartIndex: number,
@@ -51,7 +103,7 @@ const SideNavShowcase: React.FC = () => {
 
   // Calculate section start indices
   let currentIndex = 0;
-  const sectionIndices = typedSidebarData.menuSections.map((section) => {
+  const sectionIndices = updatedMenuSections.map((section) => {
     const startIndex = currentIndex;
     currentIndex += section.items.length;
     return startIndex;
@@ -62,24 +114,23 @@ const SideNavShowcase: React.FC = () => {
   const currentFilter =
     typedSidebarData.projectFilters[activeFilterIndex]?.label;
 
-  // Filter projects based on the current filter
+  // Filter projects based on the current filter for the ContentWrapper
   const filteredProjects = typedSidebarData.projects.filter((project) => {
     // Always show the "Create New Project" button
     if (project.isCreateButton) {
       return true;
     }
-
     // If "All Projects" is selected, show all projects except the create button
     if (currentFilter === "All Projects") {
       return !project.isCreateButton;
     }
-
     // Otherwise, filter by state
     return project.state === currentFilter;
   });
 
   // Handle project click (from ProjectCard or SideNav menu)
   const handleProjectClick = (id: string) => {
+    setSearchValue(""); // Clear the search input when a project is selected
     setSelectedProjectId(id);
   };
 
@@ -94,8 +145,7 @@ const SideNavShowcase: React.FC = () => {
     setActiveMenuIndex(newActiveMenuIndex);
 
     // If a project is clicked in the "PROJECTS" section, navigate to ProjectDashboard
-    const clickedItem =
-      typedSidebarData.menuSections[sectionIndex].items[itemIndex];
+    const clickedItem = updatedMenuSections[sectionIndex].items[itemIndex];
     if (isProjectMenuItem(clickedItem)) {
       handleProjectClick(clickedItem.id);
     }
@@ -127,7 +177,7 @@ const SideNavShowcase: React.FC = () => {
         </div>
 
         {/* Menu Sections */}
-        {typedSidebarData.menuSections.map((section, sectionIndex) => (
+        {updatedMenuSections.map((section, sectionIndex) => (
           <div
             key={sectionIndex}
             className="px-5"
@@ -192,7 +242,7 @@ const SideNavShowcase: React.FC = () => {
             {filteredProjects.map((project, index) => (
               <ProjectCard
                 key={index}
-                id={project.id} // Pass the project id
+                id={project.id}
                 title={project.title}
                 address={project.address}
                 state={project.state}
@@ -213,7 +263,7 @@ const SideNavShowcase: React.FC = () => {
                     ? () => setIsModalOpen(true)
                     : undefined
                 }
-                onClick={handleProjectClick} // Pass the click handler
+                onClick={handleProjectClick}
               />
             ))}
           </div>
