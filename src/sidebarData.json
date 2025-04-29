@@ -63,6 +63,9 @@
       "title": "Maraisburg Road",
       "address": "50 Maraisburg Road, Johannesburg",
       "state": "In Progress",
+      "progress": 34,
+      "type": "Solar PV & Battery",
+      "stages": { "current": 1, "total": 3 },
       "image": "https://images.unsplash.com/photo-1486406146923-c6832a105b2d",
       "sideNav": {
         "menuItems": [
@@ -85,6 +88,9 @@
       "title": "Lismore Avenue",
       "address": "21 Lismore Avenue, Johannesburg",
       "state": "Completed",
+      "progress": 100,
+      "type": "Solar PV & Battery",
+      "stages": { "current": 3, "total": 3 },
       "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
       "sideNav": {
         "menuItems": [
@@ -107,6 +113,9 @@
       "title": "Crosby Street",
       "address": "15 Crosby Street, Johannesburg",
       "state": "Abandoned",
+      "progress": 10,
+      "type": "Battery Storage",
+      "stages": { "current": 1, "total": 3 },
       "image": "https://images.unsplash.com/photo-1560448204-61dc36dc2a5b",
       "sideNav": {
         "menuItems": [
@@ -129,6 +138,9 @@
       "title": "Industria West",
       "address": "78 Industria West, Johannesburg",
       "state": "On Hold",
+      "progress": 50,
+      "type": "Solar PV & Battery",
+      "stages": { "current": 2, "total": 3 },
       "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
       "sideNav": {
         "menuItems": [
@@ -151,6 +163,9 @@
       "title": "Langlaagte North",
       "address": "42 Langlaagte North, Johannesburg",
       "state": "In Progress",
+      "progress": 60,
+      "type": "Solar PV & Battery",
+      "stages": { "current": 2, "total": 3 },
       "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b",
       "sideNav": {
         "menuItems": [
@@ -173,6 +188,9 @@
       "title": "Pine Avenue",
       "address": "33 Pine Avenue, Johannesburg",
       "state": "Completed",
+      "progress": 100,
+      "type": "Battery Storage",
+      "stages": { "current": 3, "total": 3 },
       "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29",
       "sideNav": {
         "menuItems": [
@@ -195,6 +213,9 @@
       "title": "Oak Street",
       "address": "19 Oak Street, Johannesburg",
       "state": "Abandoned",
+      "progress": 15,
+      "type": "Solar PV & Battery",
+      "stages": { "current": 1, "total": 3 },
       "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
       "sideNav": {
         "menuItems": [
@@ -217,6 +238,9 @@
       "title": "Cedar Road",
       "address": "88 Cedar Road, Johannesburg",
       "state": "On Hold",
+      "progress": 40,
+      "type": "Solar PV",
+      "stages": { "current": 1, "total": 3 },
       "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
       "sideNav": {
         "menuItems": [
@@ -239,6 +263,9 @@
       "title": "Maple Drive",
       "address": "27 Maple Drive, Johannesburg",
       "state": "In Progress",
+      "progress": 70,
+      "type": "Battery Storage",
+      "stages": { "current": 2, "total": 3 },
       "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b",
       "sideNav": {
         "menuItems": [
@@ -261,6 +288,9 @@
       "title": "Willow Lane",
       "address": "65 Willow Lane, Johannesburg",
       "state": "Completed",
+      "progress": 100,
+      "type": "Solar PV & Battery",
+      "stages": { "current": 3, "total": 3 },
       "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29",
       "sideNav": {
         "menuItems": [
