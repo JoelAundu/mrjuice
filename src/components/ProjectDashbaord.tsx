@@ -10,9 +10,8 @@ import WarningBanner from "./cards/WarningBanner";
 import ProjectSummaryCard from "./cards/ProjectInfo";
 import JourneyCard from "./cards/JourneyCard";
 import ActivityItem from "./avatar/ActivityItem";
-import { SidebarData, EnhancedProject } from "../types";
 import MenuItem from "./actionMenu/MenuItem";
-import Button from "./buttons/Button";
+import { SidebarData, EnhancedProject } from "../types";
 
 // Placeholder icons (can be replaced with react-icons)
 const SearchIcon = () => <span>🔍</span>;
@@ -58,16 +57,12 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
   };
 
   // Determine if the warning banner should be visible
-  const showWarningBanner = ["In Progress", "On Hold"].includes(
-    project.state || ""
-  );
+  const showWarningBanner = ["In Progress", "On Hold"].includes(project.state || "");
 
   // Log when the warning banner is visible (for tracking purposes)
   useEffect(() => {
     if (showWarningBanner) {
-      console.log(
-        `WarningBanner is visible for project ${projectId} (state: ${project.state})`
-      );
+      console.log(`WarningBanner is visible for project ${projectId} (state: ${project.state})`);
     }
   }, [showWarningBanner, projectId, project.state]);
 
@@ -86,20 +81,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     }
   };
 
-  // Handle filter button clicks
-  const handleFilterClick = (index: number) => {
-    setActiveFilterIndex(index);
-    // Placeholder for filtering logic
-    console.log(`Filter changed to: ${filterItems[index].label}`);
-  };
-
-  // Define TopNav tabs for ProjectDashboard
-  const topNavTabs = [
-    { label: "Dashboard", isActive: true },
-    { label: "Messages", isActive: false },
-    { label: "Resources", isActive: false },
-  ];
-
   // Define filter items for Activity section
   const filterItems = [
     { label: "All Activity", isActive: true },
@@ -108,50 +89,31 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     { label: "Last 3 Months", isActive: false },
   ];
 
-  // Define activity items (hardcoded for now)
-  const activityItems = [
-    {
-      userImageSrc:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-      userInitials: "DR",
-      userName: "David Raphael",
-      description:
-        "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">David Raphael </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">completed </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">General</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> section of Site Information in </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Detailed Feasibility</span>",
-      timestamp: "Monday 17:41",
-    },
-    {
-      userImageSrc:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-      userInitials: "PR",
-      userName: "Patrick Rollinson",
-      description:
-        "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Patrick Rollinson </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">uploaded </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Load Data</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> to the project.</span>",
-      timestamp: "Monday 13:58",
-      fileAttachment: {
-        fileName: "load_data_report.xls",
-        fileType: ".xls",
-        fileSize: "2.35mb",
-      },
-    },
-    {
-      userImageSrc:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-      userInitials: "DR",
-      userName: "David Raphael",
-      description:
-        "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">David Raphael </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">completed </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Electrical Distribution Boards</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> map interaction for the </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Electrical Information </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">section of Site Information in </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Detailed Feasibility</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">.</span>",
-      timestamp: "Friday 09:26",
-    },
-    {
-      userImageSrc:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-      userInitials: "DR",
-      userName: "David Raphael",
-      description:
-        "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">David Raphael </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">invited a </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">New Team Member</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">, awaiting confirmation of sign up.</span>",
-      timestamp: "Thursday 11:37",
-    },
-  ];
+  // Handle filter button clicks and implement filtering logic
+  const handleFilterClick = (index: number) => {
+    setActiveFilterIndex(index);
+    console.log(`Filter changed to: ${filterItems[index].label}`);
+  };
+
+  // Filter activities based on the selected filter
+  const currentDate = new Date("2025-04-29"); // Current date (April 29, 2025)
+  const filteredActivities = (project.activities || []).filter((activity) => {
+    const activityDate = new Date(activity.date);
+    const timeDiff = currentDate.getTime() - activityDate.getTime();
+    const daysDiff = timeDiff / (1000 * 3600 * 24);
+
+    switch (filterItems[activeFilterIndex].label) {
+      case "Last Week":
+        return daysDiff <= 7;
+      case "Last 30 Days":
+        return daysDiff <= 30;
+      case "Last 3 Months":
+        return daysDiff <= 90;
+      case "All Activity":
+      default:
+        return true;
+    }
+  });
 
   // Calculate section start indices for non-project sections
   let currentIndex = 0;
@@ -176,6 +138,13 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     "⭐": <FeasibilityIcon />,
     "🤝": <BidderIcon />,
   };
+
+  // Define TopNav tabs for ProjectDashboard
+  const topNavTabs = [
+    { label: "Dashboard", isActive: true },
+    { label: "Messages", isActive: false },
+    { label: "Resources", isActive: false },
+  ];
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
@@ -323,14 +292,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
               Review your team's recent activity
             </div>
             <div className="flex gap-2">
-              {/* <MenuList
-                items={filterItems}
-                activeIndex={activeFilterIndex}
-                onItemClick={handleFilterClick}
-                className="flex gap-2"
-                labelClassName="justify-center text-slate-900 text-sm font-medium font-['Inter']"
-              /> */}
-
               <MenuItem
                 items={filterItems}
                 activeIndex={activeFilterIndex}
@@ -343,26 +304,31 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
             </div>
             <div className="mt-6 flex flex-col justify-start items-start gap-12">
               <div className="flex flex-col justify-start items-start gap-8">
-                {activityItems.map((activity, index) => (
-                  <ActivityItem
-                    key={index}
-                    userImageSrc={activity.userImageSrc}
-                    userInitials={activity.userInitials}
-                    userName={activity.userName}
-                    description={activity.description}
-                    timestamp={activity.timestamp}
-                    fileAttachment={activity.fileAttachment}
-                  />
-                ))}
+                {filteredActivities.length > 0 ? (
+                  filteredActivities.map((activity, index) => (
+                    <ActivityItem
+                      key={index}
+                      userImageSrc={activity.userImageSrc}
+                      userInitials={activity.userInitials}
+                      userName={activity.userName}
+                      description={activity.description}
+                      timestamp={activity.timestamp}
+                      fileAttachment={activity.fileAttachment}
+                    />
+                  ))
+                ) : (
+                  <div className="text-[#425A70] text-sm font-normal font-['Inter']">
+                    No activities found for the selected filter.
+                  </div>
+                )}
               </div>
-              <button className="h-[39px] px-3.5 bg-[#2d2d2d] rounded-[100px] inline-flex justify-start items-center gap-0.5">
-                <div className="justify-center text-white text-sm font-medium font-['Inter']">
-                  Show more
-                </div>
-              </button>
-              {/* <Button variant="slate" className="!rounded !bg-[#2d2d2d]" size="sm">
-                Show more
-              </Button> */}
+              {filteredActivities.length > 0 && (
+                <button className="h-[39px] px-3.5 bg-[#2d2d2d] rounded-[100px] inline-flex justify-start items-center gap-0.5">
+                  <div className="justify-center text-white text-sm font-medium font-['Inter']">
+                    Show more
+                  </div>
+                </button>
+              )}
             </div>
           </div>
         </ContentWrapper>

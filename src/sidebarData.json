@@ -94,7 +94,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "Completed",
-          "progress": 4,
+          "steps": "4/4",
           "icon": "💬"
         },
         {
@@ -110,6 +110,53 @@
           "status": "Not Started",
           "ctaText": "Go to Bidder Selection",
           "icon": "🤝"
+        }
+      ],
+      "activities": [
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+          "userInitials": "DR",
+          "userName": "David Raphael",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">David Raphael </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">completed </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">General</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> section of Site Information in </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Detailed Feasibility</span>",
+          "timestamp": "Monday 17:41",
+          "date": "2025-04-28"
+        },
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+          "userInitials": "PR",
+          "userName": "Patrick Rollinson",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Patrick Rollinson </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">uploaded </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Load Data</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> to the project.</span>",
+          "timestamp": "Monday 13:58",
+          "date": "2025-04-28",
+          "fileAttachment": {
+            "fileName": "load_data_report.xls",
+            "fileType": ".xls",
+            "fileSize": "2.35mb"
+          }
+        },
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+          "userInitials": "DR",
+          "userName": "David Raphael",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">David Raphael </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">completed </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Electrical Distribution Boards</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> map interaction for the </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Electrical Information </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">section of Site Information in </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Detailed Feasibility</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">.</span>",
+          "timestamp": "Friday 09:26",
+          "date": "2025-04-25"
+        },
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+          "userInitials": "DR",
+          "userName": "David Raphael",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">David Raphael </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">invited a </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">New Team Member</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">, awaiting confirmation of sign up.</span>",
+          "timestamp": "Thursday 11:37",
+          "date": "2025-04-24"
+        },
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+          "userInitials": "DR",
+          "userName": "David Raphael",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">David Raphael </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">added comments to the </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Feasibility Report</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> section.</span>",
+          "timestamp": "Monday 09:15",
+          "date": "2025-03-15"
         }
       ]
     },
@@ -149,7 +196,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "Completed",
-          "progress": 100,
+          "steps": "4/4",
           "icon": "💬"
         },
         {
@@ -165,6 +212,37 @@
           "status": "Completed",
           "progress": 100,
           "icon": "🤝"
+        }
+      ],
+      "activities": [
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
+          "userInitials": "JS",
+          "userName": "Jane Smith",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Jane Smith </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">finalized the </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Bidder Selection</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> process.</span>",
+          "timestamp": "Wednesday 14:30",
+          "date": "2025-04-02"
+        },
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
+          "userInitials": "JS",
+          "userName": "Jane Smith",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Jane Smith </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">completed the </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Feasibility Report</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> review.</span>",
+          "timestamp": "Tuesday 10:20",
+          "date": "2025-03-25"
+        },
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7",
+          "userInitials": "JS",
+          "userName": "Jane Smith",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Jane Smith </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">uploaded </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Site Photos</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> to the project.</span>",
+          "timestamp": "Friday 16:45",
+          "date": "2025-02-15",
+          "fileAttachment": {
+            "fileName": "site_photos.zip",
+            "fileType": ".zip",
+            "fileSize": "5.12mb"
+          }
         }
       ]
     },
@@ -204,7 +282,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "In Progress",
-          "progress": 50,
+          "steps": "2/4",
           "icon": "💬"
         },
         {
@@ -218,6 +296,24 @@
           "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
           "status": "Not Started",
           "icon": "🤝"
+        }
+      ],
+      "activities": [
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
+          "userInitials": "MK",
+          "userName": "Michael Kim",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Michael Kim </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">marked the project as </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Abandoned</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> due to funding issues.</span>",
+          "timestamp": "Thursday 08:50",
+          "date": "2025-04-24"
+        },
+        {
+          "userImageSrc": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
+          "userInitials": "MK",
+          "userName": "Michael Kim",
+          "description": "<span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Michael Kim </span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\">responded to </span><span class=\"text-[#2d2d2d] text-sm font-semibold font-['Inter']\">Review & Comments</span><span class=\"text-[#2d2d2d] text-sm font-normal font-['Inter']\"> with additional details.</span>",
+          "timestamp": "Tuesday 11:30",
+          "date": "2025-04-01"
         }
       ]
     },
@@ -257,7 +353,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "Completed",
-          "progress": 100,
+          "steps": "4/4",
           "icon": "💬"
         },
         {
@@ -272,7 +368,8 @@
           "status": "Not Started",
           "icon": "🤝"
         }
-      ]
+      ],
+      "activities": []
     },
     {
       "id": "proj5",
@@ -310,7 +407,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "Completed",
-          "progress": 100,
+          "steps": "4/4",
           "icon": "💬"
         },
         {
@@ -327,7 +424,8 @@
           "ctaText": "Go to Bidder Selection",
           "icon": "🤝"
         }
-      ]
+      ],
+      "activities": []
     },
     {
       "id": "proj6",
@@ -365,7 +463,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "Completed",
-          "progress": 100,
+          "steps": "4/4",
           "icon": "💬"
         },
         {
@@ -382,7 +480,8 @@
           "progress": 100,
           "icon": "🤝"
         }
-      ]
+      ],
+      "activities": []
     },
     {
       "id": "proj7",
@@ -420,7 +519,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "In Progress",
-          "progress": 50,
+          "steps": "2/4",
           "icon": "💬"
         },
         {
@@ -435,7 +534,8 @@
           "status": "Not Started",
           "icon": "🤝"
         }
-      ]
+      ],
+      "activities": []
     },
     {
       "id": "proj8",
@@ -473,7 +573,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "In Progress",
-          "progress": 75,
+          "steps": "3/4",
           "icon": "💬"
         },
         {
@@ -488,7 +588,8 @@
           "status": "Not Started",
           "icon": "🤝"
         }
-      ]
+      ],
+      "activities": []
     },
     {
       "id": "proj9",
@@ -526,7 +627,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "Completed",
-          "progress": 100,
+          "steps": "4/4",
           "icon": "💬"
         },
         {
@@ -543,7 +644,8 @@
           "ctaText": "Go to Bidder Selection",
           "icon": "🤝"
         }
-      ]
+      ],
+      "activities": []
     },
     {
       "id": "proj10",
@@ -581,7 +683,7 @@
           "title": "Review & Comments",
           "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
           "status": "Completed",
-          "progress": 100,
+          "steps": "4/4",
           "icon": "💬"
         },
         {
@@ -598,7 +700,8 @@
           "progress": 100,
           "icon": "🤝"
         }
-      ]
+      ],
+      "activities": []
     }
   ],
   "menuSections": [
