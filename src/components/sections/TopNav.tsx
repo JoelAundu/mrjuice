@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import ProfileSection from './ProfileSection';
-import './TopNav.css';
-import MenuItem from '../actionMenu/MenuItem';
-import sidebarData from '../../sidebarData.json';
+import React, { useState } from "react";
+import ProfileSection from "./ProfileSection";
+import "./TopNav.css";
+import MenuItem from "../actionMenu/MenuItem";
 
 interface MenuItem {
   label: string;
@@ -13,23 +12,25 @@ interface MenuItem {
 interface TopNavProps {
   className?: string;
   style?: React.CSSProperties;
+  tabs: MenuItem[]; // Add tabs prop to specify menu items
 }
 
 const TopNav: React.FC<TopNavProps> = ({
-  className = '',
+  className = "",
   style = {},
+  tabs, // Destructure the new tabs prop
 }) => {
   const [defaultActiveIndex, setDefaultActiveIndex] = useState(0);
 
   return (
     <div className={`top-nav ${className}`} style={style}>
-    <MenuItem
-      items={sidebarData.topNavTabs}
-      activeIndex={defaultActiveIndex}
-      onItemClick={setDefaultActiveIndex}
-    />
-  <ProfileSection initials="PR" />
-</div>
+      <MenuItem
+        items={tabs} // Use the tabs prop instead of sidebarData.topNavTabs
+        activeIndex={defaultActiveIndex}
+        onItemClick={setDefaultActiveIndex}
+      />
+      <ProfileSection initials="PR" />
+    </div>
   );
 };
 

@@ -10,15 +10,23 @@ import MenuItem from "./actionMenu/MenuItem";
 import ProjectCard from "./cards/ProjectCard";
 import Modal from "./modal/Modal";
 import LocationMap from "./wrappers/LocationMap";
+import ProjectDashboard from "./ProjectDashbaord";
+import { SidebarData, ProjectMenuItem } from "../types";
 
 // Placeholder icon (can be replaced with react-icons)
 const SearchIcon = () => <span>🔍</span>;
+
+// Type assertion to ensure sidebarData matches SidebarData type
+const typedSidebarData = sidebarData as SidebarData;
 
 const SideNavShowcase: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
   const [activeFilterIndex, setActiveFilterIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
+    null
+  ); // Track selected project
 
   // Prevent body scrolling when modal is open
   useEffect(() => {
@@ -43,7 +51,7 @@ const SideNavShowcase: React.FC = () => {
 
   // Calculate section start indices
   let currentIndex = 0;
-  const sectionIndices = sidebarData.menuSections.map((section) => {
+  const sectionIndices = typedSidebarData.menuSections.map((section) => {
     const startIndex = currentIndex;
     currentIndex += section.items.length;
     return startIndex;
@@ -51,10 +59,11 @@ const SideNavShowcase: React.FC = () => {
   const footerStartIndex = currentIndex;
 
   // Get the current filter label based on activeFilterIndex
-  const currentFilter = sidebarData.projectFilters[activeFilterIndex]?.label;
+  const currentFilter =
+    typedSidebarData.projectFilters[activeFilterIndex]?.label;
 
   // Filter projects based on the current filter
-  const filteredProjects = sidebarData.projects.filter((project) => {
+  const filteredProjects = typedSidebarData.projects.filter((project) => {
     // Always show the "Create New Project" button
     if (project.isCreateButton) {
       return true;
@@ -69,20 +78,48 @@ const SideNavShowcase: React.FC = () => {
     return project.state === currentFilter;
   });
 
-  return (
+  // Handle project click (from ProjectCard or SideNav menu)
+  const handleProjectClick = (id: string) => {
+    setSelectedProjectId(id);
+  };
+
+  // Type guard to check if an item is a ProjectMenuItem (has an id)
+  const isProjectMenuItem = (item: any): item is ProjectMenuItem => {
+    return (item as ProjectMenuItem).id !== undefined;
+  };
+
+  // Handle menu item click in the SideNav
+  const handleMenuItemClick = (sectionIndex: number, itemIndex: number) => {
+    const newActiveMenuIndex = sectionIndices[sectionIndex] + itemIndex;
+    setActiveMenuIndex(newActiveMenuIndex);
+
+    // If a project is clicked in the "PROJECTS" section, navigate to ProjectDashboard
+    const clickedItem =
+      typedSidebarData.menuSections[sectionIndex].items[itemIndex];
+    if (isProjectMenuItem(clickedItem)) {
+      handleProjectClick(clickedItem.id);
+    }
+  };
+
+  return selectedProjectId ? (
+    <ProjectDashboard
+      projectId={selectedProjectId}
+      onBackToHome={() => setSelectedProjectId(null)}
+    />
+  ) : (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
       <SideNav
         logo={
           <div style={{ fontWeight: 700, fontSize: "18px", color: "black" }}>
-            {sidebarData.logo.text}
+            {typedSidebarData.logo.text}
           </div>
         }
       >
         {/* Search Input */}
         <div className="px-5">
           <Input
-            label={sidebarData.search.label}
-            placeholder={sidebarData.search.placeholder}
+            label={typedSidebarData.search.label}
+            placeholder={typedSidebarData.search.placeholder}
             leftIcon={<SearchIcon />}
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
@@ -90,7 +127,7 @@ const SideNavShowcase: React.FC = () => {
         </div>
 
         {/* Menu Sections */}
-        {sidebarData.menuSections.map((section, sectionIndex) => (
+        {typedSidebarData.menuSections.map((section, sectionIndex) => (
           <div
             key={sectionIndex}
             className="px-5"
@@ -98,14 +135,19 @@ const SideNavShowcase: React.FC = () => {
           >
             {section.title && <SectionHeader title={section.title} />}
             <MenuList
-              items={section.items}
+              items={section.items.map((item) => ({
+                ...item,
+                isActive:
+                  getActiveIndexForSection(
+                    sectionIndices[sectionIndex],
+                    section.items.length
+                  ) === section.items.findIndex((i) => i.label === item.label),
+              }))}
               activeIndex={getActiveIndexForSection(
                 sectionIndices[sectionIndex],
                 section.items.length
               )}
-              onItemClick={(index) =>
-                setActiveMenuIndex(sectionIndices[sectionIndex] + index)
-              }
+              onItemClick={(index) => handleMenuItemClick(sectionIndex, index)}
             />
           </div>
         ))}
@@ -113,10 +155,10 @@ const SideNavShowcase: React.FC = () => {
         {/* Footer Links */}
         <div className="px-5" style={{ marginBottom: "20px" }}>
           <MenuList
-            items={sidebarData.footerLinks}
+            items={typedSidebarData.footerLinks}
             activeIndex={getActiveIndexForSection(
               footerStartIndex,
-              sidebarData.footerLinks.length
+              typedSidebarData.footerLinks.length
             )}
             onItemClick={(index) =>
               setActiveMenuIndex(footerStartIndex + index)
@@ -128,17 +170,17 @@ const SideNavShowcase: React.FC = () => {
       {/* Main Content (including TopNav) */}
       <div
         className="flex-1 flex flex-col"
-        style={{ // Match the width of the SideNav
-          overflowY: "auto", // Single scrollbar for all main content
+        style={{
+          overflowY: "auto",
         }}
       >
-        <TopNav />
+        <TopNav tabs={typedSidebarData.topNavTabs} />
         <ContentWrapper
           title="Resources"
           description="View all of your project, create a new one, or switch your activity to another."
         >
           <MenuItem
-            items={sidebarData.projectFilters}
+            items={typedSidebarData.projectFilters}
             activeIndex={activeFilterIndex}
             onItemClick={setActiveFilterIndex}
             className="flex items-center space-x-4"
@@ -150,6 +192,7 @@ const SideNavShowcase: React.FC = () => {
             {filteredProjects.map((project, index) => (
               <ProjectCard
                 key={index}
+                id={project.id} // Pass the project id
                 title={project.title}
                 address={project.address}
                 state={project.state}
@@ -157,12 +200,12 @@ const SideNavShowcase: React.FC = () => {
                 isCreateButton={project.isCreateButton}
                 stateColor={
                   project.state
-                    ? sidebarData.states[project.state]?.color
+                    ? typedSidebarData.states[project.state]?.color
                     : undefined
                 }
                 stateBgColor={
                   project.state
-                    ? sidebarData.states[project.state]?.bgColor
+                    ? typedSidebarData.states[project.state]?.bgColor
                     : undefined
                 }
                 onCreateClick={
@@ -170,12 +213,17 @@ const SideNavShowcase: React.FC = () => {
                     ? () => setIsModalOpen(true)
                     : undefined
                 }
+                onClick={handleProjectClick} // Pass the click handler
               />
             ))}
           </div>
           <LocationMap />
         </ContentWrapper>
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Create New Project"
+        />
       </div>
     </div>
   );
