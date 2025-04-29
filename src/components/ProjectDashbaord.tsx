@@ -7,10 +7,13 @@ import sidebarData from "../sidebarData.json";
 import Input from "./inputs/Input";
 import ContentWrapper from "./wrappers/ContentWrapper";
 import WarningBanner from "./cards/WarningBanner";
-import { SidebarData } from "../types";
+import ProjectSummaryCard from "./cards/ProjectInfo";
+import { SidebarData, EnhancedProject } from "../types";
 
-// Placeholder icon (can be replaced with react-icons)
+// Placeholder icons (can be replaced with react-icons)
 const SearchIcon = () => <span>🔍</span>;
+const CardIcon = () => <span>💳</span>; // Card icon for stage
+const MenuDotsIcon = () => <span>⋮</span>; // Three vertical dots for right icon
 
 interface ProjectDashboardProps {
   projectId: string;
@@ -27,12 +30,24 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
   const [projectMenuIndex, setProjectMenuIndex] = useState(0); // Track active menu item in project view
   const [searchValue, setSearchValue] = useState(""); // Track search input value
 
-  // Find the selected project
-  const project = typedSidebarData.projects.find((p) => p.id === projectId);
+  // Find the selected project, excluding "Create New Project"
+  const project = typedSidebarData.projects.find(
+    (p) => p.id === projectId && !p.isCreateButton
+  );
   if (!project) {
     // Fallback in case project is not found
     return <div>Project not found</div>;
   }
+
+  // Enhance project with state styling from sidebarData.json
+  const enhancedProject: EnhancedProject = {
+    ...project,
+    stateColor: typedSidebarData.states[project.state!]?.color || "",
+    stateBgColor: typedSidebarData.states[project.state!]?.bgColor || "",
+    progress: project.progress!,
+    type: project.type!,
+    stages: project.stages!,
+  };
 
   // Determine if the warning banner should be visible
   const showWarningBanner = ["In Progress", "On Hold"].includes(project.state || "");
@@ -184,20 +199,19 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           />
         )}
         <ContentWrapper
-          title={`${project.title} Dashboard`} // Use project title for consistency
+          title={`${project.title} Dashboard`}
           description="Manage your project details, timeline, and metrics."
         >
-          {/* Placeholder Content to Match Home View Layout */}
+          {/* Updated Content with ProjectSummaryCard */}
+          <ProjectSummaryCard
+            project={enhancedProject}
+            className="border border-gray-200" // Example customization
+            titleClassName="text-xl font-semibold text-gray-800"
+            progressBarFilledClassName="bg-blue-600"
+            stageIcon={<CardIcon />}
+            rightIcon={<MenuDotsIcon />}
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-            {/* Placeholder cards to mimic the project cards layout */}
-            <div className="bg-slate-50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-medium text-slate-900 mb-2">
-                Project Overview
-              </h3>
-              <p className="text-sm text-slate-600">
-                Address: {project.address || "N/A"} | Status: {project.state || "N/A"}
-              </p>
-            </div>
             <div className="bg-slate-50 p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-medium text-slate-900 mb-2">
                 Project Timeline
