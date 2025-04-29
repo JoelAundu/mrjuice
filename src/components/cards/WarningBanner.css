@@ -1,0 +1,112 @@
+.warning-banner {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgba(255, 186, 0, 0.3);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+
+.warning-banner__content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
+.warning-banner__icon-placeholder-1 {
+  width: 24px;
+  height: 24px;
+  background-color: #d9d9d9;
+}
+
+.warning-banner__icon-placeholder-2 {
+  width: 20.05px;
+  height: 20.05px;
+  background-color: #ff9d00;
+}
+
+.warning-banner__message {
+  display: flex;
+  justify-content: center;
+  color: #0f172a; /* slate-900 */
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.warning-banner__button {
+  height: 30px;
+  padding: 4px 12px;
+  background-color: #0f172a; /* slate-900 */
+  border-radius: 6px;
+  border: 1px solid #0f172a;
+  border-offset: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.warning-banner__button-text {
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+/* Payment Modal Styles */
+.warning-banner__modal-content {
+  padding: 24px;
+}
+
+.warning-banner__modal-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f172a; /* slate-900 */
+  margin-bottom: 16px;
+}
+
+.warning-banner__modal-description {
+  font-size: 14px;
+  color: #475569; /* slate-600 */
+  margin-bottom: 16px;
+}
+
+.warning-banner__modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.warning-banner__modal-input {
+  border: 1px solid #cbd5e1; /* slate-300 */
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.warning-banner__modal-input--cvv {
+  width: 80px;
+}
+
+.warning-banner__modal-input-group {
+  display: flex;
+  gap: 16px;
+}
+
+.warning-banner__modal-submit {
+  margin-top: 16px;
+  background-color: #0f172a; /* slate-900 */
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SideNav from "./navigation/SideNav";
 import MenuList from "./actionMenu/MenuList";
 import SectionHeader from "./sections/SectionHeader";
@@ -6,6 +6,7 @@ import TopNav from "./sections/TopNav";
 import sidebarData from "../sidebarData.json";
 import Input from "./inputs/Input";
 import ContentWrapper from "./wrappers/ContentWrapper";
+import WarningBanner from "./cards/WarningBanner";
 import { SidebarData } from "../types";
 
 // Placeholder icon (can be replaced with react-icons)
@@ -32,6 +33,16 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     // Fallback in case project is not found
     return <div>Project not found</div>;
   }
+
+  // Determine if the warning banner should be visible
+  const showWarningBanner = ["In Progress", "On Hold"].includes(project.state || "");
+
+  // Log when the warning banner is visible (for tracking purposes)
+  useEffect(() => {
+    if (showWarningBanner) {
+      console.log(`WarningBanner is visible for project ${projectId} (state: ${project.state})`);
+    }
+  }, [showWarningBanner, projectId, project.state]);
 
   // Handle project menu item click
   const handleProjectMenuClick = (index: number) => {
@@ -127,11 +138,10 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
                   ? projectMenuIndex // For project-specific menu items
                   : section.items.findIndex((item) => item.isActive) // For "Home" and "SETTINGS"
               }
-              onItemClick={
-                (index) =>
-                  sectionIndex === 1
-                    ? handleProjectMenuClick(index) // For project-specific menu items
-                    : handleMenuItemClick(sectionIndex, index) // For "Home" and "SETTINGS"
+              onItemClick={(index) =>
+                sectionIndex === 1
+                  ? handleProjectMenuClick(index) // For project-specific menu items
+                  : handleMenuItemClick(sectionIndex, index) // For "Home" and "SETTINGS"
               }
             />
           </div>
@@ -157,6 +167,22 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
         }}
       >
         <TopNav tabs={topNavTabs} />
+        {/* Conditionally render the WarningBanner */}
+        {showWarningBanner && (
+          <WarningBanner
+            message="Payment is required in order to progress your project further."
+            buttonText="Make Payment"
+            className="bg-yellow-200/50"
+            buttonClassName="bg-blue-900 hover:bg-blue-800"
+            modalContentClassName="bg-white rounded-lg shadow-lg"
+            modalTitleClassName="text-2xl font-bold text-blue-900"
+            modalDescriptionClassName="text-gray-700"
+            modalInputClassName="border-gray-400 focus:ring focus:ring-blue-200"
+            modalInputCvvClassName="w-24"
+            modalInputGroupClassName="space-x-4"
+            modalSubmitClassName="bg-blue-900 hover:bg-blue-800 text-white rounded-lg py-3"
+          />
+        )}
         <ContentWrapper
           title={`${project.title} Dashboard`} // Use project title for consistency
           description="Manage your project details, timeline, and metrics."
@@ -169,8 +195,7 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
                 Project Overview
               </h3>
               <p className="text-sm text-slate-600">
-                Address: {project.address || "N/A"} | Status:{" "}
-                {project.state || "N/A"}
+                Address: {project.address || "N/A"} | Status: {project.state || "N/A"}
               </p>
             </div>
             <div className="bg-slate-50 p-6 rounded-lg shadow-sm">
