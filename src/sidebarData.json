@@ -1,165 +1,376 @@
 {
-    "logo": {
-      "text": "SOLINK"
+  "logo": {
+    "text": "SOLINK"
+  },
+  "search": {
+    "label": "Search",
+    "placeholder": "Search"
+  },
+  "topNavTabs": [
+    {
+      "label": "My Projects",
+      "isActive": true
     },
-    "search": {
-      "label": "Search",
-      "placeholder": "Search"
+    {
+      "label": "My Organisation",
+      "isActive": false
     },
-    "topNavTabs": [
-      {
-        "label": "My Projects",
-        "isActive": true
-      },
-      {
-        "label": "My Organisation",
-        "isActive": false
-      },
-      {
-        "label": "Team Management",
-        "isActive": false
-      }
-    ],
-    "projectFilters": [
-      {
-        "label": "All Projects"
-      },
-      {
-        "label": "In Progress"
-      },
-      {
-        "label": "Completed"
-      },
-      {
-        "label": "Abandoned"
-      }
-    ],
-    "states": {
-      "In Progress": {
-        "color": "#2c6adf",
-        "bgColor": "rgba(44, 106, 223, 0.1)"
-      },
-      "Completed": {
-        "color": "#03c889",
-        "bgColor": "rgba(3, 200, 137, 0.1)"
-      },
-      "Abandoned": {
-        "color": "#ff4d4f",
-        "bgColor": "rgba(255, 77, 79, 0.1)"
-      },
-      "On Hold": {
-        "color": "#f39c12",
-        "bgColor": "rgba(243, 156, 18, 0.1)"
-      }
+    {
+      "label": "Team Management",
+      "isActive": false
+    }
+  ],
+  "projectFilters": [
+    {
+      "label": "All Projects"
     },
-    "projects": [
-      {
-        "title": "Create New Project",
-        "isCreateButton": true
-      },
-      {
-        "title": "Maraisburg Road",
-        "address": "50 Maraisburg Road, Johannesburg",
-        "state": "In Progress",
-        "image": "https://images.unsplash.com/photo-1486406146923-c6832a105b2d"
-      },
-      {
-        "title": "Lismore Avenue",
-        "address": "21 Lismore Avenue, Johannesburg",
-        "state": "Completed",
-        "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
-      },
-      {
-        "title": "Crosby Street",
-        "address": "15 Crosby Street, Johannesburg",
-        "state": "Abandoned",
-        "image": "https://images.unsplash.com/photo-1560448204-61dc36dc2a5b"
-      },
-      {
-        "title": "Industria West",
-        "address": "78 Industria West, Johannesburg",
-        "state": "On Hold",
-        "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0"
-      },
-      {
-        "title": "Langlaagte North",
-        "address": "42 Langlaagte North, Johannesburg",
-        "state": "In Progress",
-        "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
-      },
-      {
-        "title": "Pine Avenue",
-        "address": "33 Pine Avenue, Johannesburg",
-        "state": "Completed",
-        "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29"
-      },
-      {
-        "title": "Oak Street",
-        "address": "19 Oak Street, Johannesburg",
-        "state": "Abandoned",
-        "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688"
-      },
-      {
-        "title": "Cedar Road",
-        "address": "88 Cedar Road, Johannesburg",
-        "state": "On Hold",
-        "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0"
-      },
-      {
-        "title": "Maple Drive",
-        "address": "27 Maple Drive, Johannesburg",
-        "state": "In Progress",
-        "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
-      },
-      {
-        "title": "Willow Lane",
-        "address": "65 Willow Lane, Johannesburg",
-        "state": "Completed",
-        "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29"
-      }
-    ],
-    "menuSections": [
-      {
-        "items": [
-          {
-            "label": "Home",
-            "icon": "🏠",
-            "isActive": true
-          }
+    {
+      "label": "In Progress"
+    },
+    {
+      "label": "Completed"
+    },
+    {
+      "label": "Abandoned"
+    }
+  ],
+  "states": {
+    "In Progress": {
+      "color": "#2c6adf",
+      "bgColor": "rgba(44, 106, 223, 0.1)"
+    },
+    "Completed": {
+      "color": "#03c889",
+      "bgColor": "rgba(3, 200, 137, 0.1)"
+    },
+    "Abandoned": {
+      "color": "#ff4d4f",
+      "bgColor": "rgba(255, 77, 79, 0.1)"
+    },
+    "On Hold": {
+      "color": "#f39c12",
+      "bgColor": "rgba(243, 156, 18, 0.1)"
+    }
+  },
+  "projects": [
+    {
+      "id": "create-new",
+      "title": "Create New Project",
+      "isCreateButton": true
+    },
+    {
+      "id": "proj1",
+      "title": "Maraisburg Road",
+      "address": "50 Maraisburg Road, Johannesburg",
+      "state": "In Progress",
+      "image": "https://images.unsplash.com/photo-1486406146923-c6832a105b2d",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
         ]
       },
-      {
-        "title": "PROJECTS",
-        "items": [
-          {
-            "label": "Maraisburg Road",
-            "icon": "📁",
-            "isActive": false
-          },
-          {
-            "label": "Lismore Avenue",
-            "icon": "📁",
-            "isActive": false
-          }
+      "topNav": {
+        "warning": "Payment is required to continue this project.",
+        "actionButton": { "label": "Make Payment", "icon": "💳" }
+      }
+    },
+    {
+      "id": "proj2",
+      "title": "Lismore Avenue",
+      "address": "21 Lismore Avenue, Johannesburg",
+      "state": "Completed",
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
         ]
       },
-      {
-        "title": "SETTINGS",
-        "items": [
-          {
-            "label": "System Settings",
-            "icon": "⚙️",
-            "isActive": false
-          }
+      "topNav": {
+        "warning": null,
+        "actionButton": null
+      }
+    },
+    {
+      "id": "proj3",
+      "title": "Crosby Street",
+      "address": "15 Crosby Street, Johannesburg",
+      "state": "Abandoned",
+      "image": "https://images.unsplash.com/photo-1560448204-61dc36dc2a5b",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
         ]
-      }
-    ],
-    "footerLinks": [
-      {
-        "label": "Invite Team Members"
       },
-      {
-        "label": "Help Centre"
+      "topNav": {
+        "warning": "Project abandoned due to funding issues.",
+        "actionButton": { "label": "View Details", "icon": "ℹ️" }
       }
-    ]
-  }
+    },
+    {
+      "id": "proj4",
+      "title": "Industria West",
+      "address": "78 Industria West, Johannesburg",
+      "state": "On Hold",
+      "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
+        ]
+      },
+      "topNav": {
+        "warning": "Project on hold pending approval.",
+        "actionButton": { "label": "Check Status", "icon": "📅" }
+      }
+    },
+    {
+      "id": "proj5",
+      "title": "Langlaagte North",
+      "address": "42 Langlaagte North, Johannesburg",
+      "state": "In Progress",
+      "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
+        ]
+      },
+      "topNav": {
+        "warning": null,
+        "actionButton": { "label": "View Progress", "icon": "📈" }
+      }
+    },
+    {
+      "id": "proj6",
+      "title": "Pine Avenue",
+      "address": "33 Pine Avenue, Johannesburg",
+      "state": "Completed",
+      "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
+        ]
+      },
+      "topNav": {
+        "warning": null,
+        "actionButton": null
+      }
+    },
+    {
+      "id": "proj7",
+      "title": "Oak Street",
+      "address": "19 Oak Street, Johannesburg",
+      "state": "Abandoned",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
+        ]
+      },
+      "topNav": {
+        "warning": "Project abandoned due to legal issues.",
+        "actionButton": { "label": "View Details", "icon": "ℹ️" }
+      }
+    },
+    {
+      "id": "proj8",
+      "title": "Cedar Road",
+      "address": "88 Cedar Road, Johannesburg",
+      "state": "On Hold",
+      "image": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
+        ]
+      },
+      "topNav": {
+        "warning": "Project on hold pending permits.",
+        "actionButton": { "label": "Check Status", "icon": "📅" }
+      }
+    },
+    {
+      "id": "proj9",
+      "title": "Maple Drive",
+      "address": "27 Maple Drive, Johannesburg",
+      "state": "In Progress",
+      "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
+        ]
+      },
+      "topNav": {
+        "warning": null,
+        "actionButton": { "label": "View Progress", "icon": "📈" }
+      }
+    },
+    {
+      "id": "proj10",
+      "title": "Willow Lane",
+      "address": "65 Willow Lane, Johannesburg",
+      "state": "Completed",
+      "image": "https://images.unsplash.com/photo-1497366210544-2b7c37659b29",
+      "sideNav": {
+        "menuItems": [
+          { "label": "Dashboard", "icon": "📊", "isActive": true },
+          { "label": "Detailed Feasibility", "icon": "📋", "isActive": false },
+          { "label": "Project Tendering", "icon": "💰", "isActive": false }
+        ],
+        "footerLinks": [
+          { "label": "Invite Team Members" },
+          { "label": "Help Centre" }
+        ]
+      },
+      "topNav": {
+        "warning": null,
+        "actionButton": null
+      }
+    }
+  ],
+  "menuSections": [
+    {
+      "items": [
+        {
+          "label": "Home",
+          "icon": "🏠",
+          "isActive": true
+        }
+      ]
+    },
+    {
+      "title": "PROJECTS",
+      "items": [
+        {
+          "id": "proj1",
+          "label": "Maraisburg Road",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj2",
+          "label": "Lismore Avenue",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj3",
+          "label": "Crosby Street",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj4",
+          "label": "Industria West",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj5",
+          "label": "Langlaagte North",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj6",
+          "label": "Pine Avenue",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj7",
+          "label": "Oak Street",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj8",
+          "label": "Cedar Road",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj9",
+          "label": "Maple Drive",
+          "icon": "📁",
+          "isActive": false
+        },
+        {
+          "id": "proj10",
+          "label": "Willow Lane",
+          "icon": "📁",
+          "isActive": false
+        }
+      ]
+    },
+    {
+      "title": "SETTINGS",
+      "items": [
+        {
+          "label": "System Settings",
+          "icon": "⚙️",
+          "isActive": false
+        }
+      ]
+    }
+  ],
+  "footerLinks": [
+    {
+      "label": "Invite Team Members"
+    },
+    {
+      "label": "Help Centre"
+    }
+  ]
+}
