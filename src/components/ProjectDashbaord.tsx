@@ -8,12 +8,19 @@ import Input from "./inputs/Input";
 import ContentWrapper from "./wrappers/ContentWrapper";
 import WarningBanner from "./cards/WarningBanner";
 import ProjectSummaryCard from "./cards/ProjectInfo";
+import JourneyCard from "./cards/JourneyCard";
+import ActivityItem from "./avatar/ActivityItem";
+import MenuItem from "./actionMenu/MenuItem";
 import { SidebarData, EnhancedProject } from "../types";
 
 // Placeholder icons (can be replaced with react-icons)
 const SearchIcon = () => <span>🔍</span>;
-const CardIcon = () => <span>💳</span>; // Card icon for stage
-const MenuDotsIcon = () => <span>⋮</span>; // Three vertical dots for right icon
+const CardIcon = () => <span>💳</span>;
+const MenuDotsIcon = () => <span>⋮</span>;
+const SiteIcon = () => <span>📍</span>;
+const ReviewIcon = () => <span>💬</span>;
+const FeasibilityIcon = () => <span>⭐</span>;
+const BidderIcon = () => <span>🤝</span>;
 
 interface ProjectDashboardProps {
   projectId: string;
@@ -27,15 +34,15 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
   projectId,
   onBackToHome,
 }) => {
-  const [projectMenuIndex, setProjectMenuIndex] = useState(0); // Track active menu item in project view
-  const [searchValue, setSearchValue] = useState(""); // Track search input value
+  const [projectMenuIndex, setProjectMenuIndex] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
+  const [activeFilterIndex, setActiveFilterIndex] = useState(0);
 
   // Find the selected project, excluding "Create New Project"
   const project = typedSidebarData.projects.find(
     (p) => p.id === projectId && !p.isCreateButton
   );
   if (!project) {
-    // Fallback in case project is not found
     return <div>Project not found</div>;
   }
 
@@ -70,9 +77,66 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
       sectionIndex === 0 &&
       typedSidebarData.menuSections[0].items[itemIndex].label === "Home"
     ) {
-      onBackToHome(); // Navigate back to home view
+      onBackToHome();
     }
-    // Other sections (e.g., "SETTINGS") can have their own logic if needed
+  };
+
+  // Define filter items for Activity section
+  const filterItems = [
+    { label: "All Activity", isActive: true },
+    { label: "Last Week", isActive: false },
+    { label: "Last 30 Days", isActive: false },
+    { label: "Last 3 Months", isActive: false },
+  ];
+
+  // Handle filter button clicks and implement filtering logic
+  const handleFilterClick = (index: number) => {
+    setActiveFilterIndex(index);
+    console.log(`Filter changed to: ${filterItems[index].label}`);
+  };
+
+  // Filter activities based on the selected filter
+  const currentDate = new Date("2025-04-29"); // Current date (April 29, 2025)
+  const filteredActivities = (project.activities || []).filter((activity) => {
+    const activityDate = new Date(activity.date);
+    const timeDiff = currentDate.getTime() - activityDate.getTime();
+    const daysDiff = timeDiff / (1000 * 3600 * 24);
+
+    switch (filterItems[activeFilterIndex].label) {
+      case "Last Week":
+        return daysDiff <= 7;
+      case "Last 30 Days":
+        return daysDiff <= 30;
+      case "Last 3 Months":
+        return daysDiff <= 90;
+      case "All Activity":
+      default:
+        return true;
+    }
+  });
+
+  // Calculate section start indices for non-project sections
+  let currentIndex = 0;
+  const sectionIndices = [
+    typedSidebarData.menuSections[0],
+    {
+      title: project.title.toUpperCase(),
+      items: project.sideNav?.menuItems || [],
+    },
+    typedSidebarData.menuSections[2],
+  ].map((section) => {
+    const startIndex = currentIndex;
+    currentIndex += section.items.length;
+    return startIndex;
+  });
+  const footerStartIndex = currentIndex;
+
+  // Map icons to journey steps
+  const iconMap: { [key: string]: React.ReactNode } = {
+    "📍": <SiteIcon />,
+    "💬": <ReviewIcon />,
+    "⭐": <FeasibilityIcon />,
+    "🤝": <BidderIcon />,
   };
 
   // Define TopNav tabs for ProjectDashboard
@@ -81,22 +145,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     { label: "Messages", isActive: false },
     { label: "Resources", isActive: false },
   ];
-
-  // Calculate section start indices for non-project sections
-  let currentIndex = 0;
-  const sectionIndices = [
-    typedSidebarData.menuSections[0], // "Home" section
-    {
-      title: project.title.toUpperCase(),
-      items: project.sideNav?.menuItems || [],
-    },
-    typedSidebarData.menuSections[2], // "SETTINGS" section
-  ].map((section) => {
-    const startIndex = currentIndex;
-    currentIndex += section.items.length;
-    return startIndex;
-  });
-  const footerStartIndex = currentIndex;
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
@@ -120,15 +168,13 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
 
         {/* Menu Sections */}
         {[
-          // "Home" section (ensure "Home" is not active)
           {
             ...typedSidebarData.menuSections[0],
             items: typedSidebarData.menuSections[0].items.map((item) => ({
               ...item,
-              isActive: false, // Ensure Home is not active in ProjectDashboard
+              isActive: false,
             })),
           },
-          // Project-specific menu items
           {
             title: project.title.toUpperCase(),
             items:
@@ -137,7 +183,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
                 isActive: projectMenuIndex === index,
               })) || [],
           },
-          // "SETTINGS" section
           typedSidebarData.menuSections[2],
         ].map((section, sectionIndex) => (
           <div
@@ -150,13 +195,13 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
               items={section.items}
               activeIndex={
                 sectionIndex === 1
-                  ? projectMenuIndex // For project-specific menu items
-                  : section.items.findIndex((item) => item.isActive) // For "Home" and "SETTINGS"
+                  ? projectMenuIndex
+                  : section.items.findIndex((item) => item.isActive)
               }
               onItemClick={(index) =>
                 sectionIndex === 1
-                  ? handleProjectMenuClick(index) // For project-specific menu items
-                  : handleMenuItemClick(sectionIndex, index) // For "Home" and "SETTINGS"
+                  ? handleProjectMenuClick(index)
+                  : handleMenuItemClick(sectionIndex, index)
               }
             />
           </div>
@@ -166,15 +211,13 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
         <div className="px-5" style={{ marginBottom: "20px" }}>
           <MenuList
             items={project.sideNav?.footerLinks || typedSidebarData.footerLinks}
-            activeIndex={-1} // Footer links are not selectable in this view
-            onItemClick={(index) => {
-              // Handle footer link clicks if needed
-            }}
+            activeIndex={-1}
+            onItemClick={(index) => {}}
           />
         </div>
       </SideNav>
 
-      {/* Main Content (Matching Home View) */}
+      {/* Main Content */}
       <div
         className="flex-1 flex flex-col"
         style={{
@@ -182,7 +225,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
         }}
       >
         <TopNav tabs={topNavTabs} />
-        {/* Conditionally render the WarningBanner */}
         {showWarningBanner && (
           <WarningBanner
             message="Payment is required in order to progress your project further."
@@ -202,31 +244,91 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           title={`${project.title} Dashboard`}
           description="Manage your project details, timeline, and metrics."
         >
-          {/* Updated Content with ProjectSummaryCard */}
+          {/* Project Summary Card */}
           <ProjectSummaryCard
             project={enhancedProject}
-            className="border border-gray-200" // Example customization
+            className="border border-gray-200"
             titleClassName="text-xl font-semibold text-gray-800"
             progressBarFilledClassName="bg-blue-600"
             stageIcon={<CardIcon />}
             rightIcon={<MenuDotsIcon />}
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-            <div className="bg-slate-50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-medium text-slate-900 mb-2">
-                Project Timeline
-              </h3>
-              <p className="text-sm text-slate-600">
-                Placeholder for project timeline or progress tracking.
-              </p>
+
+          {/* Project Journey Section */}
+          <div className="mt-8">
+            <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
+              Project Journey
             </div>
-            <div className="bg-slate-50 p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-medium text-slate-900 mb-2">
-                Key Metrics
-              </h3>
-              <p className="text-sm text-slate-600">
-                Placeholder for key metrics or KPIs.
-              </p>
+            <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
+              Track and quickly access each step in your journey
+            </div>
+            <div className="grid grid-cols-4 gap-4">
+              {project.journeySteps?.map((step, index) => (
+                <JourneyCard
+                  key={index}
+                  icon={iconMap[step.icon] || <span>{step.icon}</span>}
+                  title={step.title}
+                  description={step.description}
+                  status={step.status}
+                  progress={step.progress}
+                  steps={step.steps}
+                  ctaText={step.ctaText}
+                  onCtaClick={
+                    step.ctaText
+                      ? () => console.log(`Navigating to ${step.ctaText}`)
+                      : undefined
+                  }
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Activity Section */}
+          <div className="mt-8">
+            <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
+              Activity
+            </div>
+            <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
+              Review your team's recent activity
+            </div>
+            <div className="flex gap-2">
+              <MenuItem
+                items={filterItems}
+                activeIndex={activeFilterIndex}
+                onItemClick={handleFilterClick}
+                className="flex items-center space-x-4"
+                buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium font-['Inter'] text-slate-900"
+                activeButtonClassName="bg-[#f0f3f7]"
+                inactiveButtonClassName="bg-white"
+              />
+            </div>
+            <div className="mt-6 flex flex-col justify-start items-start gap-12">
+              <div className="flex flex-col justify-start items-start gap-8">
+                {filteredActivities.length > 0 ? (
+                  filteredActivities.map((activity, index) => (
+                    <ActivityItem
+                      key={index}
+                      userImageSrc={activity.userImageSrc}
+                      userInitials={activity.userInitials}
+                      userName={activity.userName}
+                      description={activity.description}
+                      timestamp={activity.timestamp}
+                      fileAttachment={activity.fileAttachment}
+                    />
+                  ))
+                ) : (
+                  <div className="text-[#425A70] text-sm font-normal font-['Inter']">
+                    No activities found for the selected filter.
+                  </div>
+                )}
+              </div>
+              {filteredActivities.length > 0 && (
+                <button className="h-[39px] px-3.5 bg-[#2d2d2d] rounded-[100px] inline-flex justify-start items-center gap-0.5">
+                  <div className="justify-center text-white text-sm font-medium font-['Inter']">
+                    Show more
+                  </div>
+                </button>
+              )}
             </div>
           </div>
         </ContentWrapper>
