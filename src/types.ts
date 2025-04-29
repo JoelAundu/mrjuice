@@ -23,10 +23,20 @@ export interface MenuItem {
     title: string;
     address?: string;
     state?: string;
+    progress?: number;
+    type?: string;
+    stages?: { current: number; total: number };
     image?: string;
     isCreateButton?: boolean;
-    sideNav?: SideNavData;
-    topNav?: TopNavData;
+    sideNav?: {
+      menuItems: { label: string; icon: string; isActive: boolean }[];
+      footerLinks: { label: string }[];
+    };
+    topNav?: {
+      warning: string | null;
+      actionButton: { label: string; icon: string } | null;
+    };
+    journeySteps?: JourneyStep[]; // Added for project journey
   }
   
   export interface SidebarData {
@@ -36,6 +46,7 @@ export interface MenuItem {
     projectFilters: { label: string }[];
     states: { [key: string]: { color: string; bgColor: string } };
     projects: {
+      journeySteps: any;
       id: string;
       title: string;
       address?: string;
@@ -71,4 +82,14 @@ export interface MenuItem {
     progress: number;
     type: string;
     stages: { current: number; total: number };
+  }
+
+  export interface JourneyStep {
+    title: string;
+    description: string;
+    status: "Completed" | "In Progress" | "Not Started";
+    progress?: number; // Percentage (0-100)
+    steps?: string; // e.g., "4/4"
+    ctaText?: string; // Text for the CTA button
+    icon: string; // Emoji or placeholder for the icon
   }
