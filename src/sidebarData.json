@@ -81,7 +81,37 @@
       "topNav": {
         "warning": "Payment is required to continue this project.",
         "actionButton": { "label": "Make Payment", "icon": "💳" }
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "Completed",
+          "progress": 4,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "In Progress",
+          "ctaText": "Go to Feasibility Report",
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Not Started",
+          "ctaText": "Go to Bidder Selection",
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj2",
@@ -106,7 +136,37 @@
       "topNav": {
         "warning": null,
         "actionButton": null
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj3",
@@ -131,7 +191,35 @@
       "topNav": {
         "warning": "Project abandoned due to funding issues.",
         "actionButton": { "label": "View Details", "icon": "ℹ️" }
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "In Progress",
+          "progress": 50,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "Not Started",
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Not Started",
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj4",
@@ -156,7 +244,35 @@
       "topNav": {
         "warning": "Project on hold pending approval.",
         "actionButton": { "label": "Check Status", "icon": "📅" }
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "Not Started",
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Not Started",
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj5",
@@ -181,7 +297,37 @@
       "topNav": {
         "warning": null,
         "actionButton": { "label": "View Progress", "icon": "📈" }
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "In Progress",
+          "ctaText": "Go to Feasibility Report",
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Not Started",
+          "ctaText": "Go to Bidder Selection",
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj6",
@@ -206,7 +352,37 @@
       "topNav": {
         "warning": null,
         "actionButton": null
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj7",
@@ -231,7 +407,35 @@
       "topNav": {
         "warning": "Project abandoned due to legal issues.",
         "actionButton": { "label": "View Details", "icon": "ℹ️" }
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "In Progress",
+          "progress": 50,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "Not Started",
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Not Started",
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj8",
@@ -256,7 +460,35 @@
       "topNav": {
         "warning": "Project on hold pending permits.",
         "actionButton": { "label": "Check Status", "icon": "📅" }
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "In Progress",
+          "progress": 75,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "Not Started",
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Not Started",
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj9",
@@ -281,7 +513,37 @@
       "topNav": {
         "warning": null,
         "actionButton": { "label": "View Progress", "icon": "📈" }
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "In Progress",
+          "ctaText": "Go to Feasibility Report",
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Not Started",
+          "ctaText": "Go to Bidder Selection",
+          "icon": "🤝"
+        }
+      ]
     },
     {
       "id": "proj10",
@@ -306,7 +568,37 @@
       "topNav": {
         "warning": null,
         "actionButton": null
-      }
+      },
+      "journeySteps": [
+        {
+          "title": "Site Information",
+          "description": "We need all the information you can provide us with regards to your site.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "📍"
+        },
+        {
+          "title": "Review & Comments",
+          "description": "Once we have your site information, we’ll need to review it. Answer any questions that our engineers send you.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "💬"
+        },
+        {
+          "title": "Feasibility Report",
+          "description": "This is where we find out everything you need about your project.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "⭐"
+        },
+        {
+          "title": "Bidder Selection",
+          "description": "Contractors are eager to take on your work, it’s time to pick the one that suits you best.",
+          "status": "Completed",
+          "progress": 100,
+          "icon": "🤝"
+        }
+      ]
     }
   ],
   "menuSections": [
