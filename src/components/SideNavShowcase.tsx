@@ -219,7 +219,11 @@ const SideNavShowcase: React.FC = () => {
           </div>
           <LocationMap />
         </ContentWrapper>
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Create New Project"
+        />
       </div>
     </div>
   );
