@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Message, Conversation, MessagesPanelProps } from "../../types";
 import UserAvatar from "../avatar/UserAvatar";
+import { SendIcon } from "../icons/Icons";
 
 const MessagesPanel: React.FC<MessagesPanelProps> = ({
   selectedConversation,
@@ -70,7 +71,7 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
                         {messageGroup.map((message, messageIndex) => (
                           <div
                             key={messageIndex}
-                            className={`w-[180px] flex flex-col justify-start gap-1.5 ${
+                            className={`w-[400px] flex flex-col justify-start gap-1.5 ${
                               message.isOutgoing ? "items-end" : "items-start"
                             }`}
                           >
@@ -131,11 +132,14 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
                 placeholder="Type a message"
                 className="flex-1 justify-center text-slate-500 text-sm font-normal font-['Inter'] outline-none"
               />
-              <div className="w-8 h-4 bg-[#d9d9d9]" />
-              <button
-                onClick={handleSendMessage}
-                className="w-6 h-4 bg-slate-300"
-              />
+              <button onClick={handleSendMessage} className="p-1">
+                <SendIcon
+                  strokeColor="#fff" // Black stroke for visibility
+                  width="24" // Match the icon size
+                  height="24"
+                  className="send-icon" // Custom class for styling
+                />
+              </button>
             </div>
           </div>
         </>
