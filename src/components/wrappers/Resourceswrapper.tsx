@@ -12,7 +12,6 @@ const ResourcesWrapper: React.FC<ResourcesWrapperProps> = ({
   description,
   children,
 }) => {
-
   return (
     <ContentWrapper title={title} description={description}>
       {children}

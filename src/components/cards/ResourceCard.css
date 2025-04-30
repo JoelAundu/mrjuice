@@ -1,0 +1,77 @@
+.resource-card {
+  width: 300px;
+  height: 375px;
+  padding: 30px;
+  background-color: #f8fafc;
+  border-radius: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.resource-card-top {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.resource-card-inner {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.resource-card-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.resource-card-placeholder {
+  width: 28px;
+  height: 28px;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+}
+
+.resource-card-title {
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.resource-card-description {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.resource-card-bottom {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.resource-card-download {
+  display: flex;
+  justify-content: flex-start;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}

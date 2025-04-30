@@ -1,7 +1,18 @@
 import React from "react";
-import './Button.css';
+import "./Button.css";
 
-type ButtonVariant = "primary" | "secondary" | "danger" | "slate" | "outline" | "ocean" | "coral" | "sky" | "storm" | "crimson" | "lime";
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "danger"
+  | "slate"
+  | "outline"
+  | "ocean"
+  | "coral"
+  | "sky"
+  | "storm"
+  | "crimson"
+  | "lime";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -25,12 +36,15 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const classes = [
-    'button', // Base class for essential styles
-    variant ? `button--${variant}` : '', // Variant-specific class
-    size ? `button--${size}` : '', // Size-specific class
-    disabled ? 'button--disabled' : '', // Disabled state class
+    "button", // Base class for essential styles
+    variant ? `button--${variant}` : "", // Variant-specific class
+    size ? `button--${size}` : "", // Size-specific class
+    disabled ? "button--disabled" : "", // Disabled state class
     className, // User-provided classes (Tailwind or vanilla CSS)
-  ].filter(Boolean).join(' ').trim();
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .trim();
 
   return (
     <button

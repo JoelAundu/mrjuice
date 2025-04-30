@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./UserAvatar.css";
 
 interface UserAvatarProps {
   imageSrc?: string | null; // URL or local path, or null if no image
@@ -21,7 +22,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
 
   return (
     <div
-      className={`rounded-full flex justify-center items-center ${className}`}
+      className={`user-avatar ${className}`}
       style={{
         width: `${size}px`,
         height: `${size}px`,
@@ -33,13 +34,11 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
         <img
           src={imageSrc}
           alt={userName ? `${userName}'s avatar` : "User Avatar"}
-          className="w-full h-full rounded-full object-cover"
-          onError={() => setImageFailed(true)} // Fallback to initials if image fails
+          className="user-avatar-image"
+          onError={() => setImageFailed(true)}
         />
       ) : (
-        <div className="text-white text-sm font-medium font-['Inter']">
-          {initials}
-        </div>
+        <div className="user-avatar-initials">{initials}</div>
       )}
     </div>
   );

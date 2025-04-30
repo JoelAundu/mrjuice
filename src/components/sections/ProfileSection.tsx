@@ -18,7 +18,11 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       height="6"
       className="dropdown-arrow"
       style={{ marginLeft: "2px" }}
-      svgProps={{ strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }}
+      svgProps={{
+        strokeWidth: "2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+      }}
     />
   ),
   className = "",
@@ -31,7 +35,11 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       </div>
       <div className="profile-dropdown">
         {typeof dropdownIcon === "string" ? (
-          <img src={dropdownIcon} alt="Dropdown icon" className="dropdown-icon" />
+          <img
+            src={dropdownIcon}
+            alt="Dropdown icon"
+            className="dropdown-icon"
+          />
         ) : (
           dropdownIcon
         )}

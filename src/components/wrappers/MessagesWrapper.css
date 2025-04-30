@@ -1,0 +1,9 @@
+.messages-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.messages-wrapper-content {
+  display: flex;
+}

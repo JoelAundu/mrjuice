@@ -1,4 +1,5 @@
 import React from "react";
+import "./FileAttachment.css";
 
 interface FileAttachmentProps {
   fileName: string; // Name of the file (e.g., "load_data_report.xls")
@@ -14,36 +15,28 @@ const FileAttachment: React.FC<FileAttachmentProps> = ({
   className = "",
 }) => {
   return (
-    <div
-      className={`p-3 bg-white rounded-md outline outline-1 outline-offset-[-1px] outline-slate-300 inline-flex justify-between items-center gap-4 ${className}`}
-    >
-      <div className="flex justify-start items-start gap-2.5">
-        {/* File Icon (Simplified for XLS) */}
-        <div className="w-6 h-[33px] relative">
-          <div className="w-6 h-[33px] left-0 top-0 absolute bg-[#20a464]" />
-          <div className="w-6 h-[2.62px] left-0 top-[30.38px] absolute bg-[#149456]" />
-          <div className="w-[15.38px] h-[2.62px] left-0 top-0 absolute bg-[#38ae74]" />
-          <div className="w-[8.21px] h-[9px] left-[15.79px] top-[7.69px] absolute bg-gradient-to-l from-[#20a464] to-[#207e55]" />
-          <div className="w-[9px] h-[9px] left-[15px] top-0 absolute bg-[#8ed1b1]" />
-          <div className="w-3 h-[10.88px] left-[6px] top-[16.12px] absolute bg-white" />
+    <div className={`file-attachment ${className}`}>
+      <div className="file-attachment-info">
+        {/* File Icon */}
+        <div className="file-attachment-icon">
+          <div className="file-attachment-icon-base" />
+          <div className="file-attachment-icon-bottom" />
+          <div className="file-attachment-icon-top" />
+          <div className="file-attachment-icon-gradient" />
+          <div className="file-attachment-icon-top-right" />
+          <div className="file-attachment-icon-overlay" />
         </div>
-        <div className="inline-flex flex-col justify-start items-start gap-0.5">
-          <div className="text-[#2d2d2d] text-sm font-semibold font-['Inter']">
-            {fileName}
-          </div>
-          <div className="inline-flex justify-start items-center gap-1">
-            <div className="text-slate-500 text-xs font-normal font-['Inter']">
-              {fileType}
-            </div>
-            <div className="w-1 h-1 bg-slate-200 rounded-full" />
-            <div className="text-slate-500 text-xs font-normal font-['Inter']">
-              {fileSize}
-            </div>
+        <div className="file-attachment-text">
+          <div className="file-attachment-name">{fileName}</div>
+          <div className="file-attachment-details">
+            <div className="file-attachment-type">{fileType}</div>
+            <div className="file-attachment-dot" />
+            <div className="file-attachment-size">{fileSize}</div>
           </div>
         </div>
       </div>
       {/* Placeholder for Download Icon */}
-      <div className="w-6 h-6 bg-[#d9d9d9]" />
+      <div className="file-attachment-download" />
     </div>
   );
 };

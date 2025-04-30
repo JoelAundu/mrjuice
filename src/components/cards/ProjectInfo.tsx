@@ -72,11 +72,15 @@ const ProjectSummaryCard: React.FC<ProjectSummaryCardProps> = ({
         <div className={`project-summary-card__details ${detailsClassName}`}>
           <div className={`project-summary-card__stage ${stageClassName}`}>
             {stageIcon && (
-              <div className={`project-summary-card__stage-icon ${stageIconClassName}`}>
+              <div
+                className={`project-summary-card__stage-icon ${stageIconClassName}`}
+              >
                 {stageIcon}
               </div>
             )}
-            <div className={`project-summary-card__stage-text ${stageTextClassName}`}>
+            <div
+              className={`project-summary-card__stage-text ${stageTextClassName}`}
+            >
               {`${project.stages.current}/${project.stages.total}`}
             </div>
           </div>
@@ -84,7 +88,9 @@ const ProjectSummaryCard: React.FC<ProjectSummaryCardProps> = ({
             <div
               className={`project-summary-card__tag project-summary-card__tag--state ${tagClassName} ${tagTypeClassName}`}
             >
-              <div className={`project-summary-card__tag-text ${tagTextClassName}`}>
+              <div
+                className={`project-summary-card__tag-text ${tagTextClassName}`}
+              >
                 {project.type}
               </div>
             </div>
@@ -101,14 +107,20 @@ const ProjectSummaryCard: React.FC<ProjectSummaryCardProps> = ({
               </div>
             )}
           </div>
-          <div className={`project-summary-card__progress ${progressClassName}`}>
-            <div className={`project-summary-card__progress-bar-container ${progressBarContainerClassName}`}>
+          <div
+            className={`project-summary-card__progress ${progressClassName}`}
+          >
+            <div
+              className={`project-summary-card__progress-bar-container ${progressBarContainerClassName}`}
+            >
               <div
                 className={`project-summary-card__progress-bar-filled ${progressBarFilledClassName}`}
                 style={{ width: `${project.progress}%` }}
               />
             </div>
-            <div className={`project-summary-card__progress-text ${progressTextClassName}`}>
+            <div
+              className={`project-summary-card__progress-text ${progressTextClassName}`}
+            >
               {`${project.progress}%`}
             </div>
           </div>
@@ -116,7 +128,9 @@ const ProjectSummaryCard: React.FC<ProjectSummaryCardProps> = ({
       </div>
       <div className={`project-summary-card__right ${rightClassName}`}>
         {rightIcon && (
-          <div className={`project-summary-card__right-icon ${rightIconClassName}`}>
+          <div
+            className={`project-summary-card__right-icon ${rightIconClassName}`}
+          >
             {rightIcon}
           </div>
         )}
