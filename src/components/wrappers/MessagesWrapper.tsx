@@ -116,14 +116,14 @@ const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
   
     return (
       <div className="flex flex-col w-full">
-        <div className="px-6 py-4 bg-white">
+        {/* <div className="px-6 py-4 bg-white">
           <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
             {title}
           </div>
           <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
             {description}
           </div>
-        </div>
+        </div> */}
         <div className="flex">
           <MessagesSidebar
             conversations={conversations}

@@ -112,7 +112,7 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
   );
 
   return (
-    <div className="w-[391px] h-[892px] p-6 bg-white border-r border-slate-200 flex flex-col justify-start items-start gap-12">
+    <div className="w-[391px] h-full p-6 bg-white border-r border-slate-200 flex flex-col justify-start items-start gap-12">
       {/* Header and Filter Buttons */}
       <div className="self-stretch flex flex-col justify-start items-start gap-4">
         <div className="self-stretch inline-flex justify-between items-center">
@@ -198,11 +198,11 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div className="self-stretch justify-center text-slate-500 text-sm font-medium font-['Inter']">
+                  <div className="text-left text-slate-500 text-sm font-medium font-['Inter']">
                     {conversation.userRole}
                   </div>
                 </div>
-                <div className="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] truncate">
+                <div className="text-left text-slate-500 text-sm font-normal font-['Inter'] truncate">
                   {conversation.lastMessage}
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Message, Conversation, MessagesPanelProps } from "../../types";
 import UserAvatar from "../avatar/UserAvatar";
+import { SendIcon } from "../icons/Icons";
 
 const MessagesPanel: React.FC<MessagesPanelProps> = ({
   selectedConversation,
@@ -18,7 +19,7 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
   const groupLabels = ["Yesterday", "Today"];
 
   return (
-    <div className="w-[1249px] h-[892px] pb-[30px] bg-white flex flex-col justify-between items-center">
+    <div className="w-full h-full pb-[30px] bg-white flex flex-col justify-between items-center">
       {selectedConversation ? (
         <>
           {/* Chat Header */}
@@ -70,7 +71,7 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
                         {messageGroup.map((message, messageIndex) => (
                           <div
                             key={messageIndex}
-                            className={`w-[180px] flex flex-col justify-start gap-1.5 ${
+                            className={`w-[400px] flex flex-col justify-start gap-1.5 ${
                               message.isOutgoing ? "items-end" : "items-start"
                             }`}
                           >
@@ -121,7 +122,7 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
           </div>
 
           {/* Message Input */}
-          <div className="self-stretch px-[100px] flex flex-col justify-start items-start gap-2.5">
+          <div className="self-stretch px-[100px] flex flex-col justify-start items-start gap-2.5 mt-16">
             <div className="self-stretch px-[15px] py-2.5 bg-white rounded-[10px] outline outline-1 outline-offset-[-1px] outline-slate-300 inline-flex justify-between items-center">
               <input
                 type="text"
@@ -131,11 +132,14 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
                 placeholder="Type a message"
                 className="flex-1 justify-center text-slate-500 text-sm font-normal font-['Inter'] outline-none"
               />
-              <div className="w-8 h-4 bg-[#d9d9d9]" />
-              <button
-                onClick={handleSendMessage}
-                className="w-6 h-4 bg-slate-300"
-              />
+              <button onClick={handleSendMessage} className="p-1">
+                <SendIcon
+                  strokeColor="#fff" // Black stroke for visibility
+                  width="24" // Match the icon size
+                  height="24"
+                  className="send-icon" // Custom class for styling
+                />
+              </button>
             </div>
           </div>
         </>
