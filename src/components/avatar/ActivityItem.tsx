@@ -1,6 +1,7 @@
 import React from "react";
 import UserAvatar from "./UserAvatar";
 import FileAttachment from "./FileAttachment";
+import "./ActivityItem.css";
 
 interface ActivityItemProps {
   userImageSrc?: string; // URL for the user image (optional)
@@ -12,7 +13,7 @@ interface ActivityItemProps {
     fileName: string;
     fileType: string;
     fileSize: string;
-  }; // Optional file attachment details
+  };
   className?: string; // Additional classes for customization
 }
 
@@ -26,27 +27,23 @@ const ActivityItem: React.FC<ActivityItemProps> = ({
   className = "",
 }) => {
   return (
-    <div
-      className={`inline-flex justify-start items-start gap-3.5 ${className}`}
-    >
+    <div className={`activity-item ${className}`}>
       <UserAvatar
         imageSrc={userImageSrc}
         initials={userInitials}
         backgroundColor={userInitials === "PR" ? "#31abff" : "#d9d9d9"}
       />
       <div
-        className={`flex flex-col justify-start items-start gap-3.5 ${
-          fileAttachment ? "w-[348px]" : ""
+        className={`activity-content-wrapper ${
+          fileAttachment ? "activity-content-wrapper--with-attachment" : ""
         }`}
       >
-        <div className="flex flex-col justify-start items-start gap-1">
+        <div className="activity-text-container">
           <div
-            className="text-[#2d2d2d] text-sm font-normal font-['Inter']"
+            className="activity-description"
             dangerouslySetInnerHTML={{ __html: description }}
           />
-          <div className="text-slate-500 text-xs font-normal font-['Inter']">
-            {timestamp}
-          </div>
+          <div className="activity-timestamp">{timestamp}</div>
         </div>
         {fileAttachment && (
           <FileAttachment

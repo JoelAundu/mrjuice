@@ -1,4 +1,5 @@
 import React from "react";
+import "./ResourceCard.css";
 
 interface ResourceCardProps {
   title: string;
@@ -17,30 +18,28 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
 }) => {
   return (
     <div
-      data-property-1={title.replace(/\s+/g, "_")} // Convert title to snake_case for data-property-1
-      className={`w-[300px] h-[375px] p-[30px] bg-slate-50 rounded-[20px] inline-flex flex-col justify-between items-start ${className}`}
+      data-property-1={title.replace(/\s+/g, "_")}
+      className={`resource-card ${className}`}
     >
-      <div className="self-stretch flex flex-col justify-start items-start gap-3.5">
-        <div className="self-stretch flex flex-col justify-start items-start gap-3.5">
+      <div className="resource-card-top">
+        <div className="resource-card-inner">
           {icon ? (
-            icon // Render the React icon if provided
+            icon
           ) : iconSrc ? (
-            <img className="w-7 h-7" src={iconSrc} alt={`${title} icon`} />
+            <img
+              className="resource-card-icon"
+              src={iconSrc}
+              alt={`${title} icon`}
+            />
           ) : (
-            <div className="w-7 h-7 bg-gray-200 rounded-full" /> // Fallback placeholder
+            <div className="resource-card-placeholder" />
           )}
-          <div className="self-stretch justify-center text-slate-900 text-xl font-medium font-['Inter']">
-            {title}
-          </div>
-          <div className="self-stretch justify-start text-slate-500 text-xs font-normal font-['Inter']">
-            {description}
-          </div>
+          <div className="resource-card-title">{title}</div>
+          <div className="resource-card-description">{description}</div>
         </div>
       </div>
-      <div className="inline-flex justify-center items-center gap-2.5">
-        <div className="justify-start text-slate-500 text-sm font-semibold font-['Inter']">
-          Download
-        </div>
+      <div className="resource-card-bottom">
+        <div className="resource-card-download">Download</div>
       </div>
     </div>
   );

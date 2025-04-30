@@ -1,175 +1,175 @@
 .project-summary-card {
-    width: 100%;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.12);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    box-sizing: border-box;
-  }
-  
-  .project-summary-card__left {
-    flex: 1 1 0;
-    min-width: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 32px;
-    box-sizing: border-box;
-  }
-  
-  .project-summary-card__info {
-    flex: 1 1 200px;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 2px;
-  }
-  
-  .project-summary-card__title {
-    display: flex;
-    justify-content: flex-start;
-    color: #0f172a; /* slate-900 */
-    font-size: 18px;
-    font-weight: 500;
-    font-family: "Inter", sans-serif;
-  }
-  
-  .project-summary-card__address {
-    display: flex;
-    justify-content: flex-start;
-    color: #64748b; /* slate-500 */
-    font-size: 14px;
-    font-weight: 400;
-    font-family: "Inter", sans-serif;
-  }
-  
-  .project-summary-card__details {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 42px;
-  }
-  
-  .project-summary-card__stage {
-    height: 32px;
-    padding: 4px 12px 4px 10px;
-    border-radius: 6px;
-    border: 1px solid #cbd5e1; /* slate-300 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-  }
-  
-  .project-summary-card__stage-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .project-summary-card__stage-text {
-    display: flex;
-    justify-content: center;
-    color: #0f172a; /* slate-900 */
-    font-size: 14px;
-    font-weight: 500;
-    font-family: "Inter", sans-serif;
-  }
-  
-  .project-summary-card__tags {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 6px;
-  }
-  
-  .project-summary-card__tag {
-    height: 32px;
-    padding: 4px 12px;
-    border-radius: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .project-summary-card__tag--type {
-    background-color: #f0f3f7;
-  }
-  
-  .project-summary-card__tag--state {
-    padding: 4px 12px;
-    white-space: nowrap;
-    background-color: rgba(44, 106, 223, 0.1);
-    color: #2c6adf;
-  }
-  
-  .project-summary-card__tag-text {
-    display: flex;
-    justify-content: flex-start;
-    color: #0f172a; /* slate-900 for type tag */
-    font-size: 12px;
-    font-weight: 400;
-    font-family: "Inter", sans-serif;
-  }
-  
-  .project-summary-card__progress {
-    flex: 1 1 0;
-    min-width: 100px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .project-summary-card__progress-bar-container {
-    width: 100%;
-    max-width: 380px;
-    height: 4px;
-    background-color: #f0f3f7;
-    border-radius: 100px;
-  }
-  
-  .project-summary-card__progress-bar-filled {
-    height: 4px;
-    background-color: #0f172a;
-    border-radius: 100px;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  .project-summary-card__progress-text {
-    display: flex;
-    justify-content: center;
-    text-align: right;
-    color: #0f172a; /* slate-900 */
-    font-size: 14px;
-    font-weight: 400;
-    font-family: "Inter", sans-serif;
-  }
-  
-  .project-summary-card__right {
-    width: 39px;
-    height: 39px;
-    background-color: #ffffff;
-    border-radius: 100px;
-    border: 1px solid #cbd5e1; /* slate-300 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .project-summary-card__right-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.project-summary-card__left {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+  box-sizing: border-box;
+}
+
+.project-summary-card__info {
+  flex: 1 1 200px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.project-summary-card__title {
+  display: flex;
+  justify-content: flex-start;
+  color: #0f172a; /* slate-900 */
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.project-summary-card__address {
+  display: flex;
+  justify-content: flex-start;
+  color: #64748b; /* slate-500 */
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.project-summary-card__details {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 42px;
+}
+
+.project-summary-card__stage {
+  height: 32px;
+  padding: 4px 12px 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1; /* slate-300 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-summary-card__stage-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-summary-card__stage-text {
+  display: flex;
+  justify-content: center;
+  color: #0f172a; /* slate-900 */
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.project-summary-card__tags {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-summary-card__tag {
+  height: 32px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.project-summary-card__tag--type {
+  background-color: #f0f3f7;
+}
+
+.project-summary-card__tag--state {
+  padding: 4px 12px;
+  white-space: nowrap;
+  background-color: rgba(44, 106, 223, 0.1);
+  color: #2c6adf;
+}
+
+.project-summary-card__tag-text {
+  display: flex;
+  justify-content: flex-start;
+  color: #0f172a; /* slate-900 for type tag */
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.project-summary-card__progress {
+  flex: 1 1 0;
+  min-width: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.project-summary-card__progress-bar-container {
+  width: 100%;
+  max-width: 380px;
+  height: 4px;
+  background-color: #f0f3f7;
+  border-radius: 100px;
+}
+
+.project-summary-card__progress-bar-filled {
+  height: 4px;
+  background-color: #0f172a;
+  border-radius: 100px;
+  transition: width 0.3s ease-in-out;
+}
+
+.project-summary-card__progress-text {
+  display: flex;
+  justify-content: center;
+  text-align: right;
+  color: #0f172a; /* slate-900 */
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.project-summary-card__right {
+  width: 39px;
+  height: 39px;
+  background-color: #ffffff;
+  border-radius: 100px;
+  border: 1px solid #cbd5e1; /* slate-300 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.project-summary-card__right-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

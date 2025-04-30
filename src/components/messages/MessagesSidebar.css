@@ -1,0 +1,211 @@
+.messages-sidebar {
+  width: 391px;
+  height: 100%;
+  padding: 24px;
+  background-color: #fff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.messages-sidebar-header {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.messages-sidebar-header-row {
+  align-self: stretch;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.messages-sidebar-title {
+  display: flex;
+  justify-content: center;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.messages-sidebar-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.messages-sidebar-search {
+  position: relative;
+}
+
+.messages-sidebar-search-input {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 10;
+}
+
+.messages-sidebar-input {
+  width: 200px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  outline: none;
+}
+
+.messages-sidebar-input:focus {
+  box-shadow: 0 0 0 2px #0f172a;
+}
+
+.messages-sidebar-filters {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.messages-sidebar-list {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.messages-sidebar-conversation {
+  align-self: stretch;
+  padding: 16px;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.messages-sidebar-conversation-selected {
+  background-color: #f0f3f7;
+}
+
+.messages-sidebar-conversation-unselected {
+  background-color: transparent;
+}
+
+.messages-sidebar-conversation-unselected:hover {
+  background-color: rgba(240, 243, 247, 0.5);
+}
+
+.messages-sidebar-details {
+  width: 257px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.messages-sidebar-info {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.messages-sidebar-user-row {
+  align-self: stretch;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.messages-sidebar-user-name {
+  display: flex;
+  justify-content: center;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.messages-sidebar-timestamp-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+}
+
+.messages-sidebar-unread-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #ff4757;
+  border-radius: 50%;
+}
+
+.messages-sidebar-timestamp {
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.messages-sidebar-user-role {
+  text-align: left;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.messages-sidebar-last-message {
+  text-align: left;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.messages-sidebar-empty {
+  align-self: stretch;
+  padding: 16px;
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.messages-sidebar-new-chat {
+  margin-top: 8px;
+  padding-left: 14px;
+  padding-right: 14px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #0f172a;
+  color: #fff;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}

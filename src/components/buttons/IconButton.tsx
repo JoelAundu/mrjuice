@@ -1,4 +1,5 @@
 import React from "react";
+import "./IconButton.css";
 
 interface IconButtonProps {
   iconSrc?: string; // URL for an image
@@ -18,11 +19,11 @@ const IconButton: React.FC<IconButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`w-8 h-8 p-[3px] bg-slate-200/50 rounded-full flex justify-center items-center ${className}`}
+      className={`icon-button ${className}`}
       aria-label={ariaLabel}
     >
       {iconSrc ? (
-        <img src={iconSrc} alt={ariaLabel} className="w-5 h-5" />
+        <img src={iconSrc} alt={ariaLabel} className="icon-button-image" />
       ) : (
         icon
       )}

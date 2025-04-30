@@ -1,4 +1,5 @@
 import React from "react";
+import "./AuthButtonGroup.css";
 
 interface AuthButtonGroupProps {
   mode?: "dual" | "single"; // "dual" for Log in + Get Started, "single" for navigation button
@@ -16,7 +17,7 @@ interface AuthButtonGroupProps {
   circleBackgroundSrc?: string;
   circleBackgroundClassName?: string;
   containerBackground?: "white" | "dark"; // "white" for bg-white, "dark" for bg-[#1b1c1f]
-  textSize?: "xs" | "sm" | "base"; // Tailwind text sizes
+  textSize?: "xs" | "sm" | "base"; // Text sizes
 }
 
 const AuthButtonGroup = ({
@@ -31,47 +32,80 @@ const AuthButtonGroup = ({
   showArrow = false,
   arrowIconSrc = "/assets/arrow-right-white.png",
   arrowIconAlt = "Arrow Right",
-  arrowIconClassName = "w-5 h-5",
+  arrowIconClassName = "",
   circleBackgroundSrc,
-  circleBackgroundClassName = "w-12 h-12",
+  circleBackgroundClassName = "",
   containerBackground = "white",
   textSize = "xs",
 }: AuthButtonGroupProps) => {
-  const containerBgClass = containerBackground === "white" ? "bg-white" : "bg-[#1b1c1f] hover:bg-gray-400";
-  const textColorClass = containerBackground === "white" ? "text-[#1b1c1f] hover:text-gray-400" : "text-white";
-  const getStartedBgClass = containerBackground === "white" ? "bg-[#1b1c1f] hover:bg-gray-400" : "bg-transparent";
+  // Helper functions to determine dynamic classes
+  const getContainerBgClass = () =>
+    containerBackground === "white"
+      ? "auth-button-group-bg-white"
+      : "auth-button-group-bg-dark";
+
+  const getTextColorClass = () =>
+    containerBackground === "white"
+      ? "auth-button-group-login-text-dark"
+      : "auth-button-group-login-text-white";
+
+  const getGetStartedBgClass = () =>
+    containerBackground === "white"
+      ? "auth-button-group-get-started-bg-dark"
+      : "auth-button-group-get-started-bg-transparent";
+
+  const getGetStartedTextClass = () =>
+    containerBackground === "white"
+      ? "auth-button-group-text-white"
+      : "auth-button-group-text-dark-flex";
+
+  const getTextSizeClass = () => {
+    switch (textSize) {
+      case "sm":
+        return "auth-button-group-text-sm";
+      case "base":
+        return "auth-button-group-text-base";
+      case "xs":
+      default:
+        return "auth-button-group-text-xs";
+    }
+  };
 
   if (mode === "dual") {
     return (
       <div
-        className={`pl-[25px] pr-1 py-1 ${containerBgClass} rounded-full flex items-center gap-6 w-56 ${className}`}
+        className={`auth-button-group-dual ${getContainerBgClass()} ${className}`}
       >
         <div
-          className={`w-[41px] ${textColorClass} text-${textSize} font-medium flex cursor-pointer ${loginClassName}`}
+          className={`auth-button-group-login ${getTextColorClass()} ${getTextSizeClass()} ${loginClassName}`}
           onClick={onLoginClick}
         >
           {loginLabel}
         </div>
         <div
-          className={`px-[25px] py-3 ${getStartedBgClass} rounded-full flex items-center gap-2.5 cursor-pointer ${getStartedClassName}`}
+          className={`auth-button-group-get-started ${getGetStartedBgClass()} ${getStartedClassName}`}
           onClick={onGetStartedClick}
         >
-          <div className={`text-center ${containerBackground === "white" ? "text-white" : "text-[#1b1c1f] flex hover:text-gray-400"} text-${textSize} font-medium`}>
+          <div
+            className={`auth-button-group-text-center ${getGetStartedTextClass()} ${getTextSizeClass()}`}
+          >
             {getStartedLabel}
           </div>
           {showArrow && (
-            <div className="flex items-center">
+            <div className="auth-button-group-arrow-container">
               {circleBackgroundSrc && (
                 <img
                   src={circleBackgroundSrc}
                   alt="Circle Background"
-                  className={circleBackgroundClassName}
+                  className={`auth-button-group-circle-bg ${circleBackgroundClassName}`}
                 />
               )}
               <img
                 src={arrowIconSrc}
                 alt={arrowIconAlt}
-                className={`${circleBackgroundSrc ? "absolute" : ""} ${arrowIconClassName}`}
+                className={`auth-button-group-arrow ${
+                  circleBackgroundSrc ? "auth-button-group-arrow-absolute" : ""
+                } ${arrowIconClassName}`}
               />
             </div>
           )}
@@ -83,25 +117,29 @@ const AuthButtonGroup = ({
   // Single mode (navigation button with optional arrow)
   return (
     <div
-      className={`w-full max-w-[264px] h-[58px] ${containerBgClass} rounded-full flex items-center justify-between px-6 relative cursor-pointer ${className}`}
+      className={`auth-button-group-single ${getContainerBgClass()} ${className}`}
       onClick={onGetStartedClick}
     >
-      <span className={`text-${containerBackground === "white" ? "[#1b1c1f] hover:text-gray-400" : "white"} text-${textSize} font-medium`}>
+      <span className={`${getTextColorClass()} ${getTextSizeClass()}`}>
         {getStartedLabel}
       </span>
       {showArrow && (
-        <div className={`absolute right-2 flex items-center justify-center ${circleBackgroundClassName}`}>
+        <div
+          className={`auth-button-group-arrow-container-single auth-button-group-circle-bg ${circleBackgroundClassName}`}
+        >
           {circleBackgroundSrc && (
             <img
               src={circleBackgroundSrc}
               alt="Circle Background"
-              className={circleBackgroundClassName}
+              className={`auth-button-group-circle-bg ${circleBackgroundClassName}`}
             />
           )}
           <img
             src={arrowIconSrc}
             alt={arrowIconAlt}
-            className={`${circleBackgroundSrc ? "absolute" : ""} ${arrowIconClassName}`}
+            className={`auth-button-group-arrow ${
+              circleBackgroundSrc ? "auth-button-group-arrow-absolute" : ""
+            } ${arrowIconClassName}`}
           />
         </div>
       )}

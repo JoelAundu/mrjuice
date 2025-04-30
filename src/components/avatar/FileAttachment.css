@@ -1,0 +1,121 @@
+.file-attachment {
+  padding: 12px;
+  background-color: #fff;
+  border-radius: 6px;
+  outline: 1px solid #cbd5e1;
+  outline-offset: -1px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.file-attachment-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.file-attachment-icon {
+  width: 24px;
+  height: 33px;
+  position: relative;
+}
+
+.file-attachment-icon-base {
+  width: 24px;
+  height: 33px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #20a464;
+}
+
+.file-attachment-icon-bottom {
+  width: 24px;
+  height: 2.62px;
+  position: absolute;
+  left: 0;
+  top: 30.38px;
+  background-color: #149456;
+}
+
+.file-attachment-icon-top {
+  width: 15.38px;
+  height: 2.62px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #38ae74;
+}
+
+.file-attachment-icon-gradient {
+  width: 8.21px;
+  height: 9px;
+  position: absolute;
+  left: 15.79px;
+  top: 7.69px;
+  background: linear-gradient(to left, #20a464, #207e55);
+}
+
+.file-attachment-icon-top-right {
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  left: 15px;
+  top: 0;
+  background-color: #8ed1b1;
+}
+
+.file-attachment-icon-overlay {
+  width: 12px;
+  height: 10.88px;
+  position: absolute;
+  left: 6px;
+  top: 16.12px;
+  background-color: #fff;
+}
+
+.file-attachment-text {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.file-attachment-name {
+  color: #2d2d2d;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+
+.file-attachment-details {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+}
+
+.file-attachment-type,
+.file-attachment-size {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.file-attachment-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #e2e8f0;
+  border-radius: 50%;
+}
+
+.file-attachment-download {
+  width: 24px;
+  height: 24px;
+  background-color: #d9d9d9;
+}
