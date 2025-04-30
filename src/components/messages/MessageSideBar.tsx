@@ -112,7 +112,7 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
   );
 
   return (
-    <div className="w-[391px] h-[892px] p-6 bg-white border-r border-slate-200 flex flex-col justify-start items-start gap-12">
+    <div className="w-[391px] h-full p-6 bg-white border-r border-slate-200 flex flex-col justify-start items-start gap-12">
       {/* Header and Filter Buttons */}
       <div className="self-stretch flex flex-col justify-start items-start gap-4">
         <div className="self-stretch inline-flex justify-between items-center">
