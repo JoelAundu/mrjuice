@@ -98,3 +98,36 @@ export const SearchIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
+
+export const SendIcon: React.FC<IconProps> = ({
+  strokeColor = "#fff",
+  width = "24", // Adjusted to fit the circular design (originally w-8 = 32px)
+  height = "24", // Adjusted to be circular (originally h-4 = 16px)
+  className = "",
+  style,
+  svgProps,
+}) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={style}
+      {...svgProps}
+    >
+      {/* Circular background */}
+      <circle cx="12" cy="12" r="10" fill="#D9D9D9" />
+      {/* Upward arrow */}
+      <path
+        d="M12 16V8M12 8L8 12M12 8L16 12"
+        stroke={strokeColor}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

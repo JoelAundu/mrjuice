@@ -198,11 +198,11 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div className="self-stretch justify-center text-slate-500 text-sm font-medium font-['Inter']">
+                  <div className="text-left text-slate-500 text-sm font-medium font-['Inter']">
                     {conversation.userRole}
                   </div>
                 </div>
-                <div className="self-stretch justify-center text-slate-500 text-sm font-normal font-['Inter'] truncate">
+                <div className="text-left text-slate-500 text-sm font-normal font-['Inter'] truncate">
                   {conversation.lastMessage}
                 </div>
               </div>
