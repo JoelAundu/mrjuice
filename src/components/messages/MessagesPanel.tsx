@@ -19,7 +19,7 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
   const groupLabels = ["Yesterday", "Today"];
 
   return (
-    <div className="w-[1249px] h-[892px] pb-[30px] bg-white flex flex-col justify-between items-center">
+    <div className="w-full h-full pb-[30px] bg-white flex flex-col justify-between items-center">
       {selectedConversation ? (
         <>
           {/* Chat Header */}
@@ -122,7 +122,7 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
           </div>
 
           {/* Message Input */}
-          <div className="self-stretch px-[100px] flex flex-col justify-start items-start gap-2.5">
+          <div className="self-stretch px-[100px] flex flex-col justify-start items-start gap-2.5 mt-16">
             <div className="self-stretch px-[15px] py-2.5 bg-white rounded-[10px] outline outline-1 outline-offset-[-1px] outline-slate-300 inline-flex justify-between items-center">
               <input
                 type="text"
