@@ -131,3 +131,49 @@ export const SendIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
+
+export const GoogleDriveIcon: React.FC<IconProps> = ({
+    width = "28",
+    height = "28",
+    className = "",
+    style,
+    svgProps,
+  }) => {
+    return (
+      <svg
+        width={width}
+        height={height}
+        viewBox="0 0 28 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className={className}
+        style={style}
+        {...svgProps}
+      >
+        <path
+          d="M9.333 2.333L2.333 14H9.333L14 5.833L9.333 2.333Z"
+          fill="#0066DA" // Blue section
+        />
+        <path
+          d="M14 5.833L21 14H9.333L14 5.833Z"
+          fill="#00AC47" // Green section
+        />
+        <path
+          d="M25.667 14L18.667 2.333H9.333L18.667 14H25.667Z"
+          fill="#FFBA00" // Yellow section
+        />
+        <path
+          d="M9.333 14L2.333 14L5.833 20.417L14 25.667L18.667 14H9.333Z"
+          fill="#0066DA" // Blue section
+        />
+        <path
+          d="M18.667 14L25.667 14L22.167 20.417L14 25.667L18.667 14Z"
+          fill="#00AC47" // Green section
+        />
+        <path
+          d="M14 25.667L5.833 20.417H22.167L14 25.667Z"
+          fill="#FFBA00" // Yellow section
+        />
+      </svg>
+    );
+  }
