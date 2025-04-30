@@ -11,6 +11,8 @@ import ProjectSummaryCard from "./cards/ProjectInfo";
 import JourneyCard from "./cards/JourneyCard";
 import ActivityItem from "./avatar/ActivityItem";
 import MenuItem from "./actionMenu/MenuItem";
+import MessagesWrapper from "./wrappers/MessagesWrapper";
+import ResourcesWrapper from "./wrappers/Resourceswrapper";
 import { SidebarData, EnhancedProject } from "../types";
 
 // Placeholder icons (can be replaced with react-icons)
@@ -37,6 +39,7 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
   const [projectMenuIndex, setProjectMenuIndex] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [activeFilterIndex, setActiveFilterIndex] = useState(0);
+  const [activeTabIndex, setActiveTabIndex] = useState(0); // Track the active tab by index
 
   // Find the selected project, excluding "Create New Project"
   const project = typedSidebarData.projects.find(
@@ -80,6 +83,21 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
       onBackToHome();
     }
   };
+
+  // Handle tab clicks
+  const handleTabClick = (index: number) => {
+    setActiveTabIndex(index);
+  };
+
+  // Define TopNav tabs for ProjectDashboard
+  const topNavTabs = [
+    { label: "Dashboard" },
+    { label: "Messages" },
+    { label: "Resources" },
+  ];
+
+  // Map activeTabIndex to the corresponding tab label for conditional rendering
+  const activeTab = topNavTabs[activeTabIndex].label;
 
   // Define filter items for Activity section
   const filterItems = [
@@ -138,13 +156,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     "⭐": <FeasibilityIcon />,
     "🤝": <BidderIcon />,
   };
-
-  // Define TopNav tabs for ProjectDashboard
-  const topNavTabs = [
-    { label: "Dashboard", isActive: true },
-    { label: "Messages", isActive: false },
-    { label: "Resources", isActive: false },
-  ];
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
@@ -224,7 +235,11 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           overflowY: "auto",
         }}
       >
-        <TopNav tabs={topNavTabs} />
+        <TopNav
+          tabs={topNavTabs}
+          activeIndex={activeTabIndex} // Pass the active tab index
+          onTabClick={handleTabClick} // Pass the click handler to TopNav
+        />
         {showWarningBanner && (
           <WarningBanner
             message="Payment is required in order to progress your project further."
@@ -240,98 +255,116 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
             modalSubmitClassName="bg-blue-900 hover:bg-blue-800 text-white rounded-lg py-3"
           />
         )}
-        <ContentWrapper
-          title={`${project.title} Dashboard`}
-          description="Manage your project details, timeline, and metrics."
-        >
-          {/* Project Summary Card */}
-          <ProjectSummaryCard
-            project={enhancedProject}
-            className="border border-gray-200"
-            titleClassName="text-xl font-semibold text-gray-800"
-            progressBarFilledClassName="bg-blue-600"
-            stageIcon={<CardIcon />}
-            rightIcon={<MenuDotsIcon />}
-          />
 
-          {/* Project Journey Section */}
-          <div className="mt-8">
-            <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
-              Project Journey
+        {/* Conditionally render the appropriate wrapper based on the active tab */}
+        {activeTab === "Dashboard" && (
+          <ContentWrapper
+            title={`${project.title} Dashboard`}
+            description="Manage your project details, timeline, and metrics."
+          >
+            {/* Project Summary Card */}
+            <ProjectSummaryCard
+              project={enhancedProject}
+              className="border border-gray-200"
+              titleClassName="text-xl font-semibold text-gray-800"
+              progressBarFilledClassName="bg-blue-600"
+              stageIcon={<CardIcon />}
+              rightIcon={<MenuDotsIcon />}
+            />
+
+            {/* Project Journey Section */}
+            <div className="mt-8">
+              <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
+                Project Journey
+              </div>
+              <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
+                Track and quickly access each step in your journey
+              </div>
+              <div className="grid grid-cols-4 gap-4">
+                {project.journeySteps?.map((step, index) => (
+                  <JourneyCard
+                    key={index}
+                    icon={iconMap[step.icon] || <span>{step.icon}</span>}
+                    title={step.title}
+                    description={step.description}
+                    status={step.status}
+                    progress={step.progress}
+                    steps={step.steps}
+                    ctaText={step.ctaText}
+                    onCtaClick={
+                      step.ctaText
+                        ? () => console.log(`Navigating to ${step.ctaText}`)
+                        : undefined
+                    }
+                  />
+                ))}
+              </div>
             </div>
-            <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
-              Track and quickly access each step in your journey
-            </div>
-            <div className="grid grid-cols-4 gap-4">
-              {project.journeySteps?.map((step, index) => (
-                <JourneyCard
-                  key={index}
-                  icon={iconMap[step.icon] || <span>{step.icon}</span>}
-                  title={step.title}
-                  description={step.description}
-                  status={step.status}
-                  progress={step.progress}
-                  steps={step.steps}
-                  ctaText={step.ctaText}
-                  onCtaClick={
-                    step.ctaText
-                      ? () => console.log(`Navigating to ${step.ctaText}`)
-                      : undefined
-                  }
+
+            {/* Activity Section */}
+            <div className="mt-8">
+              <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
+                Activity
+              </div>
+              <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
+                Review your team's recent activity
+              </div>
+              <div className="flex gap-2">
+                <MenuItem
+                  items={filterItems}
+                  activeIndex={activeFilterIndex}
+                  onItemClick={handleFilterClick}
+                  className="flex items-center space-x-4"
+                  buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium font-['Inter'] text-slate-900"
+                  activeButtonClassName="bg-[#f0f3f7]"
+                  inactiveButtonClassName="bg-white"
                 />
-              ))}
-            </div>
-          </div>
-
-          {/* Activity Section */}
-          <div className="mt-8">
-            <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
-              Activity
-            </div>
-            <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
-              Review your team's recent activity
-            </div>
-            <div className="flex gap-2">
-              <MenuItem
-                items={filterItems}
-                activeIndex={activeFilterIndex}
-                onItemClick={handleFilterClick}
-                className="flex items-center space-x-4"
-                buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium font-['Inter'] text-slate-900"
-                activeButtonClassName="bg-[#f0f3f7]"
-                inactiveButtonClassName="bg-white"
-              />
-            </div>
-            <div className="mt-6 flex flex-col justify-start items-start gap-12">
-              <div className="flex flex-col justify-start items-start gap-8">
-                {filteredActivities.length > 0 ? (
-                  filteredActivities.map((activity, index) => (
-                    <ActivityItem
-                      key={index}
-                      userImageSrc={activity.userImageSrc}
-                      userInitials={activity.userInitials}
-                      userName={activity.userName}
-                      description={activity.description}
-                      timestamp={activity.timestamp}
-                      fileAttachment={activity.fileAttachment}
-                    />
-                  ))
-                ) : (
-                  <div className="text-[#425A70] text-sm font-normal font-['Inter']">
-                    No activities found for the selected filter.
-                  </div>
+              </div>
+              <div className="mt-6 flex flex-col justify-start items-start gap-12">
+                <div className="flex flex-col justify-start items-start gap-8">
+                  {filteredActivities.length > 0 ? (
+                    filteredActivities.map((activity, index) => (
+                      <ActivityItem
+                        key={index}
+                        userImageSrc={activity.userImageSrc}
+                        userInitials={activity.userInitials}
+                        userName={activity.userName}
+                        description={activity.description}
+                        timestamp={activity.timestamp}
+                        fileAttachment={activity.fileAttachment}
+                      />
+                    ))
+                  ) : (
+                    <div className="text-[#425A70] text-sm font-normal font-['Inter']">
+                      No activities found for the selected filter.
+                    </div>
+                  )}
+                </div>
+                {filteredActivities.length > 0 && (
+                  <button className="h-[39px] px-3.5 bg-[#2d2d2d] rounded-[100px] inline-flex justify-start items-center gap-0.5">
+                    <div className="justify-center text-white text-sm font-medium font-['Inter']">
+                      Show more
+                    </div>
+                  </button>
                 )}
               </div>
-              {filteredActivities.length > 0 && (
-                <button className="h-[39px] px-3.5 bg-[#2d2d2d] rounded-[100px] inline-flex justify-start items-center gap-0.5">
-                  <div className="justify-center text-white text-sm font-medium font-['Inter']">
-                    Show more
-                  </div>
-                </button>
-              )}
             </div>
-          </div>
-        </ContentWrapper>
+          </ContentWrapper>
+        )}
+
+        {activeTab === "Messages" && (
+          <MessagesWrapper
+            title={`${project.title} Messages`}
+            description="View and manage all communications related to your project."
+          />
+        )}
+
+        {activeTab === "Resources" && (
+          <ResourcesWrapper
+            title={`${project.title} Resources`}
+            description="Access documents, files, and other resources for your project."
+          />
+        )}
       </div>
     </div>
   );
