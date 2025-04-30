@@ -13,10 +13,10 @@ import ActivityItem from "./avatar/ActivityItem";
 import MenuItem from "./actionMenu/MenuItem";
 import MessagesWrapper from "./wrappers/MessagesWrapper";
 import ResourcesWrapper from "./wrappers/Resourceswrapper";
+import ResourceCard from "./cards/ResourceCard";
 import { SidebarData, EnhancedProject } from "../types";
+import { SearchIcon, GoogleDriveIcon } from "./icons/Icons";
 
-// Placeholder icons (can be replaced with react-icons)
-const SearchIcon = () => <span>🔍</span>;
 const CardIcon = () => <span>💳</span>;
 const MenuDotsIcon = () => <span>⋮</span>;
 const SiteIcon = () => <span>📍</span>;
@@ -29,19 +29,43 @@ interface ProjectDashboardProps {
   onBackToHome: () => void;
 }
 
-// Type assertion to ensure sidebarData matches SidebarData type
 const typedSidebarData = sidebarData as SidebarData;
+
+// Define the resources data array
+const resourcesData = [
+  {
+    title: "Generated Reports",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.",
+  },
+  {
+    title: "Structural Engineers List",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.",
+  },
+  {
+    title: "Data Logging Companies",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.",
+  },
+  {
+    title: "Auto-Generated Structural RFP",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.",
+  },
+];
 
 const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
   projectId,
   onBackToHome,
 }) => {
   const [projectMenuIndex, setProjectMenuIndex] = useState(0);
-  const [searchValue, setSearchValue] = useState("");
+  const [sideNavSearchValue, setSideNavSearchValue] = useState(""); // State for SideNav search
+  const [resourcesSearchValue, setResourcesSearchValue] = useState(""); // State for ResourcesWrapper search
   const [activeFilterIndex, setActiveFilterIndex] = useState(0);
-  const [activeTabIndex, setActiveTabIndex] = useState(0); // Track the active tab by index
+  const [resourcesFilterIndex, setResourcesFilterIndex] = useState(0);
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
 
-  // Find the selected project, excluding "Create New Project"
   const project = typedSidebarData.projects.find(
     (p) => p.id === projectId && !p.isCreateButton
   );
@@ -49,7 +73,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     return <div>Project not found</div>;
   }
 
-  // Enhance project with state styling from sidebarData.json
   const enhancedProject: EnhancedProject = {
     ...project,
     stateColor: typedSidebarData.states[project.state!]?.color || "",
@@ -59,22 +82,22 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     stages: project.stages!,
   };
 
-  // Determine if the warning banner should be visible
-  const showWarningBanner = ["In Progress", "On Hold"].includes(project.state || "");
+  const showWarningBanner = ["In Progress", "On Hold"].includes(
+    project.state || ""
+  );
 
-  // Log when the warning banner is visible (for tracking purposes)
   useEffect(() => {
     if (showWarningBanner) {
-      console.log(`WarningBanner is visible for project ${projectId} (state: ${project.state})`);
+      console.log(
+        `WarningBanner is visible for project ${projectId} (state: ${project.state})`
+      );
     }
   }, [showWarningBanner, projectId, project.state]);
 
-  // Handle project menu item click
   const handleProjectMenuClick = (index: number) => {
     setProjectMenuIndex(index);
   };
 
-  // Handle clicks on "Home" or other sections
   const handleMenuItemClick = (sectionIndex: number, itemIndex: number) => {
     if (
       sectionIndex === 0 &&
@@ -84,22 +107,18 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     }
   };
 
-  // Handle tab clicks
   const handleTabClick = (index: number) => {
     setActiveTabIndex(index);
   };
 
-  // Define TopNav tabs for ProjectDashboard
   const topNavTabs = [
     { label: "Dashboard" },
     { label: "Messages" },
     { label: "Resources" },
   ];
 
-  // Map activeTabIndex to the corresponding tab label for conditional rendering
   const activeTab = topNavTabs[activeTabIndex].label;
 
-  // Define filter items for Activity section
   const filterItems = [
     { label: "All Activity", isActive: true },
     { label: "Last Week", isActive: false },
@@ -107,14 +126,39 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     { label: "Last 3 Months", isActive: false },
   ];
 
-  // Handle filter button clicks and implement filtering logic
   const handleFilterClick = (index: number) => {
     setActiveFilterIndex(index);
     console.log(`Filter changed to: ${filterItems[index].label}`);
   };
 
-  // Filter activities based on the selected filter
-  const currentDate = new Date("2025-04-29"); // Current date (April 29, 2025)
+  // Define menu items for ResourcesWrapper
+  const resourcesFilterItems = [
+    { label: "Download", isActive: true },
+    { label: "My Upload", isActive: false },
+  ];
+
+  const handleResourcesFilterClick = (index: number) => {
+    setResourcesFilterIndex(index);
+    console.log(`${resourcesFilterItems[index].label} clicked`);
+  };
+
+  // Filter resources based on resourcesSearchValue
+  const filteredResources = resourcesData.filter((resource) => {
+    const searchLower = resourcesSearchValue.toLowerCase();
+    return (
+      resource.title.toLowerCase().includes(searchLower) ||
+      resource.description.toLowerCase().includes(searchLower)
+    );
+  });
+
+  // Filter projects for SideNav based on sideNavSearchValue
+  const filteredProjects = typedSidebarData.projects
+    .filter((p) => !p.isCreateButton) // Exclude "Create Project" button
+    .filter((p) =>
+      p.title.toLowerCase().includes(sideNavSearchValue.toLowerCase())
+    );
+
+  const currentDate = new Date("2025-04-29");
   const filteredActivities = (project.activities || []).filter((activity) => {
     const activityDate = new Date(activity.date);
     const timeDiff = currentDate.getTime() - activityDate.getTime();
@@ -133,7 +177,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     }
   });
 
-  // Calculate section start indices for non-project sections
   let currentIndex = 0;
   const sectionIndices = [
     typedSidebarData.menuSections[0],
@@ -149,7 +192,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
   });
   const footerStartIndex = currentIndex;
 
-  // Map icons to journey steps
   const iconMap: { [key: string]: React.ReactNode } = {
     "📍": <SiteIcon />,
     "💬": <ReviewIcon />,
@@ -166,18 +208,17 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           </div>
         }
       >
-        {/* Search Input */}
         <div className="px-5">
           <Input
             label={typedSidebarData.search.label}
             placeholder={typedSidebarData.search.placeholder}
             leftIcon={<SearchIcon />}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+            value={sideNavSearchValue}
+            onChange={(e) => setSideNavSearchValue(e.target.value)}
+            className="w-80"
           />
         </div>
 
-        {/* Menu Sections */}
         {[
           {
             ...typedSidebarData.menuSections[0],
@@ -218,7 +259,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           </div>
         ))}
 
-        {/* Footer Links */}
         <div className="px-5" style={{ marginBottom: "20px" }}>
           <MenuList
             items={project.sideNav?.footerLinks || typedSidebarData.footerLinks}
@@ -228,7 +268,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
         </div>
       </SideNav>
 
-      {/* Main Content */}
       <div
         className="flex-1 flex flex-col"
         style={{
@@ -237,8 +276,8 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
       >
         <TopNav
           tabs={topNavTabs}
-          activeIndex={activeTabIndex} // Pass the active tab index
-          onTabClick={handleTabClick} // Pass the click handler to TopNav
+          activeIndex={activeTabIndex}
+          onTabClick={handleTabClick}
         />
         {showWarningBanner && (
           <WarningBanner
@@ -256,13 +295,11 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           />
         )}
 
-        {/* Conditionally render the appropriate wrapper based on the active tab */}
         {activeTab === "Dashboard" && (
           <ContentWrapper
             title={`${project.title} Dashboard`}
             description="Manage your project details, timeline, and metrics."
           >
-            {/* Project Summary Card */}
             <ProjectSummaryCard
               project={enhancedProject}
               className="border border-gray-200"
@@ -272,7 +309,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
               rightIcon={<MenuDotsIcon />}
             />
 
-            {/* Project Journey Section */}
             <div className="mt-8">
               <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
                 Project Journey
@@ -301,7 +337,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
               </div>
             </div>
 
-            {/* Activity Section */}
             <div className="mt-8">
               <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
                 Activity
@@ -363,7 +398,47 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           <ResourcesWrapper
             title={`${project.title} Resources`}
             description="Access documents, files, and other resources for your project."
-          />
+          >
+            <div className="mb-4">
+              <Input
+                label="Search Resources"
+                placeholder="Search documents, files..."
+                leftIcon={
+                  <SearchIcon strokeColor="#1F2A44" width="18" height="18" />
+                }
+                value={resourcesSearchValue}
+                onChange={(e) => setResourcesSearchValue(e.target.value)}
+                className="!w-80"
+              />
+            </div>
+            <div className="my-12">
+              <MenuItem
+                items={resourcesFilterItems}
+                activeIndex={resourcesFilterIndex}
+                onItemClick={handleResourcesFilterClick}
+                className="flex items-center space-x-4"
+                buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium font-['Inter'] text-slate-900"
+                activeButtonClassName="bg-[#f0f3f7]"
+                inactiveButtonClassName="bg-white"
+              />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredResources.length > 0 ? (
+                filteredResources.map((resource, index) => (
+                  <ResourceCard
+                    key={index}
+                    title={resource.title}
+                    description={resource.description}
+                    icon={<GoogleDriveIcon />}
+                  />
+                ))
+              ) : (
+                <div className="col-span-full text-center text-slate-500">
+                  No resources found matching your search.
+                </div>
+              )}
+            </div>
+          </ResourcesWrapper>
         )}
       </div>
     </div>
