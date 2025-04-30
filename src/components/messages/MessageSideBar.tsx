@@ -3,6 +3,7 @@ import { Message, Conversation, MessagesSidebarProps } from "../../types";
 import UserAvatar from "../avatar/UserAvatar";
 import IconButton from "../buttons/IconButton";
 import FilterButton from "../buttons/FilterButton";
+import "./MessagesSidebar.css";
 
 const getInitials = (name: string) => {
   const nameParts = name.split(" ");
@@ -35,7 +36,6 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
   // Handle new chat (simulate with an alert for now)
   const handleNewChat = () => {
     alert("Open a modal to select a user and start a new chat!");
-    // In a real app, this would open a modal to select a user and create a new conversation
   };
 
   // Handle search toggle and input
@@ -112,33 +112,31 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
   );
 
   return (
-    <div className="w-[391px] h-full p-6 bg-white border-r border-slate-200 flex flex-col justify-start items-start gap-12">
+    <div className="messages-sidebar">
       {/* Header and Filter Buttons */}
-      <div className="self-stretch flex flex-col justify-start items-start gap-4">
-        <div className="self-stretch inline-flex justify-between items-center">
-          <div className="justify-center text-slate-900 text-[22px] font-medium font-['Inter']">
-            Messages
-          </div>
-          <div className="flex justify-start items-center gap-3">
+      <div className="messages-sidebar-header">
+        <div className="messages-sidebar-header-row">
+          <div className="messages-sidebar-title">Messages</div>
+          <div className="messages-sidebar-buttons">
             <IconButton
               icon={PlusIcon}
               onClick={handleNewChat}
               ariaLabel="Start new chat"
             />
-            <div className="relative">
+            <div className="messages-sidebar-search">
               <IconButton
                 icon={SearchIcon}
                 onClick={handleSearchToggle}
                 ariaLabel="Search conversations"
               />
               {isSearchActive && (
-                <div className="absolute top-10 right-0 z-10">
+                <div className="messages-sidebar-search-input">
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={handleSearchInput}
                     placeholder="Search users..."
-                    className="w-[200px] px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-['Inter'] outline-none focus:ring-2 focus:ring-slate-900"
+                    className="messages-sidebar-input"
                     autoFocus
                     onBlur={() => {
                       if (!searchQuery) setIsSearchActive(false);
@@ -149,7 +147,7 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
             </div>
           </div>
         </div>
-        <div className="inline-flex justify-start items-center gap-3">
+        <div className="messages-sidebar-filters">
           <FilterButton
             label="All"
             isActive={filter === "All"}
@@ -165,16 +163,16 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
       </div>
 
       {/* Conversation List */}
-      <div className="self-stretch flex flex-col justify-start items-start gap-1.5">
+      <div className="messages-sidebar-list">
         {filteredConversations.length > 0 ? (
           filteredConversations.map((conversation) => (
             <button
               key={conversation.userName}
               onClick={() => handleSelectConversation(conversation.userName)}
-              className={`self-stretch p-4 rounded-[10px] inline-flex justify-start items-start gap-3 ${
+              className={`messages-sidebar-conversation ${
                 selectedConversation === conversation.userName
-                  ? "bg-[#f0f3f7]"
-                  : "bg-transparent hover:bg-[#f0f3f7]/50"
+                  ? "messages-sidebar-conversation-selected"
+                  : "messages-sidebar-conversation-unselected"
               }`}
             >
               <UserAvatar
@@ -183,39 +181,39 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
                 userName={conversation.userName}
                 size={42}
               />
-              <div className="w-[257px] inline-flex flex-col justify-start items-start gap-1.5">
-                <div className="self-stretch flex flex-col justify-start items-start">
-                  <div className="self-stretch inline-flex justify-between items-center">
-                    <div className="justify-center text-slate-900 text-sm font-medium font-['Inter']">
+              <div className="messages-sidebar-details">
+                <div className="messages-sidebar-info">
+                  <div className="messages-sidebar-user-row">
+                    <div className="messages-sidebar-user-name">
                       {conversation.userName}
                     </div>
-                    <div className="flex justify-start items-center gap-1.5">
+                    <div className="messages-sidebar-timestamp-container">
                       {conversation.isUnread && (
-                        <div className="w-2 h-2 bg-[#ff4757] rounded-full" />
+                        <div className="messages-sidebar-unread-indicator" />
                       )}
-                      <div className="text-right justify-center text-slate-500 text-xs font-normal font-['Inter']">
+                      <div className="messages-sidebar-timestamp">
                         {conversation.timestamp}
                       </div>
                     </div>
                   </div>
-                  <div className="text-left text-slate-500 text-sm font-medium font-['Inter']">
+                  <div className="messages-sidebar-user-role">
                     {conversation.userRole}
                   </div>
                 </div>
-                <div className="text-left text-slate-500 text-sm font-normal font-['Inter'] truncate">
+                <div className="messages-sidebar-last-message">
                   {conversation.lastMessage}
                 </div>
               </div>
             </button>
           ))
         ) : (
-          <div className="self-stretch p-4 text-center text-slate-500 text-sm font-normal font-['Inter']">
+          <div className="messages-sidebar-empty">
             {searchQuery
               ? "No matching conversations found."
               : "No conversations yet. Start a new chat!"}
             <button
               onClick={handleNewChat}
-              className="mt-2 px-3.5 py-2 bg-slate-900 text-white rounded-[100px] text-sm font-medium font-['Inter']"
+              className="messages-sidebar-new-chat"
             >
               New Chat
             </button>

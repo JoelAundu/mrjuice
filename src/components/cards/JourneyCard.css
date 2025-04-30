@@ -1,0 +1,121 @@
+.journey-card {
+  min-width: 250px;
+  min-height: 300px;
+  padding: 24px;
+  background-color: #f7f8fa;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.journey-card-top {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.journey-card-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.journey-card-text {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.journey-card-title {
+  align-self: stretch;
+  color: #0a2540;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+}
+
+.journey-card-description {
+  align-self: stretch;
+  color: #425a70;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.journey-card-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.journey-card-progress {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.journey-card-progress-bar-bg {
+  width: 160px;
+  height: 4px;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.journey-card-progress-bar-fill {
+  height: 4px;
+  border-radius: 9999px;
+  transition: all;
+  transition-duration: 300ms;
+}
+
+.journey-card-progress-bar-completed {
+  background-color: #00c853;
+}
+
+.journey-card-progress-bar-in-progress {
+  background-color: #ffb300;
+}
+
+.journey-card-progress-bar-not-started {
+  background-color: #e5e7eb;
+}
+
+.journey-card-progress-text {
+  color: #425a70;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.journey-card-status {
+  color: #425a70;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+}
+
+.journey-card-cta {
+  color: #0052cc;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  transition: all;
+}
+
+.journey-card-cta:hover {
+  text-decoration: underline;
+}

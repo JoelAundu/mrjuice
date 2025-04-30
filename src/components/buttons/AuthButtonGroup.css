@@ -1,0 +1,152 @@
+/* Base container styles for dual mode */
+.auth-button-group-dual {
+  padding-left: 25px;
+  padding-right: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 224px;
+}
+
+/* Base container styles for single mode */
+.auth-button-group-single {
+  width: 100%;
+  max-width: 264px;
+  height: 58px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 24px;
+  padding-right: 24px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Background variations */
+.auth-button-group-bg-white {
+  background-color: #fff;
+}
+
+.auth-button-group-bg-dark {
+  background-color: #1b1c1f;
+}
+
+.auth-button-group-bg-dark:hover {
+  background-color: #9ca3af;
+}
+
+/* Login button (dual mode) */
+.auth-button-group-login {
+  width: 41px;
+  display: flex;
+  cursor: pointer;
+}
+
+.auth-button-group-login-text-white {
+  color: #fff;
+}
+
+.auth-button-group-login-text-dark {
+  color: #1b1c1f;
+}
+
+.auth-button-group-login-text-dark:hover {
+  color: #9ca3af;
+}
+
+/* Get Started button (dual mode) */
+.auth-button-group-get-started {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.auth-button-group-get-started-bg-dark {
+  background-color: #1b1c1f;
+}
+
+.auth-button-group-get-started-bg-dark:hover {
+  background-color: #9ca3af;
+}
+
+.auth-button-group-get-started-bg-transparent {
+  background-color: transparent;
+}
+
+/* Text styles for labels */
+.auth-button-group-text-white {
+  color: #fff;
+}
+
+.auth-button-group-text-dark {
+  color: #1b1c1f;
+}
+
+.auth-button-group-text-dark-flex {
+  color: #1b1c1f;
+  display: flex;
+}
+
+.auth-button-group-text-dark-flex:hover {
+  color: #9ca3af;
+}
+
+/* Text sizes */
+.auth-button-group-text-xs {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.auth-button-group-text-sm {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-button-group-text-base {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Centered text for Get Started label */
+.auth-button-group-text-center {
+  text-align: center;
+}
+
+/* Arrow container */
+.auth-button-group-arrow-container {
+  display: flex;
+  align-items: center;
+}
+
+.auth-button-group-arrow-container-single {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Circle background and arrow icon defaults */
+.auth-button-group-circle-bg {
+  width: 48px;
+  height: 48px;
+}
+
+.auth-button-group-arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.auth-button-group-arrow-absolute {
+  position: absolute;
+}

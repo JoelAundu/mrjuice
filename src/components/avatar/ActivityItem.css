@@ -1,0 +1,40 @@
+.activity-item {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.activity-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.activity-content-wrapper--with-attachment {
+  width: 348px;
+}
+
+.activity-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.activity-description {
+  color: #2d2d2d;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+
+.activity-timestamp {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}

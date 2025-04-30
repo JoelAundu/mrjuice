@@ -1,4 +1,5 @@
 import React from "react";
+import "./FilterButton.css";
 
 interface FilterButtonProps {
   label: string;
@@ -17,22 +18,23 @@ const FilterButton: React.FC<FilterButtonProps> = ({
   arrowIcon,
   className = "",
 }) => {
+  const getStateClass = () =>
+    isActive ? "filter-button-active" : "filter-button-inactive";
+
   return (
     <button
       onClick={onClick}
-      className={`h-[39px] px-3.5 rounded-[100px] flex justify-start items-center gap-1 ${
-        isActive
-          ? "bg-slate-900 text-white"
-          : "bg-white outline outline-1 outline-offset-[-1px] outline-slate-200 text-slate-900"
-      } ${className}`}
+      className={`filter-button ${getStateClass()} ${className}`}
     >
-      <div className="justify-center text-sm font-medium font-['Inter']">
-        {label}
-      </div>
+      <div className="filter-button-label">{label}</div>
       {isActive && (arrowSrc || arrowIcon) && (
-        <div className="w-5 h-5 flex justify-center items-center">
+        <div className="filter-button-arrow-container">
           {arrowSrc ? (
-            <img src={arrowSrc} alt="Arrow down" className="w-2.5 h-2.5" />
+            <img
+              src={arrowSrc}
+              alt="Arrow down"
+              className="filter-button-arrow"
+            />
           ) : (
             arrowIcon
           )}
