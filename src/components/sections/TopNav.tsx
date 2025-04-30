@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ProfileSection from "./ProfileSection";
 import "./TopNav.css";
 import MenuItem from "../actionMenu/MenuItem";
@@ -12,22 +12,28 @@ interface MenuItem {
 interface TopNavProps {
   className?: string;
   style?: React.CSSProperties;
-  tabs: MenuItem[]; // Add tabs prop to specify menu items
+  tabs: MenuItem[];
+  activeIndex?: number; // Add prop to control active tab from parent
+  onTabClick?: (index: number) => void; // Add prop to notify parent of tab clicks
 }
 
 const TopNav: React.FC<TopNavProps> = ({
   className = "",
   style = {},
-  tabs, // Destructure the new tabs prop
+  tabs,
+  activeIndex = 0, // Default to 0 if not provided
+  onTabClick,
 }) => {
-  const [defaultActiveIndex, setDefaultActiveIndex] = useState(0);
-
   return (
     <div className={`top-nav ${className}`} style={style}>
       <MenuItem
-        items={tabs} // Use the tabs prop instead of sidebarData.topNavTabs
-        activeIndex={defaultActiveIndex}
-        onItemClick={setDefaultActiveIndex}
+        items={tabs}
+        activeIndex={activeIndex}
+        onItemClick={(index) => {
+          if (onTabClick) {
+            onTabClick(index); // Notify parent of the tab click with the index
+          }
+        }}
       />
       <ProfileSection initials="PR" />
     </div>
