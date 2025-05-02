@@ -1,4 +1,5 @@
 import React from "react";
+import { ExcelIcon, DownloadIcon } from "../icons/Icons"; // Adjust the import path as needed
 import "./FileAttachment.css";
 
 interface FileAttachmentProps {
@@ -6,6 +7,8 @@ interface FileAttachmentProps {
   fileType: string; // File extension (e.g., ".xls")
   fileSize: string; // File size (e.g., "2.35mb")
   className?: string; // Additional classes for customization
+  icon?: React.ReactNode; // Custom icon component (optional)
+  iconSrc?: string; // Custom icon image URL (optional)
 }
 
 const FileAttachment: React.FC<FileAttachmentProps> = ({
@@ -13,18 +16,15 @@ const FileAttachment: React.FC<FileAttachmentProps> = ({
   fileType,
   fileSize,
   className = "",
+  icon,
+  iconSrc,
 }) => {
   return (
     <div className={`file-attachment ${className}`}>
       <div className="file-attachment-info">
         {/* File Icon */}
         <div className="file-attachment-icon">
-          <div className="file-attachment-icon-base" />
-          <div className="file-attachment-icon-bottom" />
-          <div className="file-attachment-icon-top" />
-          <div className="file-attachment-icon-gradient" />
-          <div className="file-attachment-icon-top-right" />
-          <div className="file-attachment-icon-overlay" />
+          {icon || (iconSrc ? <img src={iconSrc} alt={`${fileName} icon`} /> : <ExcelIcon />)}
         </div>
         <div className="file-attachment-text">
           <div className="file-attachment-name">{fileName}</div>
@@ -35,8 +35,10 @@ const FileAttachment: React.FC<FileAttachmentProps> = ({
           </div>
         </div>
       </div>
-      {/* Placeholder for Download Icon */}
-      <div className="file-attachment-download" />
+      {/* Download Icon */}
+      <div className="file-attachment-download" aria-label="Download file" title="Download">
+        <DownloadIcon />
+      </div>
     </div>
   );
 };
