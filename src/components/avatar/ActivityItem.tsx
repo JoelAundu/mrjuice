@@ -13,6 +13,8 @@ interface ActivityItemProps {
     fileName: string;
     fileType: string;
     fileSize: string;
+    icon?: React.ReactNode; // Optional custom icon
+    iconSrc?: string; // Optional custom icon image
   };
   className?: string; // Additional classes for customization
 }
@@ -50,6 +52,8 @@ const ActivityItem: React.FC<ActivityItemProps> = ({
             fileName={fileAttachment.fileName}
             fileType={fileAttachment.fileType}
             fileSize={fileAttachment.fileSize}
+            icon={fileAttachment.icon}
+            iconSrc={fileAttachment.iconSrc}
           />
         )}
       </div>
