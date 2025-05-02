@@ -2,6 +2,7 @@ import React from "react";
 
 interface IconProps {
   strokeColor?: string;
+  fillColor?: string; // For fill-based icons like ExcelIcon and DownloadIcon
   width?: string;
   height?: string;
   className?: string; // For custom CSS classes
@@ -101,8 +102,8 @@ export const SearchIcon: React.FC<IconProps> = ({
 
 export const SendIcon: React.FC<IconProps> = ({
   strokeColor = "#fff",
-  width = "24", // Adjusted to fit the circular design (originally w-8 = 32px)
-  height = "24", // Adjusted to be circular (originally h-4 = 16px)
+  width = "24",
+  height = "24",
   className = "",
   style,
   svgProps,
@@ -118,9 +119,7 @@ export const SendIcon: React.FC<IconProps> = ({
       style={style}
       {...svgProps}
     >
-      {/* Circular background */}
       <circle cx="12" cy="12" r="10" fill="#D9D9D9" />
-      {/* Upward arrow */}
       <path
         d="M12 16V8M12 8L8 12M12 8L16 12"
         stroke={strokeColor}
@@ -152,27 +151,87 @@ export const GoogleDriveIcon: React.FC<IconProps> = ({
     >
       <path
         d="M9.333 2.333L2.333 14H9.333L14 5.833L9.333 2.333Z"
-        fill="#0066DA" // Blue section
+        fill="#0066DA"
       />
       <path
         d="M14 5.833L21 14H9.333L14 5.833Z"
-        fill="#00AC47" // Green section
+        fill="#00AC47"
       />
       <path
         d="M25.667 14L18.667 2.333H9.333L18.667 14H25.667Z"
-        fill="#FFBA00" // Yellow section
+        fill="#FFBA00"
       />
       <path
         d="M9.333 14L2.333 14L5.833 20.417L14 25.667L18.667 14H9.333Z"
-        fill="#0066DA" // Blue section
+        fill="#0066DA"
       />
       <path
         d="M18.667 14L25.667 14L22.167 20.417L14 25.667L18.667 14Z"
-        fill="#00AC47" // Green section
+        fill="#00AC47"
       />
       <path
         d="M14 25.667L5.833 20.417H22.167L14 25.667Z"
-        fill="#FFBA00" // Yellow section
+        fill="#FFBA00"
+      />
+    </svg>
+  );
+};
+
+export const ExcelIcon: React.FC<IconProps> = ({
+  fillColor = "#217346",
+  width = "24",
+  height = "24",
+  className = "",
+  style,
+  svgProps,
+}) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={style}
+      {...svgProps}
+    >
+      <rect width="24" height="24" rx="4" fill={fillColor}/>
+      <path d="M6 6H18V18H6V6Z" fill="#FFFFFF"/>
+      <path d="M8 9H12V11H10V13H8V9Z" fill={fillColor}/>
+      <path d="M10 11H14V13H12V15H10V11Z" fill="#FFFFFF"/>
+      <path d="M12 13H16V15H14V17H12V13Z" fill={fillColor}/>
+    </svg>
+  );
+};
+
+export const DownloadIcon: React.FC<IconProps> = ({
+  fillColor = "#005FCC",
+  strokeColor = "white",
+  width = "24",
+  height = "24",
+  className = "",
+  style,
+  svgProps,
+}) => {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={style}
+      {...svgProps}
+    >
+      <circle cx="12" cy="12" r="10" fill={fillColor}/>
+      <path
+        d="M12 8V15M12 15L9 12M12 15L15 12"
+        stroke={strokeColor}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
