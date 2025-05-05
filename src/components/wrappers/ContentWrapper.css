@@ -1,40 +1,118 @@
 .content-wrapper {
-  background-color: white;
-  height: screen;
-  display: flex;
-  flex-direction: column;
-  padding: 58px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: clamp(8px, 2vw, 24px);
 }
 
 .content-header {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 38px;
-  padding-left: 100px;
+  margin-bottom: clamp(8px, 1.5vw, 16px);
 }
 
 .content-title {
-  width: 100%;
-  justify-content: center;
-  color: #0f172a; /* slate-900 */
-  font-size: 26px;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-weight: 600;
+  color: #0f172a;
   font-family: "Inter", sans-serif;
-  font-weight: 500;
+  margin-bottom: clamp(4px, 1vw, 8px);
 }
 
 .content-description {
-  width: 100%;
-  justify-content: center;
-  color: #64748b; /* slate-500 */
-  font-size: 14px;
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #475569;
   font-family: "Inter", sans-serif;
-  font-weight: 400;
 }
 
 .content-body {
-  flex: 1;
-  /* overflow-y: auto; */
-  padding-top: 58px;
-  padding-left: 100px;
+  width: 100%;
+}
+
+/* Mobile (≤ 639px) */
+@media (max-width: 639px) {
+  .content-wrapper {
+    padding: 18px 24px;
+  }
+
+  .content-header {
+    margin-bottom: 8px;
+  }
+
+  .content-title {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .content-description {
+    font-size: 12px;
+  }
+}
+
+/* Tablet (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .content-wrapper {
+    padding: 16px;
+  }
+
+  .content-header {
+    margin-bottom: 12px;
+  }
+
+  .content-title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .content-description {
+    font-size: 13px;
+  }
+}
+
+/* Desktop and Above (≥ 1024px) */
+@media (min-width: 1024px) {
+  .content-wrapper {
+    width: 100%;
+    padding: 80px 148px; /* Exact padding preserved */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .content-header {
+    margin-bottom: 16px; /* Exact margin preserved */
+  }
+
+  .content-title {
+    font-size: 20px; /* Exact font size preserved */
+    font-weight: 600;
+    color: #0f172a;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 8px; /* Exact margin preserved */
+  }
+
+  .content-description {
+    font-size: 14px; /* Exact font size preserved */
+    color: #475569;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+/* Landscape Adjustment (narrow height, e.g., mobile landscape) */
+@media (max-height: 400px) and (min-width: 640px) {
+  .content-wrapper {
+    padding: 8px;
+  }
+
+  .content-header {
+    margin-bottom: 8px;
+  }
+
+  .content-title {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .content-description {
+    font-size: 12px;
+  }
 }
