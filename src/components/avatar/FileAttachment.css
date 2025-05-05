@@ -6,7 +6,7 @@
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: clamp(10px, 2vw, 12px);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -14,12 +14,12 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
+  gap: clamp(6px, 1.5vw, 8px);
 }
 
 .file-attachment-icon {
-  width: 24px;
-  height: 24px;
+  width: clamp(20px, 3vw, 24px);
+  height: clamp(20px, 3vw, 24px);
 }
 
 .file-attachment-icon img {
@@ -33,49 +33,225 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 2px;
+  gap: clamp(1px, 0.5vw, 2px);
 }
 
 .file-attachment-name {
   color: #2d2d2d;
-  font-size: 14px;
+  font-size: clamp(12px, 2vw, 14px);
   font-weight: 600;
   font-family: "Inter", sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 200px;
+  max-width: clamp(150px, 25vw, 200px);
 }
 
 .file-attachment-details {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 4px;
+  gap: clamp(3px, 0.8vw, 4px);
 }
 
 .file-attachment-type,
 .file-attachment-size {
   color: #6b7280;
-  font-size: 12px;
+  font-size: clamp(10px, 1.8vw, 12px);
   font-weight: 400;
   font-family: "Inter", sans-serif;
 }
 
 .file-attachment-dot {
-  width: 2px;
-  height: 2px;
+  width: clamp(1px, 0.3vw, 2px);
+  height: clamp(1px, 0.3vw, 2px);
   background-color: #d1d5db;
   border-radius: 50%;
 }
 
 .file-attachment-download {
-  width: 24px;
-  height: 24px;
+  width: clamp(20px, 3vw, 24px);
+  height: clamp(20px, 3vw, 24px);
 }
 
 .file-attachment-download img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* Mobile (≤ 639px) */
+@media (max-width: 639px) {
+  .file-attachment {
+    gap: 8px;
+  }
+
+  .file-attachment-info {
+    gap: 4px;
+  }
+
+  .file-attachment-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .file-attachment-text {
+    gap: 0.5px;
+  }
+
+  .file-attachment-name {
+    max-width: 120px;
+    font-size: 10px;
+  }
+
+  .file-attachment-details {
+    gap: 2px;
+  }
+
+  .file-attachment-type,
+  .file-attachment-size {
+    font-size: 8px;
+  }
+
+  .file-attachment-dot {
+    width: 0.5px;
+    height: 0.5px;
+  }
+
+  .file-attachment-download {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Tablet (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .file-attachment {
+    gap: 10px;
+  }
+
+  .file-attachment-info {
+    gap: 6px;
+  }
+
+  .file-attachment-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .file-attachment-text {
+    gap: 1px;
+  }
+
+  .file-attachment-name {
+    max-width: 150px;
+    font-size: 12px;
+  }
+
+  .file-attachment-details {
+    gap: 3px;
+  }
+
+  .file-attachment-type,
+  .file-attachment-size {
+    font-size: 10px;
+  }
+
+  .file-attachment-dot {
+    width: 1px;
+    height: 1px;
+  }
+
+  .file-attachment-download {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Desktop and Above (≥ 1024px) */
+@media (min-width: 1024px) {
+  .file-attachment {
+    gap: 12px;
+  }
+
+  .file-attachment-info {
+    gap: 8px;
+  }
+
+  .file-attachment-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .file-attachment-text {
+    gap: 2px;
+  }
+
+  .file-attachment-name {
+    max-width: 200px;
+    font-size: 14px;
+  }
+
+  .file-attachment-details {
+    gap: 4px;
+  }
+
+  .file-attachment-type,
+  .file-attachment-size {
+    font-size: 12px;
+  }
+
+  .file-attachment-dot {
+    width: 2px;
+    height: 2px;
+  }
+
+  .file-attachment-download {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Landscape Adjustment (narrow height, e.g., mobile landscape) */
+@media (max-height: 400px) and (min-width: 640px) {
+  .file-attachment {
+    gap: 8px;
+  }
+
+  .file-attachment-info {
+    gap: 4px;
+  }
+
+  .file-attachment-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .file-attachment-text {
+    gap: 0.5px;
+  }
+
+  .file-attachment-name {
+    max-width: 120px;
+    font-size: 10px;
+  }
+
+  .file-attachment-details {
+    gap: 2px;
+  }
+
+  .file-attachment-type,
+  .file-attachment-size {
+    font-size: 8px;
+  }
+
+  .file-attachment-dot {
+    width: 0.5px;
+    height: 0.5px;
+  }
+
+  .file-attachment-download {
+    width: 16px;
+    height: 16px;
+  }
 }
