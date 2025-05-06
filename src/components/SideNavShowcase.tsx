@@ -28,6 +28,10 @@ const SideNavShowcase: React.FC = () => {
     null
   );
   const [currentPage, setCurrentPage] = useState(0); // Track the current page of projects in SideNav
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  const [showBackdrop, setShowBackdrop] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 639); // Track screen size
+
   const projectsPerPage = 4; // Display 4 projects at a time in SideNav
 
   // Prevent body scrolling when modal is open
@@ -41,6 +45,21 @@ const SideNavShowcase: React.FC = () => {
       document.body.style.overflow = "auto"; // Cleanup on unmount
     };
   }, [isModalOpen]);
+
+  // Listen for window resize to update isMobile state
+  useEffect(() => {
+    const handleResize = () => {
+      const newIsMobile = window.innerWidth <= 639;
+      setIsMobile(newIsMobile);
+      if (!newIsMobile) {
+        setIsSideNavOpen(false);
+        setShowBackdrop(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Get the "PROJECTS" section items (menuSections[1])
   const projectSectionItems = typedSidebarData.menuSections[1].items;
@@ -149,7 +168,77 @@ const SideNavShowcase: React.FC = () => {
     if (isProjectMenuItem(clickedItem)) {
       handleProjectClick(clickedItem.id);
     }
+    if (isMobile) {
+      setIsSideNavOpen(false);
+      setShowBackdrop(false);
+    }
   };
+
+  const toggleSideNav = () => {
+    setIsSideNavOpen(!isSideNavOpen);
+    setShowBackdrop(!isSideNavOpen);
+  };
+
+  const closeSideNav = () => {
+    setIsSideNavOpen(false);
+    setShowBackdrop(false);
+  };
+
+  const renderSideNav = () => (
+    <SideNav
+      logo={
+        <div style={{ fontWeight: 700, fontSize: "18px", color: "black" }}>
+          {typedSidebarData.logo.text}
+        </div>
+      }
+    >
+      <div className="px-5">
+        <Input
+          label={typedSidebarData.search.label}
+          placeholder={typedSidebarData.search.placeholder}
+          leftIcon={<SearchIcon />}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+      </div>
+
+      {updatedMenuSections.map((section, sectionIndex) => (
+        <div
+          key={sectionIndex}
+          className="px-5"
+          style={{ marginTop: sectionIndex > 0 ? "16px" : "0" }}
+        >
+          {section.title && <SectionHeader title={section.title} />}
+          <MenuList
+            items={section.items.map((item) => ({
+              ...item,
+              isActive:
+                getActiveIndexForSection(
+                  sectionIndices[sectionIndex],
+                  section.items.length
+                ) === section.items.findIndex((i) => i.label === item.label),
+            }))}
+            activeIndex={getActiveIndexForSection(
+              sectionIndices[sectionIndex],
+              section.items.length
+            )}
+            onItemClick={(index) => handleMenuItemClick(sectionIndex, index)}
+          />
+        </div>
+      ))}
+
+      <div className="px-5" style={{ marginBottom: "20px" }}>
+        <MenuList
+          items={typedSidebarData.footerLinks}
+          activeIndex={getActiveIndexForSection(
+            footerStartIndex,
+            typedSidebarData.footerLinks.length
+          )}
+          onItemClick={(index) => setActiveMenuIndex(footerStartIndex + index)}
+        />
+      </div>
+    </SideNav>
+  );
 
   return selectedProjectId ? (
     <ProjectDashboard
@@ -158,68 +247,33 @@ const SideNavShowcase: React.FC = () => {
     />
   ) : (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
-      <SideNav
-        logo={
-          <div style={{ fontWeight: 700, fontSize: "18px", color: "black" }}>
-            {typedSidebarData.logo.text}
-          </div>
-        }
-      >
-        {/* Search Input */}
-        <div className="px-5">
-          <Input
-            label={typedSidebarData.search.label}
-            placeholder={typedSidebarData.search.placeholder}
-            leftIcon={<SearchIcon />}
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-        </div>
-
-        {/* Menu Sections */}
-        {updatedMenuSections.map((section, sectionIndex) => (
+      {/* Hamburger menu for mobile */}
+      {isMobile && (
+        <button
+          onClick={toggleSideNav}
+          className={`hamburger-button ${isSideNavOpen ? "open" : ""}`}
+          aria-expanded={isSideNavOpen}
+          aria-label="Toggle navigation menu"
+        >
+          <span className="hamburger-icon"></span>
+        </button>
+      )}
+      {isMobile ? (
+        <>
           <div
-            key={sectionIndex}
-            className="px-5"
-            style={{ marginTop: sectionIndex > 0 ? "16px" : "0" }}
+            className={`side-nav-wrapper ${isSideNavOpen ? "block" : "hidden"}`}
           >
-            {section.title && <SectionHeader title={section.title} />}
-            <MenuList
-              items={section.items.map((item) => ({
-                ...item,
-                isActive:
-                  getActiveIndexForSection(
-                    sectionIndices[sectionIndex],
-                    section.items.length
-                  ) === section.items.findIndex((i) => i.label === item.label),
-              }))}
-              activeIndex={getActiveIndexForSection(
-                sectionIndices[sectionIndex],
-                section.items.length
-              )}
-              onItemClick={(index) => handleMenuItemClick(sectionIndex, index)}
-            />
+            {renderSideNav()}
           </div>
-        ))}
-
-        {/* Footer Links */}
-        <div className="px-5" style={{ marginBottom: "20px" }}>
-          <MenuList
-            items={typedSidebarData.footerLinks}
-            activeIndex={getActiveIndexForSection(
-              footerStartIndex,
-              typedSidebarData.footerLinks.length
-            )}
-            onItemClick={(index) =>
-              setActiveMenuIndex(footerStartIndex + index)
-            }
-          />
-        </div>
-      </SideNav>
-
-      {/* Main Content (including TopNav) */}
+          {isSideNavOpen && (
+            <div className="side-nav-backdrop" onClick={closeSideNav}></div>
+          )}
+        </>
+      ) : (
+        renderSideNav()
+      )}
       <div
-        className="flex-1 flex flex-col"
+        className={`flex-1 flex flex-col ${isSideNavOpen ? "active" : ""}`}
         style={{
           overflowY: "auto",
         }}
