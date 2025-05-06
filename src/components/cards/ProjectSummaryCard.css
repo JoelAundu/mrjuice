@@ -36,7 +36,7 @@
 .project-summary-card__title {
   display: flex;
   justify-content: flex-start;
-  color: #0f172a; /* slate-900 */
+  color: #0f172a;
   font-size: 18px;
   font-weight: 500;
   font-family: "Inter", sans-serif;
@@ -45,7 +45,7 @@
 .project-summary-card__address {
   display: flex;
   justify-content: flex-start;
-  color: #64748b; /* slate-500 */
+  color: #64748b;
   font-size: 14px;
   font-weight: 400;
   font-family: "Inter", sans-serif;
@@ -63,7 +63,7 @@
   height: 32px;
   padding: 4px 12px 4px 10px;
   border-radius: 6px;
-  border: 1px solid #cbd5e1; /* slate-300 */
+  border: 1px solid #cbd5e1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +79,7 @@
 .project-summary-card__stage-text {
   display: flex;
   justify-content: center;
-  color: #0f172a; /* slate-900 */
+  color: #0f172a;
   font-size: 14px;
   font-weight: 500;
   font-family: "Inter", sans-serif;
@@ -116,7 +116,7 @@
 .project-summary-card__tag-text {
   display: flex;
   justify-content: flex-start;
-  color: #0f172a; /* slate-900 for type tag */
+  color: #0f172a;
   font-size: 12px;
   font-weight: 400;
   font-family: "Inter", sans-serif;
@@ -150,7 +150,7 @@
   display: flex;
   justify-content: center;
   text-align: right;
-  color: #0f172a; /* slate-900 */
+  color: #0f172a;
   font-size: 14px;
   font-weight: 400;
   font-family: "Inter", sans-serif;
@@ -161,7 +161,7 @@
   height: 39px;
   background-color: #ffffff;
   border-radius: 100px;
-  border: 1px solid #cbd5e1; /* slate-300 */
+  border: 1px solid #cbd5e1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,4 +172,373 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Mobile (≤ 639px) */
+@media (max-width: 639px) {
+  .project-summary-card {
+    /* padding: 10px; */
+    gap: 10px;
+    /* flex-direction: column; */
+    align-items: stretch;
+  }
+
+  .project-summary-card__left {
+    /* flex-direction: column; */
+    gap: 10px;
+    width: 100%;
+  }
+
+  .project-summary-card__info {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .project-summary-card__title {
+    font-size: 16px;
+  }
+
+  .project-summary-card__address {
+    font-size: 12px;
+  }
+
+  .project-summary-card__details {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .project-summary-card__stage,
+  .project-summary-card__tags,
+  .project-summary-card__progress {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .project-summary-card__stage {
+    height: 28px;
+    padding: 2px 8px 2px 6px;
+    gap: 4px;
+  }
+
+  .project-summary-card__stage-text {
+    font-size: 12px;
+  }
+
+  .project-summary-card__tag {
+    height: 28px;
+    padding: 2px 8px;
+    gap: 6px;
+  }
+
+  .project-summary-card__tag-text {
+    font-size: 10px;
+  }
+
+  .project-summary-card__progress {
+    gap: 8px;
+  }
+
+  .project-summary-card__progress-text {
+    font-size: 12px;
+  }
+
+  .project-summary-card__right {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Tablet (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .project-summary-card {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .project-summary-card__left {
+    gap: 20px;
+  }
+
+  .project-summary-card__info {
+    gap: 4px;
+  }
+
+  .project-summary-card__title {
+    font-size: 17px;
+  }
+
+  .project-summary-card__address {
+    font-size: 13px;
+  }
+
+  .project-summary-card__details {
+    gap: 30px;
+  }
+
+  .project-summary-card__stage-text {
+    font-size: 13px;
+  }
+
+  .project-summary-card__tag-text {
+    font-size: 11px;
+  }
+
+  .project-summary-card__progress-text {
+    font-size: 13px;
+  }
+}
+
+/* Desktop and Above (≥ 1024px) */
+@media (min-width: 1024px) {
+  .project-summary-card {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-sizing: border-box;
+  }
+
+  .project-summary-card__left {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+    box-sizing: border-box;
+  }
+
+  .project-summary-card__info {
+    flex: 1 1 200px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .project-summary-card__title {
+    display: flex;
+    justify-content: flex-start;
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+  }
+
+  .project-summary-card__address {
+    display: flex;
+    justify-content: flex-start;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+  }
+
+  .project-summary-card__details {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 42px;
+  }
+
+  .project-summary-card__stage {
+    height: 32px;
+    padding: 4px 12px 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .project-summary-card__stage-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .project-summary-card__stage-text {
+    display: flex;
+    justify-content: center;
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+  }
+
+  .project-summary-card__tags {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .project-summary-card__tag {
+    height: 32px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .project-summary-card__tag--type {
+    background-color: #f0f3f7;
+  }
+
+  .project-summary-card__tag--state {
+    padding: 4px 12px;
+    white-space: nowrap;
+    background-color: rgba(44, 106, 223, 0.1);
+    color: #2c6adf;
+  }
+
+  .project-summary-card__tag-text {
+    display: flex;
+    justify-content: flex-start;
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+  }
+
+  .project-summary-card__progress {
+    flex: 1 1 0;
+    min-width: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .project-summary-card__progress-bar-container {
+    width: 100%;
+    max-width: 380px;
+    height: 4px;
+    background-color: #f0f3f7;
+    border-radius: 100px;
+  }
+
+  .project-summary-card__progress-bar-filled {
+    height: 4px;
+    background-color: #0f172a;
+    border-radius: 100px;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .project-summary-card__progress-text {
+    display: flex;
+    justify-content: center;
+    text-align: right;
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+  }
+
+  .project-summary-card__right {
+    width: 39px;
+    height: 39px;
+    background-color: #ffffff;
+    border-radius: 100px;
+    border: 1px solid #cbd5e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .project-summary-card__right-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Landscape Adjustment (narrow height, e.g., mobile landscape) */
+@media (max-height: 400px) and (min-width: 640px) {
+  .project-summary-card {
+    padding: 10px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .project-summary-card__left {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .project-summary-card__info {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .project-summary-card__title {
+    font-size: 16px;
+  }
+
+  .project-summary-card__address {
+    font-size: 12px;
+  }
+
+  .project-summary-card__details {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .project-summary-card__stage,
+  .project-summary-card__tags,
+  .project-summary-card__progress {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .project-summary-card__stage {
+    height: 28px;
+    padding: 2px 8px 2px 6px;
+    gap: 4px;
+  }
+
+  .project-summary-card__stage-text {
+    font-size: 12px;
+  }
+
+  .project-summary-card__tag {
+    height: 28px;
+    padding: 2px 8px;
+    gap: 6px;
+  }
+
+  .project-summary-card__tag-text {
+    font-size: 10px;
+  }
+
+  .project-summary-card__progress {
+    gap: 8px;
+  }
+
+  .project-summary-card__progress-text {
+    font-size: 12px;
+  }
+
+  .project-summary-card__right {
+    width: 36px;
+    height: 36px;
+  }
 }

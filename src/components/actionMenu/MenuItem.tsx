@@ -1,4 +1,5 @@
 import React from 'react';
+import './MenuItem.css';
 
 interface MenuItemItem {
   label: string;
@@ -33,22 +34,19 @@ const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
   return (
     <nav
-      className={`flex items-center space-x-4 ${className}`}
+      className={`menu-item-container ${className}`}
       style={style}
     >
       {items.map((item, index) => {
         const isActive = index === activeIndex;
         return (
-           <button
+          <button
             key={index}
             onClick={() => onItemClick(index)}
             className={`
-              px-4 py-2 rounded-lg text-sm font-medium transition-colors
+              menu-item-button
+              ${isActive ? `menu-item-active ${activeButtonClassName}` : `menu-item-inactive ${inactiveButtonClassName}`}
               ${buttonClassName}
-              ${isActive 
-                ? `bg-gray-200 shadow-sm text-gray-800 ${activeButtonClassName}` 
-                : `text-gray-400 hover:text-gray-800 ${inactiveButtonClassName}`
-              }
             `}
             style={{
               ...buttonStyle,
