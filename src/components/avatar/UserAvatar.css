@@ -14,7 +14,54 @@
 
 .user-avatar-initials {
   color: #fff;
-  font-size: 14px;
+  font-size: clamp(10px, 2vw, 14px);
   font-weight: 500;
   font-family: "Inter", sans-serif;
+}
+
+/* Mobile (≤ 639px) */
+@media (max-width: 639px) {
+  .user-avatar {
+    transform: scale(0.78); /* Scales 36px to ~28px */
+    transform-origin: center;
+  }
+
+  .user-avatar-initials {
+    font-size: 10px;
+  }
+}
+
+/* Tablet (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .user-avatar {
+    transform: scale(0.86); /* Scales 36px to ~31px */
+    transform-origin: center;
+  }
+
+  .user-avatar-initials {
+    font-size: 12px;
+  }
+}
+
+/* Desktop and Above (≥ 1024px) */
+@media (min-width: 1024px) {
+  .user-avatar {
+    transform: scale(1); /* Keeps default size of 36px */
+  }
+
+  .user-avatar-initials {
+    font-size: 14px;
+  }
+}
+
+/* Landscape Adjustment (narrow height, e.g., mobile landscape) */
+@media (max-height: 400px) and (min-width: 640px) {
+  .user-avatar {
+    transform: scale(0.78); /* Scales 36px to ~28px */
+    transform-origin: center;
+  }
+
+  .user-avatar-initials {
+    font-size: 10px;
+  }
 }
