@@ -1,0 +1,115 @@
+.menu-item-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .menu-item-button {
+    height: 40px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .menu-item-active {
+    background-color: #e5e7eb;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: #1e293b;
+  }
+  
+  .menu-item-inactive {
+    background-color: transparent;
+    color: #9ca3af;
+  }
+  
+  .menu-item-inactive:hover {
+    color: #1e293b;
+  }
+  
+  /* Mobile (≤ 639px) */
+  @media (max-width: 639px) {
+    .menu-item-container {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  
+    .menu-item-button {
+      height: 36px;
+      padding: 6px 12px;
+      font-size: 12px;
+      width: calc(50% - 8px); /* Two buttons per row, accounting for 8px total gap */
+      min-width: 120px; /* Ensure touch target size */
+    }
+  }
+  
+  /* Tablet (640px - 1023px) */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .menu-item-container {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  
+    .menu-item-button {
+      height: 38px;
+      padding: 7px 14px;
+      font-size: 13px;
+      width: calc(33.33% - 12px); /* Three buttons per row, accounting for 12px total gap */
+      min-width: 140px;
+    }
+  }
+  
+  /* Desktop and Above (≥ 1024px) */
+  @media (min-width: 1024px) {
+    .menu-item-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: nowrap; /* Ensure single row */
+    }
+  
+    .menu-item-button {
+      height: 40px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: "Inter", sans-serif;
+      transition: all 0.2s ease;
+      width: auto; /* Preserve original width behavior */
+    }
+  
+    .menu-item-active {
+      background-color: #e5e7eb;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      color: #1e293b;
+    }
+  
+    .menu-item-inactive {
+      background-color: transparent;
+      color: #9ca3af;
+    }
+  
+    .menu-item-inactive:hover {
+      color: #1e293b;
+    }
+  }
+  
+  /* Landscape Adjustment (narrow height, e.g., mobile landscape) */
+  @media (max-height: 400px) and (min-width: 640px) {
+    .menu-item-container {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  
+    .menu-item-button {
+      height: 36px;
+      padding: 6px 12px;
+      font-size: 12px;
+      width: calc(50% - 8px); /* Two buttons per row */
+      min-width: 120px;
+    }
+  }
