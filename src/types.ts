@@ -117,9 +117,11 @@ export interface MessagesSidebarProps {
   conversations: Conversation[];
   selectedConversation: string | null;
   onSelectConversation: (userName: string) => void;
+  className?: string;
 }
 
 export interface MessagesPanelProps {
   selectedConversation: Conversation | null;
   onSendMessage?: (content: string) => void;
+  className?: string;
 }

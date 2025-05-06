@@ -19,6 +19,7 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
   conversations,
   selectedConversation,
   onSelectConversation,
+  className = "",
 }) => {
   const [filter, setFilter] = useState<"All" | "Unread">("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -112,7 +113,7 @@ const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
   );
 
   return (
-    <div className="messages-sidebar">
+    <div className={`messages-sidebar ${className}`}>
       {/* Header and Filter Buttons */}
       <div className="messages-sidebar-header">
         <div className="messages-sidebar-header-row">

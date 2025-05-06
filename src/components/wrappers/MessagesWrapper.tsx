@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MessagesSidebar from "../messages/MessageSideBar";
 import MessagesPanel from "../messages/MessagesPanel";
 import { Message, Conversation } from "../../types";
@@ -70,9 +70,35 @@ const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
   const [selectedConversation, setSelectedConversation] = useState<
     string | null
   >("Argon Poorun (Solink)");
+  const [isPanelActive, setIsPanelActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 639);
+
+  // Handle window resizing to toggle mobile state
+  useEffect(() => {
+    const handleResize = () => {
+      const newIsMobile = window.innerWidth <= 639;
+      setIsMobile(newIsMobile);
+      if (!newIsMobile) {
+        setIsPanelActive(false); // Reset panel state on larger screens
+      } else if (selectedConversation) {
+        setIsPanelActive(true); // Ensure panel is active if a conversation is selected on mobile
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [selectedConversation]);
 
   const handleSelectConversation = (userName: string) => {
     setSelectedConversation(userName);
+    if (isMobile) {
+      setIsPanelActive(true);
+    }
+  };
+
+  const handleBackToSidebar = () => {
+    setIsPanelActive(false);
+    setSelectedConversation(null);
   };
 
   const handleSendMessage = (content: string) => {
@@ -124,11 +150,36 @@ const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
           conversations={conversations}
           selectedConversation={selectedConversation}
           onSelectConversation={handleSelectConversation}
+          className={isPanelActive ? "active" : ""}
         />
         <MessagesPanel
           selectedConversation={selectedConv}
           onSendMessage={handleSendMessage}
+          className={isPanelActive ? "active" : ""}
         />
+        {isPanelActive && isMobile && (
+          <button
+            className="messages-panel-back"
+            onClick={handleBackToSidebar}
+            aria-label="Back to conversations"
+          >
+            <svg
+              className="back-arrow"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Back
+          </button>
+        )}
       </div>
     </div>
   );
