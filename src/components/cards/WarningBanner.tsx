@@ -25,7 +25,7 @@ interface WarningBannerProps {
   modalSubmitClassName?: string;
 }
 
-const WarningBanner: React.FC<WarningBannerProps> = ({
+export const WarningBanner: React.FC<WarningBannerProps> = ({
   message,
   buttonText,
   onButtonClick,

@@ -9,7 +9,7 @@ interface ResourceCardProps {
   className?: string;
 }
 
-const ResourceCard: React.FC<ResourceCardProps> = ({
+export const ResourceCard: React.FC<ResourceCardProps> = ({
   title,
   description,
   icon,
