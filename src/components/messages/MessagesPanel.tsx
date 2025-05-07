@@ -4,9 +4,10 @@ import UserAvatar from "../avatar/UserAvatar";
 import { SendIcon } from "../icons/Icons";
 import "./MessagesPanel.css";
 
-const MessagesPanel: React.FC<MessagesPanelProps> = ({
+export const MessagesPanel: React.FC<MessagesPanelProps> = ({
   selectedConversation,
   onSendMessage,
+  className = "",
 }) => {
   const [newMessage, setNewMessage] = useState("");
 
@@ -20,7 +21,7 @@ const MessagesPanel: React.FC<MessagesPanelProps> = ({
   const groupLabels = ["Yesterday", "Today"];
 
   return (
-    <div className="messages-panel">
+    <div className={`messages-panel ${className}`}>
       {selectedConversation ? (
         <>
           {/* Chat Header */}

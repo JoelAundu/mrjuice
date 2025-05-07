@@ -2,7 +2,7 @@ import React from "react";
 import sidebarData from "../../sidebarData.json";
 import "./LocationMap.css";
 
-const LocationMap: React.FC = () => {
+export const LocationMap: React.FC = () => {
   // Filter projects to only include Maraisburg Road and Lismore Avenue (as in the image)
   const mapProjects = sidebarData.projects.filter(
     (project) =>

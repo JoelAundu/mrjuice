@@ -15,7 +15,7 @@ const getInitials = (name: string) => {
   return initials;
 };
 
-const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
+export const MessagesSidebar: React.FC<MessagesSidebarProps> = ({
   conversations,
   selectedConversation,
   onSelectConversation,

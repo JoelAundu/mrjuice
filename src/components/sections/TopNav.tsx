@@ -17,7 +17,7 @@ interface TopNavProps {
   onTabClick?: (index: number) => void; // Add prop to notify parent of tab clicks
 }
 
-const TopNav: React.FC<TopNavProps> = ({
+export const TopNav: React.FC<TopNavProps> = ({
   className = "",
   style = {},
   tabs,

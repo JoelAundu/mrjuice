@@ -1,15 +1,15 @@
-export interface MenuItem {
+export interface MenuItemprops {
   label: string;
   icon: string;
   isActive: boolean;
 }
 
-export interface ProjectMenuItem extends MenuItem {
+export interface ProjectMenuItem extends MenuItemprops {
   id: string;
 }
 
 export interface SideNavData {
-  menuItems: MenuItem[];
+  menuItems: MenuItemprops[];
   footerLinks: { label: string }[];
 }
 

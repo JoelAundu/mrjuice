@@ -1,4 +1,22 @@
-@import './components/buttons/Button.css';
+@import "./components/buttons/Button.css";
+@import "./components/buttons/Button.css";
+@import "./components/buttons/IconButton.css";
+@import "./components/buttons/FilterButton.css";
+@import "./components/navigation/SideNav.css";
+@import "./components/sections/TopNav.css";
+@import "./components/sections/SectionHeader.css";
+@import "./components/inputs/Input.css";
+@import "./components/actionMenu/MenuList.css";
+@import "./components/actionMenu/MenuItem.css";
+@import "./components/cards/ProjectCard.css";
+@import "./components/wrappers/ContentWrapper.css";
+@import "./components/wrappers/LocationMap.css";
+@import "./components/modal/Modal.css";
+@import "./components/ProjectDashboard.css";
+@import "./components/messages/MessagesSideBar.css";
+@import "./components/messages/MessagesPanel.css";
+@import "./components/avatar/UserAvatar.css";
+/* @import "./components/icons/Icons.css"; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
