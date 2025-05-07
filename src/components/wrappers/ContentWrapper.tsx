@@ -1,5 +1,5 @@
-import React from 'react';
-import './ContentWrapper.css';
+import React from "react";
+import "./ContentWrapper.css";
 
 interface ContentWrapperProps {
   title: string;
@@ -15,15 +15,15 @@ interface ContentWrapperProps {
   contentStyle?: React.CSSProperties;
 }
 
-const ContentWrapper: React.FC<ContentWrapperProps> = ({
+export const ContentWrapper: React.FC<ContentWrapperProps> = ({
   title,
   description,
   children,
-  className = '',
+  className = "",
   style = {},
-  titleClassName = '',
-  descriptionClassName = '',
-  contentClassName = '',
+  titleClassName = "",
+  descriptionClassName = "",
+  contentClassName = "",
   titleStyle = {},
   descriptionStyle = {},
   contentStyle = {},
@@ -34,7 +34,10 @@ const ContentWrapper: React.FC<ContentWrapperProps> = ({
         <div className={`content-title ${titleClassName}`} style={titleStyle}>
           {title}
         </div>
-        <div className={`content-description ${descriptionClassName}`} style={descriptionStyle}>
+        <div
+          className={`content-description ${descriptionClassName}`}
+          style={descriptionStyle}
+        >
           {description}
         </div>
       </div>

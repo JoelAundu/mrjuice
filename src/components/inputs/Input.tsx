@@ -18,7 +18,7 @@ interface InputProps {
   iconStyle?: React.CSSProperties;
 }
 
-const Input: React.FC<InputProps> = ({
+export const Input: React.FC<InputProps> = ({
   label,
   placeholder,
   value,

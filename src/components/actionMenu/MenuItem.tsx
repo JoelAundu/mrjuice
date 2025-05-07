@@ -19,7 +19,7 @@ interface MenuItemProps {
   inactiveButtonStyle?: React.CSSProperties;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({
+export const MenuItem: React.FC<MenuItemProps> = ({
   items,
   activeIndex,
   onItemClick,

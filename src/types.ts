@@ -1,15 +1,15 @@
-export interface MenuItem {
+export interface MenuItemprops {
   label: string;
   icon: string;
   isActive: boolean;
 }
 
-export interface ProjectMenuItem extends MenuItem {
+export interface ProjectMenuItem extends MenuItemprops {
   id: string;
 }
 
 export interface SideNavData {
-  menuItems: MenuItem[];
+  menuItems: MenuItemprops[];
   footerLinks: { label: string }[];
 }
 
@@ -117,9 +117,11 @@ export interface MessagesSidebarProps {
   conversations: Conversation[];
   selectedConversation: string | null;
   onSelectConversation: (userName: string) => void;
+  className?: string;
 }
 
 export interface MessagesPanelProps {
   selectedConversation: Conversation | null;
   onSendMessage?: (content: string) => void;
+  className?: string;
 }

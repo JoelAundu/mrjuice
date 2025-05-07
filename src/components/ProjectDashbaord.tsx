@@ -16,6 +16,7 @@ import ResourcesWrapper from "./wrappers/Resourceswrapper";
 import ResourceCard from "./cards/ResourceCard";
 import { SidebarData, EnhancedProject } from "../types";
 import { SearchIcon, GoogleDriveIcon } from "./icons/Icons";
+import "./ProjectDashboard.css";
 
 const CardIcon = () => <span>💳</span>;
 const MenuDotsIcon = () => <span>⋮</span>;
@@ -60,11 +61,14 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
   onBackToHome,
 }) => {
   const [projectMenuIndex, setProjectMenuIndex] = useState(0);
-  const [sideNavSearchValue, setSideNavSearchValue] = useState(""); // State for SideNav search
-  const [resourcesSearchValue, setResourcesSearchValue] = useState(""); // State for ResourcesWrapper search
+  const [sideNavSearchValue, setSideNavSearchValue] = useState("");
+  const [resourcesSearchValue, setResourcesSearchValue] = useState("");
   const [activeFilterIndex, setActiveFilterIndex] = useState(0);
   const [resourcesFilterIndex, setResourcesFilterIndex] = useState(0);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  const [showBackdrop, setShowBackdrop] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 639); // Track screen size
 
   const project = typedSidebarData.projects.find(
     (p) => p.id === projectId && !p.isCreateButton
@@ -94,8 +98,27 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     }
   }, [showWarningBanner, projectId, project.state]);
 
+  // Listen for window resize to update isMobile state
+  useEffect(() => {
+    const handleResize = () => {
+      const newIsMobile = window.innerWidth <= 639;
+      setIsMobile(newIsMobile);
+      if (!newIsMobile) {
+        setIsSideNavOpen(false);
+        setShowBackdrop(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleProjectMenuClick = (index: number) => {
     setProjectMenuIndex(index);
+    if (isMobile) {
+      setIsSideNavOpen(false);
+      setShowBackdrop(false);
+    }
   };
 
   const handleMenuItemClick = (sectionIndex: number, itemIndex: number) => {
@@ -105,10 +128,24 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     ) {
       onBackToHome();
     }
+    if (isMobile) {
+      setIsSideNavOpen(false);
+      setShowBackdrop(false);
+    }
   };
 
   const handleTabClick = (index: number) => {
     setActiveTabIndex(index);
+  };
+
+  const toggleSideNav = () => {
+    setIsSideNavOpen(!isSideNavOpen);
+    setShowBackdrop(!isSideNavOpen);
+  };
+
+  const closeSideNav = () => {
+    setIsSideNavOpen(false);
+    setShowBackdrop(false);
   };
 
   const topNavTabs = [
@@ -131,7 +168,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     console.log(`Filter changed to: ${filterItems[index].label}`);
   };
 
-  // Define menu items for ResourcesWrapper
   const resourcesFilterItems = [
     { label: "Download", isActive: true },
     { label: "My Upload", isActive: false },
@@ -142,7 +178,6 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     console.log(`${resourcesFilterItems[index].label} clicked`);
   };
 
-  // Filter resources based on resourcesSearchValue
   const filteredResources = resourcesData.filter((resource) => {
     const searchLower = resourcesSearchValue.toLowerCase();
     return (
@@ -151,9 +186,8 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     );
   });
 
-  // Filter projects for SideNav based on sideNavSearchValue
   const filteredProjects = typedSidebarData.projects
-    .filter((p) => !p.isCreateButton) // Exclude "Create Project" button
+    .filter((p) => !p.isCreateButton)
     .filter((p) =>
       p.title.toLowerCase().includes(sideNavSearchValue.toLowerCase())
     );
@@ -199,77 +233,113 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     "🤝": <BidderIcon />,
   };
 
+  const renderSideNav = () => (
+    <SideNav
+      logo={
+        <div
+          className="font-bold text-2xl text-black"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
+          {typedSidebarData.logo.text}
+        </div>
+      }
+    >
+      <div className="px-5">
+        <Input
+          label={typedSidebarData.search.label}
+          placeholder={typedSidebarData.search.placeholder}
+          leftIcon={<SearchIcon />}
+          value={sideNavSearchValue}
+          onChange={(e) => setSideNavSearchValue(e.target.value)}
+          className="w-full sm:w-64 md:w-80"
+        />
+      </div>
+
+      {[
+        {
+          ...typedSidebarData.menuSections[0],
+          items: typedSidebarData.menuSections[0].items.map((item) => ({
+            ...item,
+            isActive: false,
+          })),
+        },
+        {
+          title: project.title.toUpperCase(),
+          items:
+            project.sideNav?.menuItems.map((item, index) => ({
+              ...item,
+              isActive: projectMenuIndex === index,
+            })) || [],
+        },
+        typedSidebarData.menuSections[2],
+      ].map((section, sectionIndex) => (
+        <div
+          key={sectionIndex}
+          className="px-5"
+          style={{ marginTop: sectionIndex > 0 ? "16px" : "0" }}
+        >
+          {section.title && <SectionHeader title={section.title} />}
+          <MenuList
+            items={section.items}
+            activeIndex={
+              sectionIndex === 1
+                ? projectMenuIndex
+                : section.items.findIndex((item) => item.isActive)
+            }
+            onItemClick={(index) =>
+              sectionIndex === 1
+                ? handleProjectMenuClick(index)
+                : handleMenuItemClick(sectionIndex, index)
+            }
+          />
+        </div>
+      ))}
+
+      <div className="px-5 mb-5">
+        <MenuList
+          items={project.sideNav?.footerLinks || typedSidebarData.footerLinks}
+          activeIndex={-1}
+          onItemClick={(index) => {
+            if (isMobile) {
+              setIsSideNavOpen(false);
+              setShowBackdrop(false);
+            }
+          }}
+        />
+      </div>
+    </SideNav>
+  );
+
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
-      <SideNav
-        logo={
-          <div style={{ fontWeight: 700, fontSize: "18px", color: "black" }}>
-            {typedSidebarData.logo.text}
-          </div>
-        }
-      >
-        <div className="px-5">
-          <Input
-            label={typedSidebarData.search.label}
-            placeholder={typedSidebarData.search.placeholder}
-            leftIcon={<SearchIcon />}
-            value={sideNavSearchValue}
-            onChange={(e) => setSideNavSearchValue(e.target.value)}
-            className="w-80"
-          />
-        </div>
-
-        {[
-          {
-            ...typedSidebarData.menuSections[0],
-            items: typedSidebarData.menuSections[0].items.map((item) => ({
-              ...item,
-              isActive: false,
-            })),
-          },
-          {
-            title: project.title.toUpperCase(),
-            items:
-              project.sideNav?.menuItems.map((item, index) => ({
-                ...item,
-                isActive: projectMenuIndex === index,
-              })) || [],
-          },
-          typedSidebarData.menuSections[2],
-        ].map((section, sectionIndex) => (
+      {/* Hamburger menu for mobile */}
+      {isMobile && (
+        <button
+          onClick={toggleSideNav}
+          className={`hamburger-button ${isSideNavOpen ? "open" : ""}`}
+          aria-expanded={isSideNavOpen}
+          aria-label="Toggle navigation menu"
+        >
+          <span className="hamburger-icon"></span>
+        </button>
+      )}
+      {/* SideNav rendering */}
+      {isMobile ? (
+        <>
           <div
-            key={sectionIndex}
-            className="px-5"
-            style={{ marginTop: sectionIndex > 0 ? "16px" : "0" }}
+            className={`side-nav-wrapper ${isSideNavOpen ? "block" : "hidden"}`}
           >
-            {section.title && <SectionHeader title={section.title} />}
-            <MenuList
-              items={section.items}
-              activeIndex={
-                sectionIndex === 1
-                  ? projectMenuIndex
-                  : section.items.findIndex((item) => item.isActive)
-              }
-              onItemClick={(index) =>
-                sectionIndex === 1
-                  ? handleProjectMenuClick(index)
-                  : handleMenuItemClick(sectionIndex, index)
-              }
-            />
+            {renderSideNav()}
           </div>
-        ))}
-
-        <div className="px-5" style={{ marginBottom: "20px" }}>
-          <MenuList
-            items={project.sideNav?.footerLinks || typedSidebarData.footerLinks}
-            activeIndex={-1}
-            onItemClick={(index) => {}}
-          />
-        </div>
-      </SideNav>
-
+          {isSideNavOpen && (
+            <div className="side-nav-backdrop" onClick={closeSideNav}></div>
+          )}
+        </>
+      ) : (
+        renderSideNav()
+      )}
       <div
-        className="flex-1 flex flex-col"
+        className={`flex-1 flex flex-col ${isSideNavOpen ? "active" : ""}`}
         style={{
           overflowY: "auto",
         }}
@@ -309,14 +379,14 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
               rightIcon={<MenuDotsIcon />}
             />
 
-            <div className="mt-8">
-              <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
+            <div className="mt-4 sm:mt-6 md:mt-8">
+              <div className="self-stretch text-[#0A2540] text-lg sm:text-xl font-medium font-['Inter']">
                 Project Journey
               </div>
-              <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
+              <div className="self-stretch text-[#425A70] text-xs sm:text-sm font-normal font-['Inter'] leading-tight mb-2 sm:mb-4">
                 Track and quickly access each step in your journey
               </div>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                 {project.journeySteps?.map((step, index) => (
                   <JourneyCard
                     key={index}
@@ -337,14 +407,14 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
               </div>
             </div>
 
-            <div className="mt-8">
-              <div className="self-stretch text-[#0A2540] text-xl font-medium font-['Inter']">
+            <div className="mt-4 sm:mt-6 md:mt-8">
+              <div className="self-stretch text-[#0A2540] text-lg sm:text-xl font-medium font-['Inter']">
                 Activity
               </div>
-              <div className="self-stretch text-[#425A70] text-sm font-normal font-['Inter'] leading-tight mb-4">
+              <div className="self-stretch text-[#425A70] text-xs sm:text-sm font-normal font-['Inter'] leading-tight mb-2 sm:mb-4">
                 Review your team's recent activity
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <MenuItem
                   items={filterItems}
                   activeIndex={activeFilterIndex}
@@ -355,8 +425,8 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
                   inactiveButtonClassName="bg-white"
                 />
               </div>
-              <div className="mt-6 flex flex-col justify-start items-start gap-12">
-                <div className="flex flex-col justify-start items-start gap-8">
+              <div className="mt-4 sm:mt-6 flex flex-col justify-start items-start gap-6 sm:gap-8 md:gap-12">
+                <div className="flex flex-col justify-start items-start gap-4 sm:gap-6 md:gap-8">
                   {filteredActivities.length > 0 ? (
                     filteredActivities.map((activity, index) => (
                       <ActivityItem
@@ -370,7 +440,7 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
                       />
                     ))
                   ) : (
-                    <div className="text-[#425A70] text-sm font-normal font-['Inter']">
+                    <div className="text-[#425A70] text-xs sm:text-sm font-normal font-['Inter']">
                       No activities found for the selected filter.
                     </div>
                   )}
@@ -399,7 +469,7 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
             title={`${project.title} Resources`}
             description="Access documents, files, and other resources for your project."
           >
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <Input
                 label="Search Resources"
                 placeholder="Search documents, files..."
@@ -408,10 +478,10 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
                 }
                 value={resourcesSearchValue}
                 onChange={(e) => setResourcesSearchValue(e.target.value)}
-                className="!w-80"
+                className="!w-full sm:!w-64 md:!w-80"
               />
             </div>
-            <div className="my-12">
+            <div className="my-4 sm:my-8 md:my-12">
               <MenuItem
                 items={resourcesFilterItems}
                 activeIndex={resourcesFilterIndex}
@@ -422,7 +492,7 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
                 inactiveButtonClassName="bg-white"
               />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-6">
               {filteredResources.length > 0 ? (
                 filteredResources.map((resource, index) => (
                   <ResourceCard

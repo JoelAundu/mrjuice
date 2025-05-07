@@ -7,7 +7,7 @@ interface ModalProps {
   title?: string; // Add title prop
 }
 
-const Modal: React.FC<ModalProps> = ({
+export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
