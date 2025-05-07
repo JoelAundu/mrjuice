@@ -13,7 +13,7 @@ interface JourneyCardProps {
   className?: string; // Custom class for styling
 }
 
-const JourneyCard: React.FC<JourneyCardProps> = ({
+export const JourneyCard: React.FC<JourneyCardProps> = ({
   icon,
   title,
   description,

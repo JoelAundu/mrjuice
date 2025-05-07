@@ -7,7 +7,7 @@ interface ResourcesWrapperProps {
   children?: React.ReactNode;
 }
 
-const ResourcesWrapper: React.FC<ResourcesWrapperProps> = ({
+export const ResourcesWrapper: React.FC<ResourcesWrapperProps> = ({
   title,
   description,
   children,

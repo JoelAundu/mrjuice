@@ -9,7 +9,7 @@ interface MessagesWrapperProps {
   description: string;
 }
 
-const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
+export const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
   title,
   description,
 }) => {
