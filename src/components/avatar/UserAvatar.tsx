@@ -10,7 +10,7 @@ interface UserAvatarProps {
   className?: string; // Additional classes for customization
 }
 
-const UserAvatar: React.FC<UserAvatarProps> = ({
+export const UserAvatar: React.FC<UserAvatarProps> = ({
   imageSrc,
   initials,
   userName,

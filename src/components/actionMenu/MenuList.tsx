@@ -32,7 +32,7 @@ interface MenuListProps {
   inactiveIconStyle?: React.CSSProperties;
 }
 
-const MenuList: React.FC<MenuListProps> = ({
+export const MenuList: React.FC<MenuListProps> = ({
   items,
   activeIndex = -1,
   onItemClick,

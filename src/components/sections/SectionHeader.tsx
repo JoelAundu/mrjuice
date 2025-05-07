@@ -7,7 +7,7 @@ interface SectionHeaderProps {
   style?: React.CSSProperties;
 }
 
-const SectionHeader: React.FC<SectionHeaderProps> = ({
+export const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
   className = "",
   style = {},

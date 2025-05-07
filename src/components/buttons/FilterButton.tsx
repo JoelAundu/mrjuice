@@ -10,7 +10,7 @@ interface FilterButtonProps {
   className?: string; // Additional classes
 }
 
-const FilterButton: React.FC<FilterButtonProps> = ({
+export const FilterButton: React.FC<FilterButtonProps> = ({
   label,
   isActive,
   onClick,

@@ -14,7 +14,7 @@ interface ProjectCardProps {
   onClick?: (id: string) => void; // Update onClick to accept id parameter
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
+export const ProjectCard: React.FC<ProjectCardProps> = ({
   id,
   title,
   address,

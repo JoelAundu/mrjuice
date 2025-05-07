@@ -7,7 +7,7 @@ interface SideNavProps {
   style?: React.CSSProperties;
 }
 
-const SideNav: React.FC<SideNavProps> = ({
+export const SideNav: React.FC<SideNavProps> = ({
   logo,
   children,
   className = "",

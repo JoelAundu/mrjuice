@@ -9,7 +9,7 @@ interface IconButtonProps {
   ariaLabel: string; // Accessibility label
 }
 
-const IconButton: React.FC<IconButtonProps> = ({
+export const IconButton: React.FC<IconButtonProps> = ({
   iconSrc,
   icon,
   onClick,

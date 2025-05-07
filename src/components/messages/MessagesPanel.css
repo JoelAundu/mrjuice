@@ -276,3 +276,15 @@
   font-weight: 400;
   font-family: "Inter", sans-serif;
 }
+
+/* Back Arrow Styling */
+.back-arrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.back-arrow path {
+  stroke: #0f172a;
+  stroke-width: 2;
+}
