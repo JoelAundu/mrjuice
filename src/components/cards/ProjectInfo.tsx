@@ -28,7 +28,7 @@ interface ProjectSummaryCardProps {
   rightIconClassName?: string; // Renamed for the single right icon
 }
 
-const ProjectSummaryCard: React.FC<ProjectSummaryCardProps> = ({
+export const ProjectSummaryCard: React.FC<ProjectSummaryCardProps> = ({
   project,
   className = "",
   leftClassName = "",

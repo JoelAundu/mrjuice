@@ -19,7 +19,7 @@ interface ActivityItemProps {
   className?: string; // Additional classes for customization
 }
 
-const ActivityItem: React.FC<ActivityItemProps> = ({
+export const ActivityItem: React.FC<ActivityItemProps> = ({
   userImageSrc,
   userInitials,
   userName,
