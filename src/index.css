@@ -15,7 +15,7 @@
 @import "./components/wrappers/ContentWrapper.css";
 @import "./components/wrappers/LocationMap.css";
 @import "./components/wrappers/MessagesWrapper.css";
-@import "./components/wrappers/ResourcesWrapper.css";
+/* @import "./components/wrappers/ResourcesWrapper.css"; */
 @import "./components/modal/Modal.css";
 @import "./components/messages/MessagesSideBar.css";
 @import "./components/messages/MessagesPanel.css";
