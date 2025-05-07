@@ -2,6 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+import json from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
@@ -22,6 +23,7 @@ export default {
       declarationDir: 'dist',
       sourceMap: true,
     }),
+    json(),
     postcss({
       extract: 'index.css',
       minimize: true,
