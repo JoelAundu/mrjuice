@@ -23,6 +23,7 @@ export default {
       declarationDir: 'dist',
       sourceMap: true,
     }),
+    json(),
     postcss({
       extract: 'index.css',
       minimize: true,
@@ -30,7 +31,6 @@ export default {
         postcssImport(),
         tailwindcss(),
         autoprefixer(),
-        json(),
       ],
     }),
     terser(),
