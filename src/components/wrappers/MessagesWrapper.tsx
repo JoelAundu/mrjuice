@@ -13,7 +13,6 @@ export const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
   title,
   description,
 }) => {
-  // Sample data with Unsplash images
   const initialConversations: Conversation[] = [
     {
       userName: "David Raphael",
@@ -22,8 +21,7 @@ export const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
       timestamp: "10:14",
       isUnread: true,
       messages: [],
-      userImage:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=42&h=42&q=80",
+      userImage: "/assets/David.png",
     },
     {
       userName: "Argon Poorun (Solink)",
@@ -60,8 +58,7 @@ export const MessagesWrapper: React.FC<MessagesWrapperProps> = ({
           },
         ],
       ],
-      userImage:
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=46&h=46&q=80",
+      userImage: "/assets/Argon.png",
     },
   ];
 
