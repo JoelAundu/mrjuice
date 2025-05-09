@@ -1,7 +1,6 @@
 .content-wrapper {
   width: 100%;
   background-color: #ffffff;
-  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: clamp(8px, 2vw, 24px);
 }
@@ -74,7 +73,6 @@
     width: 100%;
     padding: 80px 148px; /* Exact padding preserved */
     background-color: #ffffff;
-    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
