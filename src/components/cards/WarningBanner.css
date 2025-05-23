@@ -34,7 +34,6 @@
   color: #0f172a; /* slate-900 */
   font-size: 14px;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
 }
 
 .warning-banner__button {
@@ -57,7 +56,6 @@
   color: #ffffff;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
 }
 
 /* Payment Modal Styles */

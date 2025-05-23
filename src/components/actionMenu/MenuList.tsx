@@ -127,7 +127,7 @@ export const MenuList: React.FC<MenuListProps> = ({
                 display: "flex",
                 alignItems: "center", // Ensure label is vertically centered
                 fontSize: "14px",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
                 color: isActive ? "#0f172a" : "#64748b",
                 opacity: isActive ? 1 : 0.75,

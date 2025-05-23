@@ -47,7 +47,6 @@
   color: #0f172a;
   font-size: 20px;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
 }
 
 .resource-card-description {
@@ -57,7 +56,6 @@
   color: #64748b;
   font-size: 12px;
   font-weight: 400;
-  font-family: "Inter", sans-serif;
 }
 
 .resource-card-bottom {
@@ -73,5 +71,4 @@
   color: #64748b;
   font-size: 14px;
   font-weight: 600;
-  font-family: "Inter", sans-serif;
 }

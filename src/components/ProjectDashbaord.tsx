@@ -238,7 +238,7 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
       logo={
         <div
           className="font-bold text-2xl text-black"
-          style={{ fontFamily: "Inter, sans-serif" }}
+          style={{ fontFamily: "Poppins, sans-serif" }}
         >
           {typedSidebarData.logo.text}
         </div>
@@ -310,6 +310,325 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
     </SideNav>
   );
 
+  // Determine which view to render based on projectMenuIndex
+  const renderMainView = () => {
+    switch (projectMenuIndex) {
+      case 0: // Detailed Dashboard
+        return (
+          <>
+            <TopNav
+              tabs={topNavTabs}
+              activeIndex={activeTabIndex}
+              onTabClick={handleTabClick}
+            />
+            {showWarningBanner && (
+              <WarningBanner
+                message="Payment is required in order to progress your project further."
+                buttonText="Make Payment"
+                className="bg-yellow-200/50"
+                buttonClassName="bg-blue-900 hover:bg-blue-800"
+                modalContentClassName="bg-white rounded-lg shadow-lg"
+                modalTitleClassName="text-2xl font-bold text-blue-900"
+                modalDescriptionClassName="text-gray-700"
+                modalInputClassName="border-gray-400 focus:ring focus:ring-blue-200"
+                modalInputCvvClassName="w-24"
+                modalInputGroupClassName="space-x-4"
+                modalSubmitClassName="bg-blue-900 hover:bg-blue-800 text-white rounded-lg py-3"
+              />
+            )}
+
+            {activeTab === "Dashboard" && (
+              <ContentWrapper
+                title={`${project.title} Dashboard`}
+                description="Manage your project details, timeline, and metrics."
+              >
+                <ProjectSummaryCard
+                  project={enhancedProject}
+                  className="border border-gray-200"
+                  titleClassName="text-xl font-semibold text-gray-800"
+                  progressBarFilledClassName="bg-blue-600"
+                  stageIcon={<CardIcon />}
+                  rightIcon={<MenuDotsIcon />}
+                />
+
+                <div className="mt-4 sm:mt-6 md:mt-8">
+                  <div className="self-stretch text-[#0A2540] text-lg sm:text-xl font-medium">
+                    Project Journey
+                  </div>
+                  <div className="self-stretch text-[#425A70] text-xs sm:text-sm font-normal leading-tight mb-2 sm:mb-4">
+                    Track and quickly access each step in your journey
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+                    {project.journeySteps?.map((step, index) => (
+                      <JourneyCard
+                        key={index}
+                        icon={iconMap[step.icon] || <span>{step.icon}</span>}
+                        title={step.title}
+                        description={step.description}
+                        status={step.status}
+                        progress={step.progress}
+                        steps={step.steps}
+                        ctaText={step.ctaText}
+                        onCtaClick={
+                          step.ctaText
+                            ? () => console.log(`Navigating to ${step.ctaText}`)
+                            : undefined
+                        }
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 sm:mt-6 md:mt-8">
+                  <div className="self-stretch text-[#0A2540] text-lg sm:text-xl font-medium">
+                    Activity
+                  </div>
+                  <div className="self-stretch text-[#425A70] text-xs sm:text-sm font-normal leading-tight mb-2 sm:mb-4">
+                    Review your team's recent activity
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <MenuItem
+                      items={filterItems}
+                      activeIndex={activeFilterIndex}
+                      onItemClick={handleFilterClick}
+                      className="flex items-center space-x-4"
+                      buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium text-slate-900"
+                      activeButtonClassName="bg-[#f0f3f7]"
+                      inactiveButtonClassName="bg-white"
+                    />
+                  </div>
+                  <div className="mt-4 sm:mt-6 flex flex-col justify-start items-start gap-6 sm:gap-8 md:gap-12">
+                    <div className="flex flex-col justify-start items-start gap-4 sm:gap-6 md:gap-8">
+                      {filteredActivities.length > 0 ? (
+                        filteredActivities.map((activity, index) => (
+                          <ActivityItem
+                            key={index}
+                            userImageSrc={activity.userImageSrc}
+                            userInitials={activity.userInitials}
+                            userName={activity.userName}
+                            description={activity.description}
+                            timestamp={activity.timestamp}
+                            fileAttachment={activity.fileAttachment}
+                          />
+                        ))
+                      ) : (
+                        <div className="text-[#425A70] text-xs sm:text-sm font-normal">
+                          No activities found for the selected filter.
+                        </div>
+                      )}
+                    </div>
+                    {filteredActivities.length > 0 && (
+                      <button className="h-[39px] px-3.5 bg-[#2d2d2d] rounded-[100px] inline-flex justify-start items-center gap-0.5">
+                        <div className="justify-center text-white text-sm font-medium">
+                          Show more
+                        </div>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </ContentWrapper>
+            )}
+
+            {activeTab === "Messages" && (
+              <MessagesWrapper
+                title={`${project.title} Messages`}
+                description="View and manage all communications related to your project."
+              />
+            )}
+
+            {activeTab === "Resources" && (
+              <ResourcesWrapper
+                title={`${project.title} Resources`}
+                description="Access documents, files, and other resources for your project."
+              >
+                <div className="mb-2 sm:mb-4">
+                  <Input
+                    label="Search Resources"
+                    placeholder="Search documents, files..."
+                    leftIcon={
+                      <SearchIcon strokeColor="#1F2A44" width="18" height="18" />
+                    }
+                    value={resourcesSearchValue}
+                    onChange={(e) => setResourcesSearchValue(e.target.value)}
+                    className="!w-full sm:!w-64 md:!w-80"
+                  />
+                </div>
+                <div className="my-4 sm:my-8 md:my-12">
+                  <MenuItem
+                    items={resourcesFilterItems}
+                    activeIndex={resourcesFilterIndex}
+                    onItemClick={handleResourcesFilterClick}
+                    className="flex items-center space-x-4"
+                    buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium text-slate-900"
+                    activeButtonClassName="bg-[#f0f3f7]"
+                    inactiveButtonClassName="bg-white"
+                  />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-6">
+                  {filteredResources.length > 0 ? (
+                    filteredResources.map((resource, index) => (
+                      <ResourceCard
+                        key={index}
+                        title={resource.title}
+                        description={resource.description}
+                        icon={<GoogleDriveIcon />}
+                      />
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center text-slate-500">
+                      No resources found matching your search.
+                    </div>
+                  )}
+                </div>
+              </ResourcesWrapper>
+            )}
+          </>
+        );
+      case 1: // Detailed Feasibility
+        return (
+          <>
+            <TopNav
+              tabs={topNavTabs}
+              activeIndex={activeTabIndex}
+              onTabClick={handleTabClick}
+            />
+            {activeTab === "Dashboard" && (
+              <ContentWrapper
+                title={`${project.title} Detailed Feasibility`}
+                description=""
+               >
+                <p></p>
+              </ContentWrapper>
+            )}
+            {activeTab === "Messages" && (
+              <MessagesWrapper
+                title={`${project.title} Messages`}
+                description="View and manage all communications related to your project."
+              />
+            )}
+            {activeTab === "Resources" && (
+              <ResourcesWrapper
+                title={`${project.title} Resources`}
+                description="Access documents, files, and other resources for your project."
+              >
+                <div className="mb-2 sm:mb-4">
+                  <Input
+                    label="Search Resources"
+                    placeholder="Search documents, files..."
+                    leftIcon={
+                      <SearchIcon strokeColor="#1F2A44" width="18" height="18" />
+                    }
+                    value={resourcesSearchValue}
+                    onChange={(e) => setResourcesSearchValue(e.target.value)}
+                    className="!w-full sm:!w-64 md:!w-80"
+                  />
+                </div>
+                <div className="my-4 sm:my-8 md:my-12">
+                  <MenuItem
+                    items={resourcesFilterItems}
+                    activeIndex={resourcesFilterIndex}
+                    onItemClick={handleResourcesFilterClick}
+                    className="flex items-center space-x-4"
+                    buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium text-slate-900"
+                    activeButtonClassName="bg-[#f0f3f7]"
+                    inactiveButtonClassName="bg-white"
+                  />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-6">
+                  {filteredResources.length > 0 ? (
+                    filteredResources.map((resource, index) => (
+                      <ResourceCard
+                        key={index}
+                        title={resource.title}
+                        description={resource.description}
+                        icon={<GoogleDriveIcon />}
+                      />
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center text-slate-500">
+                      No resources found matching your search.
+                    </div>
+                  )}
+                </div>
+              </ResourcesWrapper>
+            )}
+          </>
+        );
+      case 2: // Project Tendering
+        return (
+          <>
+            <TopNav
+              tabs={topNavTabs}
+              activeIndex={activeTabIndex}
+              onTabClick={handleTabClick}
+            />
+            {activeTab === "Dashboard" && (
+              <ContentWrapper
+                title={`${project.title} Project Tendering`}
+                description=""
+              >
+                <p></p>
+              </ContentWrapper>
+            )}
+            {activeTab === "Messages" && (
+              <MessagesWrapper
+                title={`${project.title} Messages`}
+                description="View and manage all communications related to your project."
+              />
+            )}
+            {activeTab === "Resources" && (
+              <ResourcesWrapper
+                title={`${project.title} Resources`}
+                description="Access documents, files, and other resources for your project."
+              >
+                <div className="mb-2 sm:mb-4">
+                  <Input
+                    label="Search Resources"
+                    placeholder="Search documents, files..."
+                    leftIcon={
+                      <SearchIcon strokeColor="#1F2A44" width="18" height="18" />
+                    }
+                    value={resourcesSearchValue}
+                    onChange={(e) => setResourcesSearchValue(e.target.value)}
+                    className="!w-full sm:!w-64 md:!w-80"
+                  />
+                </div>
+                <div className="my-4 sm:my-8 md:my-12">
+                  <MenuItem
+                    items={resourcesFilterItems}
+                    activeIndex={resourcesFilterIndex}
+                    onItemClick={handleResourcesFilterClick}
+                    className="flex items-center space-x-4"
+                    buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium text-slate-900"
+                    activeButtonClassName="bg-[#f0f3f7]"
+                    inactiveButtonClassName="bg-white"
+                  />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-6">
+                  {filteredResources.length > 0 ? (
+                    filteredResources.map((resource, index) => (
+                      <ResourceCard
+                        key={index}
+                        title={resource.title}
+                        description={resource.description}
+                        icon={<GoogleDriveIcon />}
+                      />
+                    ))
+                  ) : (
+                    <div className="col-span-full text-center text-slate-500">
+                      No resources found matching your search.
+                    </div>
+                  )}
+                </div>
+              </ResourcesWrapper>
+            )}
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden">
       {/* Hamburger menu for mobile */}
@@ -344,172 +663,7 @@ const ProjectDashboard: React.FC<ProjectDashboardProps> = ({
           overflowY: "auto",
         }}
       >
-        <TopNav
-          tabs={topNavTabs}
-          activeIndex={activeTabIndex}
-          onTabClick={handleTabClick}
-        />
-        {showWarningBanner && (
-          <WarningBanner
-            message="Payment is required in order to progress your project further."
-            buttonText="Make Payment"
-            className="bg-yellow-200/50"
-            buttonClassName="bg-blue-900 hover:bg-blue-800"
-            modalContentClassName="bg-white rounded-lg shadow-lg"
-            modalTitleClassName="text-2xl font-bold text-blue-900"
-            modalDescriptionClassName="text-gray-700"
-            modalInputClassName="border-gray-400 focus:ring focus:ring-blue-200"
-            modalInputCvvClassName="w-24"
-            modalInputGroupClassName="space-x-4"
-            modalSubmitClassName="bg-blue-900 hover:bg-blue-800 text-white rounded-lg py-3"
-          />
-        )}
-
-        {activeTab === "Dashboard" && (
-          <ContentWrapper
-            title={`${project.title} Dashboard`}
-            description="Manage your project details, timeline, and metrics."
-          >
-            <ProjectSummaryCard
-              project={enhancedProject}
-              className="border border-gray-200"
-              titleClassName="text-xl font-semibold text-gray-800"
-              progressBarFilledClassName="bg-blue-600"
-              stageIcon={<CardIcon />}
-              rightIcon={<MenuDotsIcon />}
-            />
-
-            <div className="mt-4 sm:mt-6 md:mt-8">
-              <div className="self-stretch text-[#0A2540] text-lg sm:text-xl font-medium font-['Inter']">
-                Project Journey
-              </div>
-              <div className="self-stretch text-[#425A70] text-xs sm:text-sm font-normal font-['Inter'] leading-tight mb-2 sm:mb-4">
-                Track and quickly access each step in your journey
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-                {project.journeySteps?.map((step, index) => (
-                  <JourneyCard
-                    key={index}
-                    icon={iconMap[step.icon] || <span>{step.icon}</span>}
-                    title={step.title}
-                    description={step.description}
-                    status={step.status}
-                    progress={step.progress}
-                    steps={step.steps}
-                    ctaText={step.ctaText}
-                    onCtaClick={
-                      step.ctaText
-                        ? () => console.log(`Navigating to ${step.ctaText}`)
-                        : undefined
-                    }
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 sm:mt-6 md:mt-8">
-              <div className="self-stretch text-[#0A2540] text-lg sm:text-xl font-medium font-['Inter']">
-                Activity
-              </div>
-              <div className="self-stretch text-[#425A70] text-xs sm:text-sm font-normal font-['Inter'] leading-tight mb-2 sm:mb-4">
-                Review your team's recent activity
-              </div>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <MenuItem
-                  items={filterItems}
-                  activeIndex={activeFilterIndex}
-                  onItemClick={handleFilterClick}
-                  className="flex items-center space-x-4"
-                  buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium font-['Inter'] text-slate-900"
-                  activeButtonClassName="bg-[#f0f3f7]"
-                  inactiveButtonClassName="bg-white"
-                />
-              </div>
-              <div className="mt-4 sm:mt-6 flex flex-col justify-start items-start gap-6 sm:gap-8 md:gap-12">
-                <div className="flex flex-col justify-start items-start gap-4 sm:gap-6 md:gap-8">
-                  {filteredActivities.length > 0 ? (
-                    filteredActivities.map((activity, index) => (
-                      <ActivityItem
-                        key={index}
-                        userImageSrc={activity.userImageSrc}
-                        userInitials={activity.userInitials}
-                        userName={activity.userName}
-                        description={activity.description}
-                        timestamp={activity.timestamp}
-                        fileAttachment={activity.fileAttachment}
-                      />
-                    ))
-                  ) : (
-                    <div className="text-[#425A70] text-xs sm:text-sm font-normal font-['Inter']">
-                      No activities found for the selected filter.
-                    </div>
-                  )}
-                </div>
-                {filteredActivities.length > 0 && (
-                  <button className="h-[39px] px-3.5 bg-[#2d2d2d] rounded-[100px] inline-flex justify-start items-center gap-0.5">
-                    <div className="justify-center text-white text-sm font-medium font-['Inter']">
-                      Show more
-                    </div>
-                  </button>
-                )}
-              </div>
-            </div>
-          </ContentWrapper>
-        )}
-
-        {activeTab === "Messages" && (
-          <MessagesWrapper
-            title={`${project.title} Messages`}
-            description="View and manage all communications related to your project."
-          />
-        )}
-
-        {activeTab === "Resources" && (
-          <ResourcesWrapper
-            title={`${project.title} Resources`}
-            description="Access documents, files, and other resources for your project."
-          >
-            <div className="mb-2 sm:mb-4">
-              <Input
-                label="Search Resources"
-                placeholder="Search documents, files..."
-                leftIcon={
-                  <SearchIcon strokeColor="#1F2A44" width="18" height="18" />
-                }
-                value={resourcesSearchValue}
-                onChange={(e) => setResourcesSearchValue(e.target.value)}
-                className="!w-full sm:!w-64 md:!w-80"
-              />
-            </div>
-            <div className="my-4 sm:my-8 md:my-12">
-              <MenuItem
-                items={resourcesFilterItems}
-                activeIndex={resourcesFilterIndex}
-                onItemClick={handleResourcesFilterClick}
-                className="flex items-center space-x-4"
-                buttonClassName="h-[39px] px-3.5 rounded-[250px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium font-['Inter'] text-slate-900"
-                activeButtonClassName="bg-[#f0f3f7]"
-                inactiveButtonClassName="bg-white"
-              />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-6">
-              {filteredResources.length > 0 ? (
-                filteredResources.map((resource, index) => (
-                  <ResourceCard
-                    key={index}
-                    title={resource.title}
-                    description={resource.description}
-                    icon={<GoogleDriveIcon />}
-                  />
-                ))
-              ) : (
-                <div className="col-span-full text-center text-slate-500">
-                  No resources found matching your search.
-                </div>
-              )}
-            </div>
-          </ResourcesWrapper>
-        )}
+        {renderMainView()}
       </div>
     </div>
   );

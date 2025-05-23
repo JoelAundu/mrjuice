@@ -55,7 +55,7 @@ const NumberInput = ({
           style={{
             fontSize: "14px",
             fontWeight: 500,
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             color: "#64748b",
             ...labelStyle,
           }}
@@ -107,7 +107,7 @@ const NumberInput = ({
             border: "1px solid #cbd5e1",
             fontSize: "14px",
             fontWeight: 500,
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             color: "#0f172a",
             textAlign: "center",
             ...inputStyle,
