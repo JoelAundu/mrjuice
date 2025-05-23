@@ -39,7 +39,6 @@
   color: #0f172a;
   font-size: 18px;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
 }
 
 .project-summary-card__address {
@@ -48,7 +47,6 @@
   color: #64748b;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Inter", sans-serif;
 }
 
 .project-summary-card__details {
@@ -82,7 +80,6 @@
   color: #0f172a;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
 }
 
 .project-summary-card__tags {
@@ -119,7 +116,6 @@
   color: #0f172a;
   font-size: 12px;
   font-weight: 400;
-  font-family: "Inter", sans-serif;
 }
 
 .project-summary-card__progress {
@@ -153,7 +149,6 @@
   color: #0f172a;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Inter", sans-serif;
 }
 
 .project-summary-card__right {
@@ -332,7 +327,7 @@
     color: #0f172a;
     font-size: 18px;
     font-weight: 500;
-    font-family: "Inter", sans-serif;
+
   }
 
   .project-summary-card__address {
@@ -341,7 +336,7 @@
     color: #64748b;
     font-size: 14px;
     font-weight: 400;
-    font-family: "Inter", sans-serif;
+
   }
 
   .project-summary-card__details {
@@ -375,7 +370,7 @@
     color: #0f172a;
     font-size: 14px;
     font-weight: 500;
-    font-family: "Inter", sans-serif;
+
   }
 
   .project-summary-card__tags {
@@ -412,7 +407,7 @@
     color: #0f172a;
     font-size: 12px;
     font-weight: 400;
-    font-family: "Inter", sans-serif;
+
   }
 
   .project-summary-card__progress {
@@ -446,7 +441,7 @@
     color: #0f172a;
     font-size: 14px;
     font-weight: 400;
-    font-family: "Inter", sans-serif;
+
   }
 
   .project-summary-card__right {

@@ -49,7 +49,7 @@ const CheckboxInput = ({
         style={{
           fontSize: "14px",
           fontWeight: 500,
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'Poppins', sans-serif",
           color: "#64748b",
           ...labelStyle,
         }}

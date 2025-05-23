@@ -288,7 +288,7 @@ const SideNavShowcase: React.FC = () => {
             activeIndex={activeFilterIndex}
             onItemClick={setActiveFilterIndex}
             className="flex items-center space-x-4"
-            buttonClassName="h-[39px] px-3.5 rounded-[150px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium font-['Inter'] text-slate-900"
+            buttonClassName="h-[39px] px-3.5 rounded-[150px] outline outline-1 outline-offset-[-1px] outline-slate-200 inline-flex justify-start items-center gap-1 text-sm font-medium text-slate-900"
             activeButtonClassName="bg-[#f0f3f7]"
             inactiveButtonClassName="bg-white"
           />

@@ -30,7 +30,6 @@
   color: #2d2d2d;
   font-size: 9px; /* Base size for mobile */
   font-weight: 400;
-  font-family: "Inter", sans-serif;
 }
 
 .activity-description span {
@@ -41,7 +40,6 @@
   color: #64748b;
   font-size: clamp(10px, 1.8vw, 12px);
   font-weight: 400;
-  font-family: "Inter", sans-serif;
 }
 
 /* Mobile (≤ 639px) */

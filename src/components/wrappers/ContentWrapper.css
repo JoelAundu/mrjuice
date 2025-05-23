@@ -13,14 +13,12 @@
   font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 600;
   color: #0f172a;
-  font-family: "Inter", sans-serif;
   margin-bottom: clamp(4px, 1vw, 8px);
 }
 
 .content-description {
   font-size: clamp(12px, 1.5vw, 14px);
   color: #475569;
-  font-family: "Inter", sans-serif;
 }
 
 .content-body {
@@ -84,14 +82,14 @@
     font-size: 20px; /* Exact font size preserved */
     font-weight: 600;
     color: #0f172a;
-    font-family: "Inter", sans-serif;
+
     margin-bottom: 8px; /* Exact margin preserved */
   }
 
   .content-description {
     font-size: 14px; /* Exact font size preserved */
     color: #475569;
-    font-family: "Inter", sans-serif;
+
   }
 }
 
